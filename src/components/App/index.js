@@ -1,11 +1,11 @@
 import React from 'react';
-import Dashboard from '../Dashboard';
+import Router from '../Router';
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <Dashboard />
+                <Router />
             </div>
         );
     }

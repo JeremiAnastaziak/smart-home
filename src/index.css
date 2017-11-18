@@ -2,6 +2,10 @@
     display: flex;
 }
 
-.row > div {
+.row > * {
     flex: 1;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
 }
