@@ -20,7 +20,7 @@ const render = () =>
     ReactDOM.render(
         <Provider store={store}>
             <MuiThemeProvider>
-                <App />
+                <App/>
             </MuiThemeProvider>
         </Provider>,
         document.getElementById('root')

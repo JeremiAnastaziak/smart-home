@@ -5,3 +5,11 @@
     text-align: center;
     cursor: pointer;
 }
+
+.tile div {
+    width: 100%;
+}
+
+.tile div div {
+    box-sizing: border-box;
+}

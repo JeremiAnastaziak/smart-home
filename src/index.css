@@ -1,11 +1,25 @@
 .row {
     display: flex;
+    margin: 10px 0 0;
+}
+
+.row-margins {
+    margin: 10px 10px 0;
 }
 
 .row > * {
     flex: 1;
+    margin: 10px;
+}
+
+.row > *:last-child {
 }
 
 a:-webkit-any-link {
     text-decoration: none;
+}
+
+.desk {
+    background: #B2EBF2;
+    min-height: 100vh;
 }

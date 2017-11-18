@@ -3,7 +3,6 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 
 import {
     ResponsiveContainer,
-    LineChart,
     Line,
     XAxis,
     YAxis,
@@ -20,21 +19,25 @@ import {
     LabelList
 } from 'recharts';
 
-const MeasurementChart = ({ data }) => {
+const MeasurementChart = ({ measurements, title }) => {
     return (
         <Card>
-            <CardTitle title="Temperaturka" />
+            <CardTitle title={title} style={{padding: "5px 10px 0"}}/>
             <ResponsiveContainer width="99%" aspect={1.8}>
-            <LineChart
-                data={data}
-                margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
-            >
-                <XAxis dataKey="name" />
-                <Tooltip />
-                <CartesianGrid stroke="#f5f5f5" />
-                <Line type="monotone" dataKey="uv" stroke="#ff7300" yAxisId={0} />
-                <Line type="monotone" dataKey="pv" stroke="#387908" yAxisId={1} />
-            </LineChart>
+            <AreaChart data={measurements}
+            margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
+            <defs>
+              <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#F06292" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#F06292" stopOpacity={0}/>
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="date" color="#9e9e9e" style={{fontSize: '12px'}}/>
+            <YAxis domain={['dataMin - 2', 'dataMax + 2']} hide/>
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Area type="monotone" dataKey="Value" stroke="#F06292" fillOpacity={1} fill="url(#colorValue)" />
+          </AreaChart>
             </ResponsiveContainer>
         </Card>
     );

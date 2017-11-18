@@ -5,6 +5,7 @@
   "dependencies": {
     "material-ui": "^0.19.4",
     "react": "^16.1.1",
+    "react-animated-number": "^0.4.3",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
@@ -16,6 +17,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "copy": "rm -rf ../jeremianastaziak3.github.io/* && cp -r build/* ../jeremianastaziak3.github.io"
   }
 }
