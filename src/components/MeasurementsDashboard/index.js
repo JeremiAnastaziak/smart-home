@@ -1,12 +1,17 @@
 import React from 'react';
 import MeasurementChart from '../MeasurementChart';
 import './index.css';
-import data from '../../api/dummy';
 
-const MeasurementsDashboard = () => {
+const MeasurementsDashboard = ({ data }) => {
     return (
         <div className="row">
-            {data.map(data => <MeasurementChart title={data.title} measurements={data.measurements} />)}
+            {Object.keys(data).map(key => (
+                <MeasurementChart
+                    key={key}
+                    title={key}
+                    measurements={data[key]}
+                />
+            ))}
         </div>
     );
 };

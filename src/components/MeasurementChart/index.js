@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardTitle } from 'material-ui/Card';
 
 import {
     ResponsiveContainer,
@@ -36,7 +36,7 @@ const MeasurementChart = ({ measurements, title }) => {
             <YAxis domain={['dataMin - 2', 'dataMax + 2']} hide/>
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-            <Area type="monotone" dataKey="Value" stroke="#F06292" fillOpacity={1} fill="url(#colorValue)" />
+            <Area type="monotone" dataKey="value" stroke="#F06292" fillOpacity={1} fill="url(#colorValue)" />
           </AreaChart>
             </ResponsiveContainer>
         </Card>

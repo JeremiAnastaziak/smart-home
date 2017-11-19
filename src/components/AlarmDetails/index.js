@@ -1,12 +1,20 @@
 import React from 'react';
 import TableData from '../TableData';
+import { connect } from 'react-redux';
+import { extractSpecificAlarmInfo } from '../../data/alarm-data-helper';
 
-const AlarmDetails = ({alarmType}) => {
+const mapStateToProps = ({ records }) => {
+    return {
+        records: records
+    };
+};
+
+const AlarmDetails = ({ alarmType, records }) => {
     return (
         <div>
-            <TableData />
+            <TableData records={extractSpecificAlarmInfo(records, alarmType)} ingoreAlarmColumn />
         </div>
-    )
-}
+    );
+};
 
-export default AlarmDetails;
+export default connect(mapStateToProps, null)(AlarmDetails);

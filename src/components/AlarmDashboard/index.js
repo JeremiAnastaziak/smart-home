@@ -2,13 +2,14 @@ import React from 'react';
 import AlarmFire from '../AlarmFire';
 import AlarmFreezing from '../AlarmFreezing';
 import AlarmBurglary from '../AlarmBurglary';
+import AlarmTile from '../AlarmTile';
 
-const AlarmDashboard = () => {
+const AlarmDashboard = ({alarms}) => {
     return (
         <div className="row">
-            <AlarmFire />
-            <AlarmFreezing />
-            <AlarmBurglary />
+            {
+                Object.keys(alarms).map(key => <AlarmTile key={key} alarmCounts={alarms[key]} title={`${key} alarm`}/>)
+            }
         </div>
     );
 };

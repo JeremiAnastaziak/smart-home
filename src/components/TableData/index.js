@@ -4,14 +4,14 @@ import {
     TableBody,
     TableHeader,
     TableHeaderColumn,
-    TableRow,
-    TableRowColumn
+    TableRow
 } from 'material-ui/Table';
 
-import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 import TableDataToolbar from '../TableDataToolbar';
+import CustomTableRow from '../TableRow';
 
-const TableData = () => {
+const TableData = ({ records }) => {
     return (
         <Card className="row-margins">
             <TableDataToolbar />
@@ -21,34 +21,12 @@ const TableData = () => {
                         <TableHeaderColumn>Date</TableHeaderColumn>
                         <TableHeaderColumn>Temperature</TableHeaderColumn>
                         <TableHeaderColumn>Humidity</TableHeaderColumn>
+                        <TableHeaderColumn>Handle</TableHeaderColumn>
+                        <TableHeaderColumn>Alarms</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
-                <TableBody displayRowCheckbox={false} adjustForCheckbox={false}>
-                    <TableRow>
-                        <TableRowColumn>1</TableRowColumn>
-                        <TableRowColumn>John Smith</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>2</TableRowColumn>
-                        <TableRowColumn>Randal White</TableRowColumn>
-                        <TableRowColumn>Unemployed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>3</TableRowColumn>
-                        <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>4</TableRowColumn>
-                        <TableRowColumn>Steve Brown</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>5</TableRowColumn>
-                        <TableRowColumn>Christopher Nolan</TableRowColumn>
-                        <TableRowColumn>Unemployed</TableRowColumn>
-                    </TableRow>
+                <TableBody displayRowCheckbox={false}>
+                    {records && records.map(record => <CustomTableRow key={record.date} record={record} />)}
                 </TableBody>
             </Table>
         </Card>

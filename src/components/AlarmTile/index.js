@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import AnimatedNumber from 'react-animated-number';
 import './index.css';
 
-const AlarmTile = ({ title, icon }) => {
+const AlarmTile = ({ title, alarmCounts, icon }) => {
     return (
         <Link to={`/alarms/${title.toLowerCase().slice(0, title.indexOf(' '))}`}>
             <Card className="tile card">
@@ -16,7 +16,7 @@ const AlarmTile = ({ title, icon }) => {
                     title={
                         <AnimatedNumber
                             component="text"
-                            value={Math.floor(Math.random(0, 5)*10)}
+                            value={alarmCounts}
                             style={{
                                 transition: '0.8s ease-out',
                                 fontSize: 48,

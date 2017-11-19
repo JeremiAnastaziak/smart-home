@@ -4,7 +4,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import dummyData from './api/dummy';
+import dummyData from './api/dummyApi';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
 
@@ -12,7 +12,9 @@ const todoApp = combineReducers({});
 
 const store = createStore(
     todoApp,
-    dummyData,
+    {
+        "records": dummyData
+    },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

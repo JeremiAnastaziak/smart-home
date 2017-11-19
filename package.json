@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash.filter": "^4.6.0",
+    "lodash.flatmap": "^4.5.0",
+    "lodash.map": "^4.6.0",
+    "lodash.pick": "^4.4.0",
+    "lodash.reduce": "^4.6.0",
     "material-ui": "^0.19.4",
+    "moment": "^2.19.2",
     "react": "^16.1.1",
     "react-animated-number": "^0.4.3",
     "react-dom": "^16.1.1",
