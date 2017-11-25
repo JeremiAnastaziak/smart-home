@@ -8,9 +8,9 @@ import { countAlarms } from '../../data/alarm-data-helper';
 
 const mapStateToProps = ({ records }) => {
     return {
-        measurements: groupMeasurements(records),
-        alarms: countAlarms(records),
-        records: records
+        measurements: groupMeasurements(records.items),
+        alarms: countAlarms(records.items),
+        records: records.items
     };
 };
 

@@ -13,6 +13,8 @@ import {
     ToolbarTitle
 } from 'material-ui/Toolbar';
 
+import Pagination from '../Pagination';
+
 const TableDataToolbar = () => {
     return (
         <Toolbar>
@@ -33,6 +35,9 @@ const TableDataToolbar = () => {
                     <MenuItem primaryText="Najnowsze" />
                     <MenuItem primaryText="Najstarsze" />
                 </IconMenu>
+            </ToolbarGroup>
+            <ToolbarGroup>
+                <Pagination />
             </ToolbarGroup>
         </Toolbar>
     );

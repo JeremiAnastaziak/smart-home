@@ -5,9 +5,6 @@ import AlarmDetails from '../AlarmDetails';
 import Header from '../Header';
 
 const Router = () => {
-
-
-
     return (
         <HashRouter>
             <div>

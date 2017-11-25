@@ -6,14 +6,21 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import dummyData from './api/dummyApi';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import rootReducer from './reducers/root';
+
 import './index.css';
 
-const todoApp = combineReducers({});
+const todoApp = rootReducer;
 
 const store = createStore(
     todoApp,
     {
-        "records": dummyData
+        records: dummyData,
+        limit: 5,
+        total: 50,
+        pagination: {
+            activePage: 1
+        }
     },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
