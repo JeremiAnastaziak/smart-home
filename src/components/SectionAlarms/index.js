@@ -1,11 +1,11 @@
 import React from 'react';
-import AlarmTile from '../AlarmTile';
+import TileAlarm from '../TileAlarm';
 
-const AlarmDashboard = ({ alarms }) => {
+const SectionAlarms = ({ alarms }) => {
     return (
         <div className="row">
             {Object.keys(alarms).map(key => (
-                <AlarmTile
+                <TileAlarm
                     key={key}
                     alarmCounts={alarms[key]}
                     title={`${key} alarm`}
@@ -15,4 +15,4 @@ const AlarmDashboard = ({ alarms }) => {
     );
 };
 
-export default AlarmDashboard;
+export default SectionAlarms;

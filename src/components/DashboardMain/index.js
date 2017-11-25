@@ -1,7 +1,7 @@
 import React from 'react';
-import AlarmDashboard from '../AlarmDashboard';
-import RecordsDashboard from '../RecordsDashboard';
-import MeasurementsDashboard from '../MeasurementsDashboard';
+import SectionAlarms from '../SectionAlarms';
+import SectionRecords from '../SectionRecords';
+import SectionCharts from '../SectionCharts';
 import { connect } from 'react-redux';
 import { groupMeasurements } from '../../data/measurements-data-helper';
 import { countAlarms } from '../../data/alarm-data-helper';
@@ -14,14 +14,14 @@ const mapStateToProps = ({ records }) => {
     };
 };
 
-const Dashboard = ({ measurements, alarms, records }) => {
+const DashboardMain = ({ measurements, alarms, records }) => {
     return (
         <div>
-            <AlarmDashboard alarms={alarms} />
-            <RecordsDashboard records={records} />
-            <MeasurementsDashboard data={measurements} />
+            <SectionAlarms alarms={alarms} />
+            <SectionRecords records={records} />
+            <SectionCharts data={measurements} />
         </div>
     );
 };
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, null)(DashboardMain);

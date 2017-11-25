@@ -15,7 +15,7 @@ import {
 
 import Pagination from '../Pagination';
 
-const TableDataToolbar = () => {
+const TableToolbar = () => {
     return (
         <Toolbar>
             <ToolbarGroup>
@@ -43,4 +43,4 @@ const TableDataToolbar = () => {
     );
 };
 
-export default TableDataToolbar;
+export default TableToolbar;

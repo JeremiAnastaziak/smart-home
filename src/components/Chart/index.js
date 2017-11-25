@@ -19,7 +19,7 @@ import {
     LabelList
 } from 'recharts';
 
-const MeasurementChart = ({ measurements, title }) => {
+const Chart = ({ measurements, title }) => {
     return (
         <Card>
             <CardTitle title={title} style={{padding: "5px 10px 0"}}/>
@@ -43,4 +43,4 @@ const MeasurementChart = ({ measurements, title }) => {
     );
 };
 
-export default MeasurementChart;
+export default Chart;

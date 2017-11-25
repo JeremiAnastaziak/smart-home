@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import Dashboard from '../Dashboard';
-import AlarmDetails from '../AlarmDetails';
+import DashboardMain from '../DashboardMain';
+import DashboardAlarm from '../DashboardAlarm';
 import Header from '../Header';
 
 const Router = () => {
@@ -14,7 +14,7 @@ const Router = () => {
                     component={routerParams => (
                         <div>
                             <Header showIconLeft={routerParams.match.params.alarm} />
-                            <Dashboard />
+                            <DashboardMain />
                         </div>
                     )}
                 />
@@ -27,7 +27,7 @@ const Router = () => {
                                 showIconLeft={routerParams.match.params.alarm}
                                 alarmType={routerParams.match.params.alarm}
                             />
-                            <AlarmDetails
+                            <DashboardAlarm
                                 alarmType={routerParams.match.params.alarm}
                             />
                         </div>

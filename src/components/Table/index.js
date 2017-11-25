@@ -8,13 +8,13 @@ import {
 } from 'material-ui/Table';
 
 import { Card } from 'material-ui/Card';
-import TableDataToolbar from '../TableDataToolbar';
-import CustomTableRow from '../TableRow';
+import TableToolbar from '../TableToolbar';
+import TableRowCustom from '../TableRow';
 
-const TableData = ({ records }) => {
+const TableCustom = ({ records }) => {
     return (
         <Card className="row-margins">
-            <TableDataToolbar />
+            <TableToolbar />
             <Table>
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
@@ -26,11 +26,11 @@ const TableData = ({ records }) => {
                     </TableRow>
                 </TableHeader>
                 <TableBody displayRowCheckbox={false}>
-                    {records && records.map(record => <CustomTableRow key={record.date} record={record} />)}
+                    {records && records.map(record => <TableRowCustom key={record.date} record={record} />)}
                 </TableBody>
             </Table>
         </Card>
     );
 };
 
-export default TableData;
+export default TableCustom;

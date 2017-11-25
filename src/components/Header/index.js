@@ -14,10 +14,12 @@ const IconLeft = () => {
     );
 };
 
+const upperCaseFirstLetter = word => word.replace(/(^|\s)\S/g, l => l.toUpperCase());
+
 const Header = ({ alarmType, showIconLeft = false }) => {
-    const renderTitle = (alarmType) => {
+    const renderTitle = alarmType => {
         return alarmType
-            ? `${alarmType.replace(/(^|\s)\S/g, l => l.toUpperCase())} alarm details`
+            ? `${upperCaseFirstLetter(alarmType)} alarm details`
             : 'Smart home panel';
     };
 
@@ -25,7 +27,7 @@ const Header = ({ alarmType, showIconLeft = false }) => {
         <AppBar
             title={renderTitle(alarmType)}
             showMenuIconButton={showIconLeft}
-            iconElementLeft={showIconLeft && <IconLeft />}
+            iconElementLeft={<IconLeft />}
         />
     );
 };

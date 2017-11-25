@@ -4,7 +4,7 @@ import {
     TableRowColumn
 } from 'material-ui/Table';
 
-const CustomTableRow = ({ record }) => {
+const TableRowCustom = ({ record }) => {
     return (
         <TableRow>
             <TableRowColumn>{record.date}</TableRowColumn>
@@ -20,4 +20,4 @@ const CustomTableRow = ({ record }) => {
     );
 };
 
-export default CustomTableRow;
+export default TableRowCustom;

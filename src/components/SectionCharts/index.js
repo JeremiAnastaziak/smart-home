@@ -1,12 +1,12 @@
 import React from 'react';
-import MeasurementChart from '../MeasurementChart';
+import Chart from '../Chart';
 import './index.css';
 
-const MeasurementsDashboard = ({ data }) => {
+const SectionCharts = ({ data }) => {
     return (
         <div className="row">
             {Object.keys(data).map(key => (
-                <MeasurementChart
+                <Chart
                     key={key}
                     title={key}
                     measurements={data[key]}
@@ -16,4 +16,4 @@ const MeasurementsDashboard = ({ data }) => {
     );
 };
 
-export default MeasurementsDashboard;
+export default SectionCharts;
