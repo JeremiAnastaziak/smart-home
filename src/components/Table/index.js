@@ -8,10 +8,11 @@ import {
 } from 'material-ui/Table';
 
 import { Card } from 'material-ui/Card';
+import CircularProgress from 'material-ui/CircularProgress';
 import TableToolbar from '../TableToolbar';
 import TableRowCustom from '../TableRow';
 
-const TableCustom = ({ records }) => {
+const TableCustom = ({ records, isFetching }) => {
     return (
         <Card className="row-margins">
             <TableToolbar />
@@ -25,8 +26,13 @@ const TableCustom = ({ records }) => {
                         <TableHeaderColumn>Alarms</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
+
                 <TableBody displayRowCheckbox={false}>
-                    {records && records.map(record => <TableRowCustom key={record.date} record={record} />)}
+                    {isFetching && <CircularProgress style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}/>}
+                    {records &&
+                        records.map(record => (
+                            <TableRowCustom key={record.date} record={record} />
+                        ))}
                 </TableBody>
             </Table>
         </Card>

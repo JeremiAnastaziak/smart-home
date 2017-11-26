@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import paginationReducer from './pagination-reducer';
+import dashboardReducer from './dashboard-reducer';
 import recordsReducer from './records-reducer';
 
 export default combineReducers({
-    pagination: paginationReducer,
+    dashboard: dashboardReducer,
     records: recordsReducer
 })

@@ -5,11 +5,11 @@ import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { connect } from 'react-redux';
-import { changeCurrentPage } from '../../actions/pagination-actions.js';
+import { changeCurrentPage } from '../../actions/dashboard-actions.js';
 
-const mapStateToProps = ({ pagination, records }) => {
+const mapStateToProps = ({ dashboard, records }) => {
     return {
-        ...pagination,
+        ...dashboard,
         totalPages: Math.ceil(records.total / 5)
     };
 };
@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Pagination extends React.Component {
+
     onChangeCurrentPagePrevious = () => {
         this.props.onChangeCurrentPage(this.props.activePage - 1);
     }

@@ -1,28 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import dummyData from './api/dummyApi';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import rootReducer from './reducers/root';
-
+import rootReducer from './reducers/root-reducer';
 import './index.css';
 
-const todoApp = rootReducer;
+const composeEnhancers = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk)
+);
 
 const store = createStore(
-    todoApp,
-    {
-        records: dummyData,
-        limit: 5,
-        total: 50,
-        pagination: {
-            activePage: 1
-        }
-    },
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    rootReducer,
+    {},
+    enhancer
 );
 
 const render = () =>

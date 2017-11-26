@@ -1,8 +1,8 @@
 import React from 'react';
 import TableCustom from '../Table';
 
-const SectionRecords = ({ records }) => {
-    return <TableCustom title="Ostatnie rekordy" records={records}/>;
+const SectionRecords = (props) => {
+    return <TableCustom title="Ostatnie rekordy" {...props} />;
 };
 
 export default SectionRecords;
