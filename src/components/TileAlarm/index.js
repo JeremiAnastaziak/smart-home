@@ -26,7 +26,7 @@ const TileAlarm = ({ title, alarmCounts, icon }) => {
                             stepPrecision={0}
                             frameStyle={perc =>
                                 perc === 100 ? {} : { backgroundColor: '#fff' }}
-                            duration={1300}
+                            duration={0}
                         />
                     }
                     style={{ padding: '0' }}
