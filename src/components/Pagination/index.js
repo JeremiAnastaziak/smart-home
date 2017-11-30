@@ -29,7 +29,6 @@ class Pagination extends React.Component {
 
     render() {
         const { activePage, totalPages } = this.props;
-        console.log(this.props)
         return (
             <div style={{ display: 'flex', alignItems: 'center', minWidth: '250px', justifyContent: 'flex-end' }}>
                 {activePage > 1 && (

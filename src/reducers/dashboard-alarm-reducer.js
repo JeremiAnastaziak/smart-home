@@ -2,14 +2,15 @@ import dummyData from '../api/dummyApi';
 import {
     ALARM_PAGINATION_CHANGE_PAGE,
     ALARM_LOAD_RECORDS,
-    ALARM_LOAD_RECORDS_SUCCESS
+    ALARM_LOAD_RECORDS_SUCCESS,
+    ALARM_VIEW_CHANGE
 } from '../actions/dashboard-alarm-actions';
 
 const initialState = {
-    records: dummyData,
+    records: null,
     isFetching: false,
     activePage: 1,
-    activeAlarm: ''
+    activeAlarmView: ''
 };
 
 export default function dashboardAlarmReducer(state = initialState, action) {
@@ -32,6 +33,12 @@ export default function dashboardAlarmReducer(state = initialState, action) {
                 },
                 isFetching: false
             };
+
+        case ALARM_VIEW_CHANGE:
+            return {
+                ...state,
+                activeAlarmView: action.alarm
+            }
 
         default:
             return state;

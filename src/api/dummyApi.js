@@ -10,15 +10,13 @@ module.exports = {
                 burglary: true,
                 frost: false
             },
-            measurements: {
-                temperature: {
-                    value: 22.6,
-                    unit: 'Celsius'
-                },
-                sound: {
-                    value: -7.5,
-                    unit: 'dB'
-                }
+            temperature: {
+                value: 22.6,
+                unit: 'Celsius'
+            },
+            sound: {
+                value: -7.5,
+                unit: 'dB'
             }
         },
         {
@@ -30,15 +28,13 @@ module.exports = {
                 burglary: false,
                 frost: false
             },
-            measurements: {
-                temperature: {
-                    value: 22.3,
-                    unit: 'Celsius'
-                },
-                sound: {
-                    value: -7.3,
-                    unit: 'dB'
-                }
+            temperature: {
+                value: 22.3,
+                unit: 'Celsius'
+            },
+            sound: {
+                value: -7.3,
+                unit: 'dB'
             }
         },
         {
@@ -50,15 +46,13 @@ module.exports = {
                 burglary: false,
                 frost: false
             },
-            measurements: {
-                temperature: {
-                    value: 21.3,
-                    unit: 'Celsius'
-                },
-                sound: {
-                    value: -6.3,
-                    unit: 'dB'
-                }
+            temperature: {
+                value: 21.3,
+                unit: 'Celsius'
+            },
+            sound: {
+                value: -6.3,
+                unit: 'dB'
             }
         },
         {
@@ -70,15 +64,13 @@ module.exports = {
                 burglary: false,
                 frost: true
             },
-            measurements: {
-                temperature: {
-                    value: 24.3,
-                    unit: 'Celsius'
-                },
-                sound: {
-                    value: -7.7,
-                    unit: 'dB'
-                }
+            temperature: {
+                value: 24.3,
+                unit: 'Celsius'
+            },
+            sound: {
+                value: -7.7,
+                unit: 'dB'
             }
         },
         {
@@ -90,15 +82,13 @@ module.exports = {
                 burglary: true,
                 frost: false
             },
-            measurements: {
-                temperature: {
-                    value: 22.9,
-                    unit: 'Celsius'
-                },
-                sound: {
-                    value: -7.9,
-                    unit: 'dB'
-                }
+            temperature: {
+                value: 22.9,
+                unit: 'Celsius'
+            },
+            sound: {
+                value: -7.9,
+                unit: 'dB'
             }
         }
     ]

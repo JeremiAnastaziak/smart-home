@@ -6,7 +6,7 @@ import { changeCurrentPage } from '../../actions/dashboard-alarm-actions.js';
 const mapStateToProps = ({ dashboardAlarm }) => {
     return {
         ...dashboardAlarm,
-        totalPages: Math.ceil(dashboardAlarm.records.total / 5)
+        totalPages: Math.ceil(dashboardAlarm.records && dashboardAlarm.records.total / 5)
     };
 };
 

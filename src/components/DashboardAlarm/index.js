@@ -1,24 +1,15 @@
 import React from 'react';
 import TableCustom from '../Table';
 import { connect } from 'react-redux';
-import { loadRecords} from '../../actions/dashboard-alarm-actions';
 
 const mapStateToProps = ({ dashboardAlarm }) => {
     return {
-        records: null,
+        records: dashboardAlarm.records && dashboardAlarm.records.items,
         isFetching: dashboardAlarm.isFetching
     };
 };
 
-const mapDispatchToProps = (dispatch, {alarmType}) => {
-    //dispatch(loadRecords(alarmType))
-    return {
-
-    }
-}
-
 const DashboardAlarm = ({ alarmType, records, isFetching }) => {
-    console.log(records);
     return (
         <div>
             <TableCustom
@@ -30,4 +21,4 @@ const DashboardAlarm = ({ alarmType, records, isFetching }) => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardAlarm);
+export default connect(mapStateToProps, null)(DashboardAlarm);

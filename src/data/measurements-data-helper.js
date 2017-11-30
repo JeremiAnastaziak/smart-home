@@ -4,7 +4,8 @@ export function groupMeasurements(records){
     let data = records.map(record => {
         return {
             date: moment(record.date).format("DD/MM"),
-            ...record.measurements
+            temperature: record.temperature,
+            sound: record.temperature
         };
     });
 
@@ -13,11 +14,11 @@ export function groupMeasurements(records){
         sound: []
     };
 
-    data.forEach((measurementSet, index) => {
-        massagedData.temperature.push(measurementSet.temperature);
-        massagedData.temperature[index].date = measurementSet.date;
-        massagedData.sound.push(measurementSet.sound);
-        massagedData.sound[index].date = measurementSet.date;
+    data.forEach((record, index) => {
+        massagedData.temperature.push(record.temperature);
+        massagedData.temperature[index].date = record.date;
+        massagedData.sound.push(record.sound);
+        massagedData.sound[index].date = record.date;
     });
 
     return massagedData;
