@@ -13,9 +13,10 @@ import {
     ToolbarTitle
 } from 'material-ui/Toolbar';
 
-import Pagination from '../Pagination';
+import AlarmPagination from '../AlarmPagination';
+import MainPagination from '../MainPagination';
 
-const TableToolbar = () => {
+const TableToolbar = ({ isAlarmTable }) => {
     return (
         <Toolbar>
             <ToolbarGroup>
@@ -37,7 +38,7 @@ const TableToolbar = () => {
                 </IconMenu>
             </ToolbarGroup>
             <ToolbarGroup>
-                <Pagination />
+                {isAlarmTable ? <AlarmPagination /> : <MainPagination />}
             </ToolbarGroup>
         </Toolbar>
     );

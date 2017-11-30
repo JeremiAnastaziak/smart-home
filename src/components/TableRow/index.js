@@ -1,21 +1,34 @@
 import React from 'react';
-import {
-    TableRow,
-    TableRowColumn
-} from 'material-ui/Table';
+import { TableRow, TableRowColumn } from 'material-ui/Table';
+import './index.css';
 
-const TableRowCustom = ({ record }) => {
+const rowColumnCustomStyles = {};
+
+const TableRowColumnCustom = ({ data, fire, burglary, frost }) => {
+    const renderData = !data // if alarm column renders
+        ? ''
+              .concat(fire ? 'FIRE ' : '')
+              .concat(frost ? 'FROST ' : '')
+              .concat(burglary ? 'BURGLARY' : '')
+        : data;
+
     return (
-        <TableRow>
-            <TableRowColumn>{record.date}</TableRowColumn>
-            <TableRowColumn>{record.measurements.temperature.value}</TableRowColumn>
-            <TableRowColumn>{record.measurements.sound.value}</TableRowColumn>
-            <TableRowColumn>{record.handlePosition}</TableRowColumn>
-            <TableRowColumn>
-                {record.alarm.fire ? 'FIRE ' : ''}
-                {record.alarm.frost ? 'FROST ' : ''}
-                {record.alarm.burglary ? 'BURGLARY' : ''}
-            </TableRowColumn>
+        <TableRowColumn>
+            <span>
+            {renderData}
+            </span>
+        </TableRowColumn>
+    );
+};
+
+const TableRowCustom = ({ record, isFetching }) => {
+    return (
+        <TableRow className={isFetching ? 'apply-placeholder' : ''}>
+            <TableRowColumnCustom data={record.date} />
+            <TableRowColumnCustom data={record.measurements.temperature.value} />
+            <TableRowColumnCustom data={record.measurements.sound.value} />
+            <TableRowColumnCustom data={record.handlePosition} />
+            <TableRowColumnCustom {...record.alarm} />
         </TableRow>
     );
 };

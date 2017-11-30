@@ -5,12 +5,13 @@ import SectionRecords from '../SectionRecords';
 import SectionCharts from '../SectionCharts';
 import { groupMeasurements } from '../../data/measurements-data-helper';
 import { countAlarms } from '../../data/alarm-data-helper';
-const mapStateToProps = ({ records }) => {
+
+const mapStateToProps = ({ dashboard }) => {
     return {
-        measurements: groupMeasurements(records.items),
-        alarms: countAlarms(records.items),
-        records: records.items,
-        isFetching: records.isFetching
+        measurements: groupMeasurements(dashboard.records.items),
+        alarms: countAlarms(dashboard.records.items),
+        records: dashboard.records.items,
+        isFetching: dashboard.isFetching
     };
 };
 

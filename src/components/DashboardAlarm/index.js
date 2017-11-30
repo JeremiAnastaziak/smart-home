@@ -1,20 +1,33 @@
 import React from 'react';
 import TableCustom from '../Table';
 import { connect } from 'react-redux';
-import { extractSpecificAlarmInfo } from '../../data/alarm-data-helper';
+import { loadRecords} from '../../actions/dashboard-alarm-actions';
 
-const mapStateToProps = ({ records }) => {
+const mapStateToProps = ({ dashboardAlarm }) => {
     return {
-        records: records.items
+        records: null,
+        isFetching: dashboardAlarm.isFetching
     };
 };
 
-const DashboardAlarm = ({ alarmType, records }) => {
+const mapDispatchToProps = (dispatch, {alarmType}) => {
+    //dispatch(loadRecords(alarmType))
+    return {
+
+    }
+}
+
+const DashboardAlarm = ({ alarmType, records, isFetching }) => {
+    console.log(records);
     return (
         <div>
-            <TableCustom records={extractSpecificAlarmInfo(records, alarmType)} ingoreAlarmColumn />
+            <TableCustom
+                alarmTable={true}
+                records={records}
+                isFetching={isFetching}
+            />
         </div>
     );
 };
 
-export default connect(mapStateToProps, null)(DashboardAlarm);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardAlarm);

@@ -6,7 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import AnimatedNumber from 'react-animated-number';
 import './index.css';
 
-const TileAlarm = ({ title, alarmCounts, icon }) => {
+const AlarmTile = ({ title, alarmCounts, icon }) => {
     return (
         <Link to={`/alarms/${title.toLowerCase().slice(0, title.indexOf(' '))}`}>
             <Card className="tile card">
@@ -39,4 +39,4 @@ const TileAlarm = ({ title, alarmCounts, icon }) => {
     );
 };
 
-export default TileAlarm;
+export default AlarmTile;

@@ -1,11 +1,11 @@
 import React from 'react';
-import TileAlarm from '../TileAlarm';
+import AlarmTile from '../AlarmTile';
 
 const SectionAlarms = ({ alarms }) => {
     return (
         <div className="row">
             {Object.keys(alarms).map(key => (
-                <TileAlarm
+                <AlarmTile
                     key={key}
                     alarmCounts={alarms[key]}
                     title={`${key} alarm`}

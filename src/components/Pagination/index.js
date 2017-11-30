@@ -4,23 +4,6 @@ import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { connect } from 'react-redux';
-import { changeCurrentPage } from '../../actions/dashboard-actions.js';
-
-const mapStateToProps = ({ dashboard, records }) => {
-    return {
-        ...dashboard,
-        totalPages: Math.ceil(records.total / 5)
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onChangeCurrentPage: (page) => {
-            dispatch(changeCurrentPage(page))
-        }
-    }
-}
 
 class Pagination extends React.Component {
 
@@ -46,6 +29,7 @@ class Pagination extends React.Component {
 
     render() {
         const { activePage, totalPages } = this.props;
+        console.log(this.props)
         return (
             <div style={{ display: 'flex', alignItems: 'center', minWidth: '250px', justifyContent: 'flex-end' }}>
                 {activePage > 1 && (
@@ -85,4 +69,4 @@ class Pagination extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+export default Pagination;

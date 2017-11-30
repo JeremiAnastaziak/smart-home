@@ -1,29 +1,30 @@
 import dummyData from '../api/dummyApi';
 import {
-    DASHBOARD_PAGINATION_CHANGE_PAGE,
-    DASHBOARD_LOAD_RECORDS,
-    DASHBOARD_LOAD_RECORDS_SUCCESS
-} from '../actions/dashboard-actions';
+    ALARM_PAGINATION_CHANGE_PAGE,
+    ALARM_LOAD_RECORDS,
+    ALARM_LOAD_RECORDS_SUCCESS
+} from '../actions/dashboard-alarm-actions';
 
 const initialState = {
     records: dummyData,
     isFetching: false,
-    activePage: 1
+    activePage: 1,
+    activeAlarm: ''
 };
 
-export default function dashboardReducer(state = initialState, action) {
+export default function dashboardAlarmReducer(state = initialState, action) {
     switch (action.type) {
-        case DASHBOARD_PAGINATION_CHANGE_PAGE:
+        case ALARM_PAGINATION_CHANGE_PAGE:
             return {
                 ...state,
                 activePage: action.page
             };
-        case DASHBOARD_LOAD_RECORDS:
+        case ALARM_LOAD_RECORDS:
             return {
                 ...state,
                 isFetching: true
             };
-        case DASHBOARD_LOAD_RECORDS_SUCCESS:
+        case ALARM_LOAD_RECORDS_SUCCESS:
             return {
                 ...state,
                 records: {
