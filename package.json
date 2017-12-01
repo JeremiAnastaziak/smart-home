@@ -15,11 +15,14 @@
     "react-animated-number": "^0.4.3",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.17",
     "recharts": "^1.0.0-beta.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
@@ -28,5 +31,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "copy": "react-scripts build && rm -rf ../jeremianastaziak3.github.io/* && cp -r build/* ../jeremianastaziak3.github.io"
-  }
+  },
+  "devDependencies": {}
 }

@@ -12,12 +12,22 @@ const Router = () => {
                     exact
                     path="/"
                     component={routerParams => (
+
                         <div>
                             <Header showIconLeft={routerParams.match.params.alarm} />
                             <DashboardMain />
                         </div>
                     )}
                 />
+                {/* <Route
+                    exact
+                    path="/register"
+                    component={() => (
+                        <div>
+                            <Register />
+                        </div>
+                    )}
+                /> */}
                 <Route
                     exact
                     path="/alarms/:alarm"

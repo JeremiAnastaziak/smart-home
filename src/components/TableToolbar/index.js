@@ -23,21 +23,6 @@ const TableToolbar = ({ isAlarmTable }) => {
                 <ToolbarTitle text="Latest records" />
             </ToolbarGroup>
             <ToolbarGroup>
-                <FontIcon className="muidocs-icon-custom-sort" />
-                <ToolbarSeparator />
-                <RaisedButton label="Button" primary={true} />
-                <IconMenu
-                    iconButtonElement={
-                        <IconButton touch={true}>
-                            <NavigationExpandMoreIcon />
-                        </IconButton>
-                    }
-                >
-                    <MenuItem primaryText="Najnowsze" />
-                    <MenuItem primaryText="Najstarsze" />
-                </IconMenu>
-            </ToolbarGroup>
-            <ToolbarGroup>
                 {isAlarmTable ? <AlarmPagination /> : <MainPagination />}
             </ToolbarGroup>
         </Toolbar>
