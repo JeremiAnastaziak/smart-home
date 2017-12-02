@@ -2,8 +2,6 @@ import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import './index.css';
 
-const rowColumnCustomStyles = {};
-
 const TableRowColumnCustom = ({ data, fire, burglary, frost }) => {
     const renderData = !data // if alarm column renders
         ? ''

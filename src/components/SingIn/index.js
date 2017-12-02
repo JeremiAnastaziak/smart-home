@@ -1,32 +1,36 @@
 import React from 'react';
-import {
-    Card,
-    CardActions,
-    CardHeader,
-    CardMedia,
-    CardTitle,
-    CardText
-} from 'material-ui/Card';
+import { CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 
-class Login extends React.Component {
+class SingIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: '',
+            password: ''
         };
     }
 
     render() {
+        const { onLoginSubmit, isFetching } = this.props;
         return (
             <div>
-                <CardTitle title="Logowanie" style={{paddingBottom: '0'}}/>
-                {this.props.isFetching && <CircularProgress />}
+                <CardTitle
+                    title={
+                        <span>
+                            Logowanie {isFetching && <CircularProgress size={30} />}
+                        </span>
+                    }
+                    style={{ paddingBottom: '0' }}
+                />
+
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
-                    <form onSubmit={e => e.preventDefault()}>
+                    <form
+                        ref={node => (this.form = node)}
+                        onSubmit={() => onLoginSubmit(this.state)}
+                    >
                         <TextField
                             hintText="Wpisz adres e-mail"
                             floatingLabelText="E-mail"
@@ -52,7 +56,7 @@ class Login extends React.Component {
                             style={{ marginTop: '10px' }}
                             type="submit"
                             fullWidth
-                            onClick={() => console.log(this.state)}
+                            disabled={isFetching}
                         />
                     </form>
                 </CardText>
@@ -61,4 +65,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default SingIn;

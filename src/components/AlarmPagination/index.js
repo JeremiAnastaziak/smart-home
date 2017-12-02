@@ -1,4 +1,3 @@
-import React from 'react';
 import Pagination from '../Pagination';
 import { connect } from 'react-redux';
 import { changeCurrentPage } from '../../actions/dashboard-alarm-actions.js';

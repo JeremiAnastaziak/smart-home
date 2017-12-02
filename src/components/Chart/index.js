@@ -5,20 +5,12 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import {
     ResponsiveContainer,
-    Line,
     XAxis,
     YAxis,
-    ReferenceLine,
-    ReferenceDot,
     Tooltip,
     CartesianGrid,
-    Legend,
-    Brush,
-    ErrorBar,
     AreaChart,
-    Area,
-    Label,
-    LabelList
+    Area
 } from 'recharts';
 
 const mapStateToProps = ({ dashboard }) => {

@@ -1,7 +1,6 @@
 import {
     USER_REGISTER,
     USER_REGISTER_SUCCESS,
-    USER_REGISTER_ERROR
 } from '../actions/user-actions';
 
 const initialState = {

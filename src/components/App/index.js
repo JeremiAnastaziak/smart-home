@@ -1,13 +1,17 @@
 import React from 'react';
 import Router from '../Router';
-import Register from '../Register';
+import Landing from '../Landing';
 
 class App extends React.Component {
     render() {
         const { user } = this.props.store.getState();
         return (
             <div className="desk">
-                {!user.isAuth ? <Register isFetching={user.isFetching}/> : <Router store={this.props.store} />}
+                {!user.isAuth ? (
+                    <Landing isFetching={user.isFetching} />
+                ) : (
+                    <Router />
+                )}
             </div>
         );
     }

@@ -19,15 +19,6 @@ const Router = () => {
                         </div>
                     )}
                 />
-                {/* <Route
-                    exact
-                    path="/register"
-                    component={() => (
-                        <div>
-                            <Register />
-                        </div>
-                    )}
-                /> */}
                 <Route
                     exact
                     path="/alarms/:alarm"
