@@ -4,6 +4,7 @@ import DashboardMain from '../DashboardMain';
 import DashboardAlarm from '../DashboardAlarm';
 import Header from '../Header';
 import SideBar from '../SideBar';
+import Notification from '../Notification';
 
 const Router = () => {
     const handles = [

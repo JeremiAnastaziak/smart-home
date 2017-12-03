@@ -6,7 +6,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import { cyan500 } from 'material-ui/styles/colors';
 import SingIn from '../SingIn';
 import SingUp from '../SingUp';
-import { submitRegisterUser } from '../../actions/user-actions';
+import { submitRegisterUser, submitLoginUser } from '../../actions/user-actions';
 import './index.css';
 
 const mapDispatchToProps = dispatch => {
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(submitRegisterUser(body));
         },
         onLoginSubmit: body => {
-            dispatch(submitRegisterUser(body));
+            dispatch(submitLoginUser(body));
         }
     };
 };

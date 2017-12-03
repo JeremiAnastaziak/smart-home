@@ -9,7 +9,7 @@ class SingUp extends Component {
         super(props);
         this.state = {
             email: '',
-            phone: null,
+            phoneNumber: '',
             password: '',
             passwordRepeated: ''
         };
@@ -30,9 +30,11 @@ class SingUp extends Component {
                 />
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
                     <form
-                        onSubmit={() =>
+                        onSubmit={e => {
+                            e.preventDefault();
                             this.state.password === this.state.passwordRepeated &&
-                            onRegisterSubmit(this.state)}
+                                onRegisterSubmit(this.state);
+                        }}
                     >
                         <TextField
                             hintText="Wpisz adres e-mail"
@@ -48,7 +50,7 @@ class SingUp extends Component {
                             type="number"
                             onChange={e =>
                                 this.setState({
-                                    number: e.target.value
+                                    phoneNumber: e.target.value
                                 })}
                             fullWidth
                         />

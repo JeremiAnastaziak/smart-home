@@ -33,5 +33,6 @@
     "eject": "react-scripts eject",
     "copy": "react-scripts build && rm -rf ../jeremianastaziak3.github.io/* && cp -r build/* ../jeremianastaziak3.github.io"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "proxy": "https://limitless-spire-43906.herokuapp.com"
 }
