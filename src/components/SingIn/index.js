@@ -44,6 +44,7 @@ class SingIn extends React.Component {
                             floatingLabelText="Hasło"
                             type="password"
                             fullWidth
+                            autoComplete={false}
                             onChange={e =>
                                 this.setState({
                                     password: e.target.value

@@ -6,7 +6,14 @@ export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';
 export const DASHBOARD_LOAD_RECORDS = 'DASHBOARD_LOAD_RECORDS';
 export const DASHBOARD_LOAD_RECORDS_SUCCESS = 'DASHBOARD_LOAD_RECORDS_SUCCESS';
 export const DASHBOARD_LOAD_RECORDS_ERROR = 'DASHBOARD_LOAD_RECORDS_ERROR';
+export const DASHBOARD_SIDEBAR_TOGGLE = 'DASHBOARD_SIDEBAR_TOGGLE';
+export const DASHBOARD_HANDLE_FILTER = 'DASHBOARD_HANDLE_FILTER';
 
+export function toggleSideBar() {
+    return dispatch => {
+        dispatch({ type: DASHBOARD_SIDEBAR_TOGGLE });
+    };
+}
 export function loadRecords() {
     return dispatch => {
         dispatch({ type: DASHBOARD_LOAD_RECORDS });
@@ -25,6 +32,13 @@ export function loadRecords() {
 export function changeCurrentPage(page) {
     return (dispatch, getState) => {
         dispatch({ type: DASHBOARD_PAGINATION_CHANGE_PAGE, page });
+        loadRecords()(dispatch, getState);
+    };
+}
+
+export function filterHandle(name) {
+    return (dispatch, getState) => {
+        dispatch({ type: DASHBOARD_HANDLE_FILTER, handle: name });
         loadRecords()(dispatch, getState);
     };
 }

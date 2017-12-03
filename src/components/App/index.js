@@ -7,11 +7,12 @@ class App extends React.Component {
         const { user } = this.props.store.getState();
         return (
             <div className="desk">
-                {!user.isAuth ? (
+                {/* {!user.isAuth ? (
                     <Landing isFetching={user.isFetching} />
                 ) : (
                     <Router />
-                )}
+                )} */}
+                <Router />
             </div>
         );
     }
