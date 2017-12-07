@@ -7,7 +7,14 @@ import { cyan500 } from 'material-ui/styles/colors';
 import SingIn from '../SingIn';
 import SingUp from '../SingUp';
 import { submitRegisterUser, submitLoginUser } from '../../actions/user-actions';
+import { loadRecords } from '../../actions/dashboard-actions';
 import './index.css';
+
+const mapStateToProps = ({user}) => {
+    return {
+        isFetching: user.isFetching
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -16,7 +23,8 @@ const mapDispatchToProps = dispatch => {
         },
         onLoginSubmit: body => {
             dispatch(submitLoginUser(body));
-        }
+        },
+        checkUserAuth: () => dispatch(loadRecords())
     };
 };
 
@@ -26,6 +34,11 @@ class Landing extends React.Component {
         this.state = {
             tabsIndex: 0
         };
+    }
+
+    componentDidMount() {
+        console.log('mounted')
+        this.props.checkUserAuth();
     }
 
     handleTabChange = value => {
@@ -77,4 +90,4 @@ class Landing extends React.Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Landing);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

@@ -1,9 +1,11 @@
 module.exports = {
-    total: 50,
-    items: [
+    count: 50,
+    measurements: [
         {
             id: '9481adsd6290asd4281',
             date: 1510786941326,
+            handleTime: '120',
+            handleName: 'pokoj',
             handlePosition: 'OPEN',
             alarm: {
                 fire: true,
@@ -14,7 +16,7 @@ module.exports = {
                 value: 22.6,
                 unit: 'Celsius'
             },
-            sound: {
+            soundLevel: {
                 value: -7.5,
                 unit: 'dB'
             }
@@ -22,6 +24,8 @@ module.exports = {
         {
             id: '9481adsd6290asd4281',
             date: 1410786941326,
+            handleTime: '120',
+            handleName: 'pokoj',
             handlePosition: 'CLOSE',
             alarm: {
                 fire: false,
@@ -32,7 +36,7 @@ module.exports = {
                 value: 22.3,
                 unit: 'Celsius'
             },
-            sound: {
+            soundLevel: {
                 value: -7.3,
                 unit: 'dB'
             }
@@ -40,6 +44,8 @@ module.exports = {
         {
             id: '9481adsd6290asd4281',
             date: 1310786941326,
+            handleTime: '120',
+            handleName: 'pokoj',
             handlePosition: 'OPEN',
             alarm: {
                 fire: true,
@@ -50,7 +56,7 @@ module.exports = {
                 value: 21.3,
                 unit: 'Celsius'
             },
-            sound: {
+            soundLevel: {
                 value: -6.3,
                 unit: 'dB'
             }
@@ -58,6 +64,8 @@ module.exports = {
         {
             id: '9481adsd6290asd4281',
             date: 1210786941326,
+            handleTime: '120',
+            handleName: 'pokoj',
             handlePosition: 'OPEN',
             alarm: {
                 fire: false,
@@ -68,7 +76,7 @@ module.exports = {
                 value: 24.3,
                 unit: 'Celsius'
             },
-            sound: {
+            soundLevel: {
                 value: -7.7,
                 unit: 'dB'
             }
@@ -76,6 +84,8 @@ module.exports = {
         {
             id: '9481adsd6290asd4281',
             date: 1110786941326,
+            handleTime: '120',
+            handleName: 'pokoj',
             handlePosition: 'OPEN',
             alarm: {
                 fire: false,
@@ -86,7 +96,7 @@ module.exports = {
                 value: 22.9,
                 unit: 'Celsius'
             },
-            sound: {
+            soundLevel: {
                 value: -7.9,
                 unit: 'dB'
             }

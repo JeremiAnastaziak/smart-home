@@ -8,9 +8,9 @@ import { countAlarms } from '../../data/alarm-data-helper';
 
 const mapStateToProps = ({ dashboard }) => {
     return {
-        measurements: groupMeasurements(dashboard.records.items),
-        alarms: countAlarms(dashboard.records.items),
-        records: dashboard.records.items,
+        measurements: groupMeasurements(dashboard.records.measurements),
+        alarms: countAlarms(dashboard.records.measurements),
+        records: dashboard.records.measurements,
         isFetching: dashboard.isFetching
     };
 };
@@ -18,9 +18,9 @@ const mapStateToProps = ({ dashboard }) => {
 const DashboardMain = ({ measurements, alarms, records, isFetching }) => {
     return (
         <div>
-            <SectionAlarms alarms={alarms} />
+            {records.length && <SectionAlarms alarms={alarms} />}
             <SectionRecords records={records} isFetching={isFetching} />
-            <SectionCharts data={measurements} />
+            {records.length &&  <SectionCharts data={measurements} />}
         </div>
     );
 };

@@ -29,6 +29,7 @@ class Pagination extends React.Component {
 
     render() {
         const { activePage, totalPages } = this.props;
+        if (!totalPages) return ''
         return (
             <div style={{ display: 'flex', alignItems: 'center', minWidth: '250px', justifyContent: 'flex-end' }}>
                 {activePage > 1 && (
@@ -50,7 +51,7 @@ class Pagination extends React.Component {
                     onClick={() => this.input.select()}
                     value={activePage}
                 />
-                {'from'}
+                {'z'}
                 <FlatButton
                     label={totalPages}
                     primary={true}

@@ -11,9 +11,44 @@ class SingUp extends Component {
             email: '',
             phoneNumber: '',
             password: '',
-            passwordRepeated: ''
+            passwordRepeated: '',
+            validate: false
         };
+        this.passwordErrorMessage = '';
+        this.repeatedPasswordErrorMessage = '';
+        this.phoneErrorMessage = '';
     }
+
+    fromValid = () => {
+        this.setState({
+            validate: true
+        })
+        this.passwordErrorMessage = '';
+        this.repeatedPasswordErrorMessage = '';
+        this.phoneErrorMessage = '';
+        const { phoneNumber, password, passwordRepeated } = this.state;
+
+        if (phoneNumber.length !== 9) {
+            this.phoneErrorMessage = 'Numer telefonu powinien miec 9 cyfr';
+            return false
+        }
+
+        if (password.length <= 6 ) {
+            this.passwordErrorMessage = 'Wprowadzone hasło jest zbyt krótkie';
+            return false
+        }
+        else if (password !== passwordRepeated) {
+            this.repeatedPasswordErrorMessage = 'Hasła nie są takie same';
+            return false
+        }
+        return true
+
+    }
+
+    submitForm = e => {
+        e.preventDefault();
+        if (this.fromValid()) this.props.onRegisterSubmit(this.state);
+    };
 
     render() {
         const { onRegisterSubmit, isFetching } = this.props;
@@ -30,11 +65,7 @@ class SingUp extends Component {
                 />
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
                     <form
-                        onSubmit={e => {
-                            e.preventDefault();
-                            this.state.password === this.state.passwordRepeated &&
-                                onRegisterSubmit(this.state);
-                        }}
+                        onSubmit={(e) => this.submitForm(e)}
                     >
                         <TextField
                             hintText="Wpisz adres e-mail"
@@ -48,6 +79,8 @@ class SingUp extends Component {
                             hintText="Wpisz numer telefonu"
                             floatingLabelText="Numer telefonu"
                             type="number"
+                            required
+                            errorText={this.state.validate && this.phoneErrorMessage}
                             onChange={e =>
                                 this.setState({
                                     phoneNumber: e.target.value
@@ -59,6 +92,7 @@ class SingUp extends Component {
                             floatingLabelText="Hasło"
                             type="password"
                             fullWidth
+                            errorText={this.state.validate && this.passwordErrorMessage}
                             onChange={e =>
                                 this.setState({
                                     password: e.target.value
@@ -70,12 +104,7 @@ class SingUp extends Component {
                             floatingLabelText="Powtórz hasło"
                             type="password"
                             fullWidth
-                            errorText={
-                                this.state.passwordRepeated &&
-                                (this.state.password !==
-                                    this.state.passwordRepeated &&
-                                    'Hasła są rózne')
-                            }
+                            errorText={this.state.validate && this.repeatedPasswordErrorMessage}
                             onChange={e =>
                                 this.setState({
                                     passwordRepeated: e.target.value

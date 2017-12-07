@@ -7,6 +7,8 @@ import {
 
 import AlarmPagination from '../AlarmPagination';
 import MainPagination from '../MainPagination';
+import Sort from '../Sort';
+import Filter from '../Filter';
 
 const TableToolbar = ({ isAlarmTable }) => {
     return (
@@ -15,6 +17,8 @@ const TableToolbar = ({ isAlarmTable }) => {
                 <ToolbarTitle text="Latest records" />
             </ToolbarGroup>
             <ToolbarGroup>
+                <Filter />
+                <Sort />
                 {isAlarmTable ? <AlarmPagination /> : <MainPagination />}
             </ToolbarGroup>
         </Toolbar>

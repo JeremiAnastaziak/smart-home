@@ -35,15 +35,16 @@ export function submitLoginUser(body) {
         dispatch({ type: USER_LOGIN });
 
         return loginUser(body)
-            .then(respone => {
-                if (respone.statusText === 'OK') {
+            .then(response => {
+                console.log(response)
+                if (response.status === 200) {
                     dispatch({
                         type: USER_LOGIN_SUCCESS
                     });
                     showNotification(`Witaj ${extractLogin(body.email)}! Zostałeś zalogowany.`)(dispatch)
-                } else if (respone.statusText === 'Unauthorized') {
+                } else if (response.statusText === 'Unauthorized') {
                     dispatch({ type: USER_LOGIN_ERROR })
-                    showNotification(`Wprowadziłeś niepoprawne credentiale, chyba. (${respone.statusText})`)(dispatch)
+                    showNotification(`Wprowadziłeś niepoprawne credentiale, chyba. (${response.statusText})`)(dispatch)
                 }
             })
             .catch(error => dispatch({ type: USER_LOGIN_ERROR, error }));

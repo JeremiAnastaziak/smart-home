@@ -5,7 +5,7 @@ import { changeCurrentPage } from '../../actions/dashboard-actions.js';
 const mapStateToProps = ({ dashboard }) => {
     return {
         ...dashboard,
-        totalPages: Math.ceil(dashboard.records.total / 5)
+        totalPages: Math.ceil(dashboard.records.count / 5)
     };
 };
 

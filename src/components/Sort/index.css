@@ -1,0 +1,13 @@
+.sort {
+    display: flex;
+    align-items: center;
+}
+
+.sort-header {
+    font-size: 14px;
+}
+
+.sort-select {
+    margin-bottom: 8px;
+    min-width: 200px !important;
+}

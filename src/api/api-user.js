@@ -1,12 +1,11 @@
-import { url } from './settings';
-
 export function registerUser(body) {
-    return fetch(`/users`, {
+    return fetch(`https://limitless-spire-43906.herokuapp.com/users`, {
         method: 'POST',
         headers: {
             'Accept': '*/*',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
             ...body,
             handles: [
@@ -17,12 +16,13 @@ export function registerUser(body) {
 }
 
 export function loginUser(body) {
-    return fetch(`/login`, {
+    return fetch(`https://limitless-spire-43906.herokuapp.com/login`, {
         method: 'POST',
         headers: {
             'Accept': '*/*',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(
             body
           )
