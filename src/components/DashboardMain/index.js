@@ -18,7 +18,7 @@ const mapStateToProps = ({ dashboard }) => {
 const DashboardMain = ({ measurements, alarms, records, isFetching }) => {
     return (
         <div>
-            {records.length && <SectionAlarms alarms={alarms} />}
+            {/* {records.length && <SectionAlarms alarms={alarms} />} */}
             <SectionRecords records={records} isFetching={isFetching} />
             {records.length &&  <SectionCharts data={measurements} />}
         </div>
