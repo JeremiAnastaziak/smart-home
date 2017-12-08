@@ -31,7 +31,7 @@ class Pagination extends React.Component {
         const { activePage, totalPages } = this.props;
         if (!totalPages) return ''
         return (
-            <div style={{ display: 'flex', alignItems: 'center', minWidth: '250px', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', alignItems: 'center', maxWidth: '250px', justifyContent: 'flex-end' }}>
                 {activePage > 1 && (
                     <IconButton touch={true} onClick={this.onChangeCurrentPagePrevious}>
                         <ChevronLeft />

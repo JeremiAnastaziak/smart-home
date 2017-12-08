@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
 import { hideNotification } from '../../actions/notification-actions';
 import { connect } from 'react-redux';

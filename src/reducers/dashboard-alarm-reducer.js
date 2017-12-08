@@ -1,4 +1,3 @@
-import dummyData from '../api/dummyApi';
 import {
     ALARM_PAGINATION_CHANGE_PAGE,
     ALARM_LOAD_RECORDS,

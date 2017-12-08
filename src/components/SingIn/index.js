@@ -62,7 +62,6 @@ class SingIn extends React.Component {
                             floatingLabelText="Hasło"
                             type="password"
                             fullWidth
-                            autoComplete={false}
                             errorText={this.state.validate && this.passwordErrorMessage}
                             onChange={e =>
                                 this.setState({

@@ -9,6 +9,7 @@ import AlarmPagination from '../AlarmPagination';
 import MainPagination from '../MainPagination';
 import Sort from '../Sort';
 import Filter from '../Filter';
+import Limit from '../Limit';
 
 const TableToolbar = ({ isAlarmTable }) => {
     return (
@@ -19,6 +20,7 @@ const TableToolbar = ({ isAlarmTable }) => {
             <ToolbarGroup>
                 <Filter />
                 <Sort />
+                <Limit />
                 {isAlarmTable ? <AlarmPagination /> : <MainPagination />}
             </ToolbarGroup>
         </Toolbar>

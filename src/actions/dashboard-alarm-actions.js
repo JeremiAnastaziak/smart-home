@@ -1,4 +1,3 @@
-import dummyData from '../api/dummyApi';
 import shuffle from 'lodash.shuffle';
 import { fetchRecords } from '../api/fake-api';
 import { extractSpecificAlarmInfo } from '../data/alarm-data-helper';

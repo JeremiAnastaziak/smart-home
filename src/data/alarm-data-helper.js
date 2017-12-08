@@ -7,7 +7,7 @@ export function countAlarms(records) {
         burglary: 0
     };
 
-    records.map(record => {
+    records.forEach(record => {
         if (record.alarm.fire) counter.fire++;
         if (record.alarm.frost) counter.frost++;
         if (record.alarm.burglary) counter.burglary++;

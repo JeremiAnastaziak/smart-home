@@ -73,7 +73,7 @@ const Header = ({
                 />
             }
             iconElementRight={
-                activeHandle && renderChip(activeHandle, disableHandleFilter)
+                activeHandle ? renderChip(activeHandle, disableHandleFilter) : null
             }
             iconStyleRight={{
                 marginTop: '15px'

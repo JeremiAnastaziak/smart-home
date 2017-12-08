@@ -1,0 +1,13 @@
+.limit {
+    display: flex;
+    align-items: center;
+    min-width: 134px !important;
+}
+
+.limit-header {
+    font-size: 14px;
+}
+
+.limit-select {
+    margin-bottom: 8px;
+}

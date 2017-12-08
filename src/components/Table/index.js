@@ -20,15 +20,15 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Date</TableHeaderColumn>
-                        <TableHeaderColumn>Temperature</TableHeaderColumn>
-                        <TableHeaderColumn>Humidity</TableHeaderColumn>
-                        <TableHeaderColumn>Handle</TableHeaderColumn>
-                        <TableHeaderColumn>Alarms</TableHeaderColumn>
+                        <TableHeaderColumn>Temperatura</TableHeaderColumn>
+                        <TableHeaderColumn>Poziom dzwieku</TableHeaderColumn>
+                        <TableHeaderColumn>Stan klamki</TableHeaderColumn>
+                        <TableHeaderColumn>Alarmy</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
 
                 <TableBody displayRowCheckbox={false}>
-                    {isFetching && <CircularProgress style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}}/>}
+                    {isFetching && <CircularProgress />}
                     {records &&
                         records.map(record => (
                             <TableRowCustom key={record.date} record={record} isFetching={isFetching}/>

@@ -1,5 +1,3 @@
-import * as moment from 'moment';
-
 export function groupMeasurements(records){
 
     let massagedData = {
@@ -9,14 +7,16 @@ export function groupMeasurements(records){
 
     records.map(record => {
         massagedData.temperature.push({
-            date: moment(record.date).format("DD/MM"),
+            date: record.date,
             ...record.temperature
         });
         massagedData.sound.push({
-            date: moment(record.date).format("DD/MM"),
+            date: record.date,
             ...record.soundLevel,
         })
     });
+
+    console.log(massagedData)
 
     return massagedData;
 }

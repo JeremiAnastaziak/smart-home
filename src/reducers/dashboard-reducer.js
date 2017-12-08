@@ -7,7 +7,8 @@ import {
     DASHBOARD_SIDEBAR_TOGGLE,
     DASHBOARD_HANDLE_FILTER,
     DASHBOARD_SORT,
-    DASHBOARD_FILTER
+    DASHBOARD_FILTER,
+    DASHBOARD_LIMIT_CHANGE
 } from '../actions/dashboard-actions';
 
 const initialState = {
@@ -68,6 +69,11 @@ export default function dashboardReducer(state = initialState, action) {
             return {
                 ...state,
                 activeFilter: action.filterBy
+            }
+        case DASHBOARD_LIMIT_CHANGE:
+            return {
+                ...state,
+                limit: action.limit
             }
         default:
             return state;

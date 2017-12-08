@@ -1,8 +1,7 @@
 import { fetchRecords } from '../api/api-measurements';
-import dummyData from '../api/dummyApi';
-import shuffle from 'lodash.shuffle';
 import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
+import { massageData } from '../api/helper';
 
 export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';
 export const DASHBOARD_LOAD_RECORDS = 'DASHBOARD_LOAD_RECORDS';
@@ -12,6 +11,7 @@ export const DASHBOARD_SIDEBAR_TOGGLE = 'DASHBOARD_SIDEBAR_TOGGLE';
 export const DASHBOARD_HANDLE_FILTER = 'DASHBOARD_HANDLE_FILTER';
 export const DASHBOARD_SORT = 'DASHBOARD_SORT';
 export const DASHBOARD_FILTER = 'DASHBOARD_FILTER';
+export const DASHBOARD_LIMIT_CHANGE = 'DASHBOARD_LIMIT_CHANGE';
 
 export function toggleSideBar() {
     return dispatch => {
@@ -29,7 +29,8 @@ export function loadRecords() {
             .then(response => {
                 if ((response.status === 200) || (response.status === 201)) {
                     response.text().then(data => {
-                        data = JSON.parse(data);
+                        data = massageData(JSON.parse(data));
+                        console.log(massageData(data));
                         dispatch({
                             type: DASHBOARD_LOAD_RECORDS_SUCCESS,
                             records: { count: data.count, measurements: data.measurements }
@@ -80,4 +81,11 @@ export const filterRecords = filterBy => {
         loadRecords()(dispatch, getState);
     };
 };
+
+export const changeLimit = limit => {
+    return (dispatch, getState) => {
+        dispatch({ type: DASHBOARD_LIMIT_CHANGE, limit });
+        loadRecords()(dispatch, getState);
+    };
+}
 

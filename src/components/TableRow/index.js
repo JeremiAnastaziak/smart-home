@@ -1,6 +1,5 @@
 import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
-import * as moment from 'moment';
 import './index.css';
 
 const TableRowColumnCustom = ({ data, fire, burglary, frost }) => {
@@ -23,7 +22,7 @@ const TableRowColumnCustom = ({ data, fire, burglary, frost }) => {
 const TableRowCustom = ({ record, isFetching }) => {
     return (
         <TableRow className={isFetching ? 'apply-placeholder' : ''}>
-            <TableRowColumnCustom data={moment(record.date).format("DD MMM YYYY hh:mm a")} />
+            <TableRowColumnCustom data={record.date} />
             <TableRowColumnCustom data={record.temperature.value} />
             <TableRowColumnCustom data={record.soundLevel.value} />
             <TableRowColumnCustom data={record.handlePosition} />
