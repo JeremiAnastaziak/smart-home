@@ -1,0 +1,17 @@
+@media(max-width: 1075px) {
+    .toolbar {
+        flex-direction: column;
+        height: 112px !important;
+    }
+}
+
+@media(max-width: 650px) {
+    .toolbar-group--bottom {
+        align-items: flex-start !important;
+        flex-direction: column !important;
+    }
+    .toolbar {
+        height: 220px !important;
+        padding: 0 12px !important;
+    }
+}

@@ -1,0 +1,7 @@
+@media(max-width: 920px) {
+    .pagination {
+        position: absolute;
+        right: 0;
+        top: -50px;
+    }
+}

@@ -4,6 +4,7 @@ import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
 import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import './index.css';
 
 class Pagination extends React.Component {
 
@@ -31,7 +32,7 @@ class Pagination extends React.Component {
         const { activePage, totalPages } = this.props;
         if (!totalPages) return ''
         return (
-            <div style={{ display: 'flex', alignItems: 'center', maxWidth: '250px', justifyContent: 'flex-end' }}>
+            <div className="pagination" style={{ display: 'flex', alignItems: 'center', maxWidth: '250px', justifyContent: 'flex-end' }}>
                 {activePage > 1 && (
                     <IconButton touch={true} onClick={this.onChangeCurrentPagePrevious}>
                         <ChevronLeft />

@@ -33,6 +33,7 @@ export function loadRecords() {
                         console.log(massageData(data));
                         dispatch({
                             type: DASHBOARD_LOAD_RECORDS_SUCCESS,
+                            handles: data.handles,
                             records: { count: data.count, measurements: data.measurements }
                         })
                         dispatch({ type: USER_LOGIN_SUCCESS });

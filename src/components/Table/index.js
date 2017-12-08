@@ -7,6 +7,8 @@ import {
     TableRow
 } from 'material-ui/Table';
 
+import uuidv1 from 'uuid/v1';
+
 import { Card } from 'material-ui/Card';
 import CircularProgress from 'material-ui/CircularProgress';
 import TableToolbar from '../TableToolbar';
@@ -31,7 +33,7 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
                     {isFetching && <CircularProgress />}
                     {records &&
                         records.map(record => (
-                            <TableRowCustom key={record.date} record={record} isFetching={isFetching}/>
+                            <TableRowCustom key={uuidv1()} record={record} isFetching={isFetching}/>
                         ))}
                 </TableBody>
             </Table>

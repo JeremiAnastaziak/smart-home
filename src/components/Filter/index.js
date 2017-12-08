@@ -6,28 +6,34 @@ import './index.css';
 import { cyan500 } from 'material-ui/styles/colors';
 import { filterRecords } from '../../actions/dashboard-actions';
 
-const mapStateToProps = ({dashboard}) => {
+const mapStateToProps = ({ dashboard }) => {
     return {
-        activeFilter: dashboard.activeFilter
+        activeFilter: dashboard.activeFilter,
+        handles: dashboard.handles
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        onFilterChange: (filterBy) => dispatch(filterRecords(filterBy))
-    }
-}
+        onFilterChange: filterBy => dispatch(filterRecords(filterBy))
+    };
+};
 
-const Sort = ({ activeFilter, onFilterChange }) => {
+const Sort = ({ activeFilter, handles, onFilterChange }) => {
     return (
         <div className="filter">
-            <span className="filter-header" style={{color: cyan500}}>
+            <span className="filter-header" style={{ color: cyan500 }}>
                 Klamka:
             </span>
-            <DropDownMenu className="filter-select" value={activeFilter} onChange={(e, index, value) => onFilterChange(value)}>
+            <DropDownMenu
+                className="filter-select"
+                value={activeFilter}
+                onChange={(e, index, value) => onFilterChange(value)}
+            >
                 <MenuItem value={null} primaryText="wszystkie" />
-                <MenuItem value={'pierwszaKlamka1'} primaryText="Pierwsza klamka" />
-                <MenuItem value={'drugaKlamka2'} primaryText="Druga klamka" />
+                {handles.map(handle => (
+                    <MenuItem value={handle.id} primaryText={handle.name} />
+                ))}
             </DropDownMenu>
         </div>
     );

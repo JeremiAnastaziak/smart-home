@@ -10,14 +10,15 @@ import MainPagination from '../MainPagination';
 import Sort from '../Sort';
 import Filter from '../Filter';
 import Limit from '../Limit';
+import './index.css';
 
 const TableToolbar = ({ isAlarmTable }) => {
     return (
-        <Toolbar>
+        <Toolbar className="toolbar">
             <ToolbarGroup>
-                <ToolbarTitle text="Latest records" />
+                <ToolbarTitle text="Ostatnie pomiary" />
             </ToolbarGroup>
-            <ToolbarGroup>
+            <ToolbarGroup className="toolbar-group--bottom" style={{justifyContent: 'flex-start'}}>
                 <Filter />
                 <Sort />
                 <Limit />

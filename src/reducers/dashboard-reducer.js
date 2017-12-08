@@ -42,7 +42,8 @@ export default function dashboardReducer(state = initialState, action) {
                 records: {
                     ...action.records
                 },
-                isFetching: false
+                isFetching: false,
+                handles: action.handles
             };
         case DASHBOARD_LOAD_RECORDS_ERROR: {
             return {
@@ -63,17 +64,23 @@ export default function dashboardReducer(state = initialState, action) {
         case DASHBOARD_SORT:
             return {
                 ...state,
-                activeSort: action.sortBy
+                activeSort: action.sortBy,
+                offset: 0,
+                activePage: 1
             }
         case DASHBOARD_FILTER:
             return {
                 ...state,
-                activeFilter: action.filterBy
+                activeFilter: action.filterBy,
+                offset: 0,
+                activePage: 1
             }
         case DASHBOARD_LIMIT_CHANGE:
             return {
                 ...state,
-                limit: action.limit
+                limit: action.limit,
+                offset: 0,
+                activePage: 1
             }
         default:
             return state;
