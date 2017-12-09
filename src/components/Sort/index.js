@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 const Sort = ({ activeSort, onSortChange }) => {
     return (
         <div className="sort">
-            <span className="sort-header" style={{color: cyan500}}>Sort:</span>
+            <span className="sort-header" style={{color: cyan500}}>Sortowanie:</span>
             <DropDownMenu className="sort-select" value={activeSort} onChange={(e, index, value) => onSortChange(value)}>
                 <MenuItem value={'date_latest'} primaryText="Data najnowsze" />
                 <MenuItem value={'date_oldest'} primaryText="Data najstarsze" />

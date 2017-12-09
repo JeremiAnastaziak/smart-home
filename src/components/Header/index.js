@@ -9,50 +9,35 @@ import { toggleSideBar } from '../../actions/dashboard-actions';
 import { setAlarmView } from '../../actions/dashboard-alarm-actions';
 import Chip from 'material-ui/Chip';
 import { filterHandle } from '../../actions/dashboard-actions';
+import FlatButton from 'material-ui/FlatButton';
 
 const mapStateToProps = ({ dashboardAlarm, dashboard }) => {
     return {
-        title: dashboardAlarm.activeAlarmView,
-        activeHandle: dashboard.activeHandle
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        openSideBar: () => dispatch(toggleSideBar()),
-        alarmViewClick: title => {
-            dispatch(setAlarmView(title));
-        },
-        disableHandleFilter: emptyHanleName => dispatch(filterHandle(emptyHanleName))
     };
 };
 
-const Icon = ({ alarmPage, alarmViewClick, openSideBar }) => {
-    return alarmPage ? (
-        <Link to="/" onClick={() => alarmViewClick('')}>
-            <IconButton>
-                <NavigationArrowBackIcon color="#fff" />
-            </IconButton>
-        </Link>
-    ) : (
-        <IconButton onClick={() => openSideBar()}>
-            <NavigationMenu color="#fff" />
-        </IconButton>
-    );
-};
-
-const renderChip = (handleName, disableHandleFilter) => {
-    return <Chip onRequestDelete={() => disableHandleFilter()}>{handleName}</Chip>;
-};
+// const Icon = ({ alarmPage, alarmViewClick, openSideBar }) => {
+//     return alarmPage ? (
+//         <Link to="/" onClick={() => alarmViewClick('')}>
+//             <IconButton>
+//                 <NavigationArrowBackIcon color="#fff" />
+//             </IconButton>
+//         </Link>
+//     ) : (
+//         <IconButton onClick={() => openSideBar()}>
+//             <NavigationMenu color="#fff" />
+//         </IconButton>
+//     );
+// };
 
 const upperCaseFirstLetter = word => word.replace(/(^|\s)\S/g, l => l.toUpperCase());
 
 const Header = ({
-    title,
-    openSideBar,
-    alarmViewClick,
-    activeHandle,
-    disableHandleFilter
 }) => {
     const renderTitle = title => {
         return title
@@ -62,21 +47,12 @@ const Header = ({
 
     return (
         <AppBar
-            title={renderTitle(title)}
+            title={renderTitle()}
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            onLeftIconButtonTouchTap={openSideBar}
-            iconElementLeft={
-                <Icon
-                    alarmPage={!!title}
-                    alarmViewClick={alarmViewClick}
-                    openSideBar={openSideBar}
-                />
-            }
-            iconElementRight={
-                activeHandle ? renderChip(activeHandle, disableHandleFilter) : null
+            iconElementRight={ <FlatButton label="Urządzenia"/>
             }
             iconStyleRight={{
-                marginTop: '15px'
+                marginTop: '7px'
             }}
         />
     );

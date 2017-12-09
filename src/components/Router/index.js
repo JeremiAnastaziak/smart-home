@@ -5,6 +5,7 @@ import DashboardAlarm from '../DashboardAlarm';
 import Header from '../Header';
 import SideBar from '../SideBar';
 import Landing from '../Landing';
+import Devices from '../Devices';
 import { connect } from 'react-redux';
 
 const mapStateToProps = ({ user }) => {
@@ -20,6 +21,7 @@ const Router = ({ isAuth }) => {
             <HashRouter>
                 <div>
                     <Header />
+                    <Route exact path="/devices" component={Devices} />
                     {!isAuth && (
                         <div className="unAuthRoutes">
                             <Route exact path="/" component={Landing} />
@@ -28,6 +30,7 @@ const Router = ({ isAuth }) => {
                     {isAuth && (
                         <div className="authRoutes">
                             <Route exact path="/" component={DashboardMain} />
+
                             {/* <Route
                                 exact
                                 path="/alarms/:alarm"

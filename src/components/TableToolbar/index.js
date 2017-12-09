@@ -16,7 +16,7 @@ const TableToolbar = ({ isAlarmTable }) => {
     return (
         <Toolbar className="toolbar">
             <ToolbarGroup>
-                <ToolbarTitle text="Ostatnie pomiary" />
+                <ToolbarTitle text="Klamki" />
             </ToolbarGroup>
             <ToolbarGroup className="toolbar-group--bottom" style={{justifyContent: 'flex-start'}}>
                 <Filter />
