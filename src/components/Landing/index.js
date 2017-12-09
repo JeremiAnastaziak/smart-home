@@ -11,10 +11,9 @@ import { submitRegisterUser, submitLoginUser } from '../../actions/user-actions'
 import { loadRecords } from '../../actions/dashboard-actions';
 import './index.css';
 
-const mapStateToProps = ({ dashboard, user }) => {
+const mapStateToProps = ({ user }) => {
     return {
-        isFetching: user.isFetching,
-        isCheckingAuth: dashboard.isFetching
+        isFetching: user.isFetching
     };
 };
 
@@ -25,24 +24,8 @@ const mapDispatchToProps = dispatch => {
         },
         onLoginSubmit: body => {
             dispatch(submitLoginUser(body));
-        },
-        checkUserAuth: () => dispatch(loadRecords())
+        }
     };
-};
-
-const CheckingSessionView = () => {
-    return (
-        <Card style={{ maxWidth: '500px' }}>
-            <CardTitle
-                title={
-                    <span style={{ display: 'flex' }}>
-                        Checking user session{' '}
-                        <CircularProgress size={30} />
-                    </span>
-                }
-            />
-        </Card>
-    );
 };
 
 class Landing extends React.Component {
@@ -53,10 +36,6 @@ class Landing extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this.props.checkUserAuth();
-    }
-
     handleTabChange = value => {
         this.setState({
             tabsIndex: value
@@ -64,62 +43,49 @@ class Landing extends React.Component {
     };
 
     render() {
-        const {
-            onRegisterSubmit,
-            onLoginSubmit,
-            isFetching,
-            isCheckingAuth
-        } = this.props;
+        const { onRegisterSubmit, onLoginSubmit, isFetching } = this.props;
         return (
             <div className="register">
-                {isCheckingAuth ? (
-                    <CheckingSessionView />
-                ) : (
-                    <Card style={{ maxWidth: '500px' }}>
-                        <SwipeableViews
-                            index={this.state.tabsIndex}
-                            onChangeIndex={this.handleTabChange}
-                        >
-                            <SingIn
-                                onLoginSubmit={onLoginSubmit}
-                                isFetching={isFetching}
-                            />
-                            <SingUp
-                                onRegisterSubmit={onRegisterSubmit}
-                                isFetching={isFetching}
-                            />
-                        </SwipeableViews>
+                <Card style={{ maxWidth: '500px' }}>
+                    <SwipeableViews
+                        index={this.state.tabsIndex}
+                        onChangeIndex={this.handleTabChange}
+                    >
+                        <SingIn
+                            onLoginSubmit={onLoginSubmit}
+                            isFetching={isFetching}
+                        />
+                        <SingUp
+                            onRegisterSubmit={onRegisterSubmit}
+                            isFetching={isFetching}
+                        />
+                    </SwipeableViews>
 
-                        <Tabs
-                            onChange={this.handleTabChange}
-                            value={this.state.tabsIndex}
-                            inkBarStyle={{ backgroundColor: cyan500 }}
-                        >
-                            <Tab
-                                style={{
-                                    background: '#eee',
-                                    color:
-                                        this.state.tabsIndex === 0
-                                            ? cyan500
-                                            : '#212121'
-                                }}
-                                label="Logowanie"
-                                value={0}
-                            />
-                            <Tab
-                                style={{
-                                    background: '#eee',
-                                    color:
-                                        this.state.tabsIndex === 1
-                                            ? cyan500
-                                            : '#212121'
-                                }}
-                                label="Rejestracja"
-                                value={1}
-                            />
-                        </Tabs>
-                    </Card>
-                )}
+                    <Tabs
+                        onChange={this.handleTabChange}
+                        value={this.state.tabsIndex}
+                        inkBarStyle={{ backgroundColor: cyan500 }}
+                    >
+                        <Tab
+                            style={{
+                                background: '#eee',
+                                color:
+                                    this.state.tabsIndex === 0 ? cyan500 : '#212121'
+                            }}
+                            label="Logowanie"
+                            value={0}
+                        />
+                        <Tab
+                            style={{
+                                background: '#eee',
+                                color:
+                                    this.state.tabsIndex === 1 ? cyan500 : '#212121'
+                            }}
+                            label="Rejestracja"
+                            value={1}
+                        />
+                    </Tabs>
+                </Card>
             </div>
         );
     }

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Router from '../Router';
 import Notification from '../Notification';
-
-class App extends React.Component {
-
+class App extends Component {
     render() {
         return (
             <div className="desk">
-                <Notification />
-                <Router />
+                <div>
+                    <Notification />
+                    <Router />
+                </div>
             </div>
         );
     }

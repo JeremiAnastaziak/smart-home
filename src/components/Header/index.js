@@ -42,17 +42,19 @@ const Header = ({
     const renderTitle = title => {
         return title
             ? `${upperCaseFirstLetter(title)} alarm details`
-            : 'Smart home panel';
+            : 'Dashboard';
     };
 
     return (
         <AppBar
-            title={renderTitle()}
+            title={ <Link to='/' style={{color: '#fff'}}> {renderTitle()} </Link>}
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            iconElementRight={ <FlatButton label="Urządzenia"/>
+            iconElementRight={ <Link to='/devices'> <FlatButton style={{color: '#fff'}} label="Urządzenia"/> </Link>
             }
+            iconStyleLeft={{display: 'none'}}
             iconStyleRight={{
-                marginTop: '7px'
+                marginTop: '13px',
+                color: '#fff'
             }}
         />
     );
