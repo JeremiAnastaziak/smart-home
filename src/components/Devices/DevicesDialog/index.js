@@ -27,7 +27,7 @@ const DeleteDialog = ({ name, id, remove, open, toggleDialog }) => {
             open={open}
             onRequestClose={() => toggleDialog(id, name, false)}
         >
-            Czy na pewno usunąc klamkę "{name}"?
+            Czy na pewno usunąc urządzenie o nazwie "{name}"?
         </Dialog>
     );
 };

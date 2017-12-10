@@ -20,7 +20,7 @@ class DevicesForm extends Component {
     render() {
         return (
             <div>
-                <CardHeader title="Dodaj nowe urządzenia" style={{paddingBottom: 0, marginBottom: '-20px'}}/>
+                <CardHeader className="devices-title" title="Dodaj nowe urządzenia" style={{paddingBottom: 0, marginBottom: '-20px'}}/>
                 <CardText>
                     <form onSubmit={(e) => this.submitForm(e)}>
                         <TextField
@@ -33,6 +33,7 @@ class DevicesForm extends Component {
                             floatingLabelText="Nazwa urządzenia"
                             required
                             onChange={e => this.setState({ name: e.target.value })}
+                            style={{margin: '-15px 0 10px'}}
                         />
                         <br/>
                         <RaisedButton label="Dodaj" primary type="submit" disabled={this.props.isFetching}/>

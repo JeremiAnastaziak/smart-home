@@ -3,7 +3,6 @@ import * as moment from 'moment';
 moment.locale();
 
 export const massageData = (data = { measurements: [] }) => {
-    console.log(data);
     return Object.assign({}, data, {
         measurements: data.measurements.map(record => {
             return {
@@ -20,4 +19,9 @@ export const massageData = (data = { measurements: [] }) => {
             };
         })
     });
+};
+
+export const formatDateSend = date => {
+    date = moment(date).format();
+    return date.slice(0, date.indexOf('T')).concat(' 00:00');
 };

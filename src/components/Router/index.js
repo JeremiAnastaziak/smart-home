@@ -3,13 +3,14 @@ import { HashRouter, Route } from 'react-router-dom';
 import DashboardMain from '../DashboardMain';
 import DashboardAlarm from '../DashboardAlarm';
 import Header from '../Header';
-import SideBar from '../SideBar';
+import Graphs from '../Graphs';
 import Landing from '../Landing';
 import Devices from '../Devices';
 import { connect } from 'react-redux';
 import { loadRecords } from '../../actions/dashboard-actions';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Card, CardTitle } from 'material-ui/Card';
+import { withCookies, Cookies } from 'react-cookie';
 
 const mapStateToProps = ({ user, dashboard }) => {
     return {
@@ -40,23 +41,25 @@ const CheckingSessionView = () => {
 
 class Router extends Component {
     componentDidMount() {
+        const sessionCookie = this.props.cookies.getAll().SESSIONID;
+        console.log(this.props.cookies.getAll(), sessionCookie);
         this.props.checkUserAuth();
     }
     render() {
         return (
             <div>
                 <HashRouter>
-                    {this.props.isCheckingAuth && !this.props.isAuth ? (
+                    {(this.props.isCheckingAuth && !this.props.isAuth) ? (
                         <CheckingSessionView />
                     ) : (
                         <div>
-                            <Header />
                             {!this.props.isAuth ? (
                                 <div className="unAuthRoutes">
                                     <Route exact path="/" component={Landing} />
                                 </div>
                             ) : (
                                 <div className="authRoutes">
+                                    <Header />
                                     <Route
                                         exact
                                         path="/"
@@ -66,6 +69,11 @@ class Router extends Component {
                                         exact
                                         path="/devices"
                                         component={Devices}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/graphs"
+                                        component={Graphs}
                                     />
                                 </div>
                             )}
@@ -77,4 +85,4 @@ class Router extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Router);
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(Router));

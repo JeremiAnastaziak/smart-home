@@ -5,24 +5,31 @@ import SectionRecords from '../SectionRecords';
 import SectionCharts from '../SectionCharts';
 import { groupMeasurements } from '../../data/measurements-data-helper';
 import { countAlarms } from '../../data/alarm-data-helper';
+import { graphsViewChange } from '../../actions/graph-actions';
 
 const mapStateToProps = ({ dashboard }) => {
     return {
-        measurements: groupMeasurements(dashboard.records.measurements),
         alarms: countAlarms(dashboard.records.measurements),
         records: dashboard.records.measurements,
+        chartRecords: groupMeasurements(dashboard.records.measurements),
         isFetching: dashboard.isFetching
     };
 };
 
-const DashboardMain = ({ measurements, alarms, records, isFetching }) => {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        chartsViewClick: (field) => dispatch(graphsViewChange(field))
+    }
+}
+
+const DashboardMain = ({ chartRecords, alarms, records, isFetching, chartsViewClick }) => {
     return (
         <div>
             {/* {records.length && <SectionAlarms alarms={alarms} />} */}
             <SectionRecords records={records} isFetching={isFetching} />
-            {records.length &&  <SectionCharts data={measurements} />}
+            <SectionCharts data={chartRecords} chartsViewClick={chartsViewClick} isFetching={isFetching}/>
         </div>
     );
 };
 
-export default connect(mapStateToProps, null)(DashboardMain);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardMain);

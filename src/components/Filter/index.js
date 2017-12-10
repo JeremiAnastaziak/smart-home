@@ -31,7 +31,7 @@ const Sort = ({ activeFilter, handles, onFilterChange }) => {
                 onChange={(e, index, value) => onFilterChange(value)}
             >
                 <MenuItem value={null} primaryText="wszystkie" />
-                {handles.map(handle => (
+                {handles && handles.map(handle => (
                     <MenuItem value={handle.id} primaryText={handle.name} />
                 ))}
             </DropDownMenu>

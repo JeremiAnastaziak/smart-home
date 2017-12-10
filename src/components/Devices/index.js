@@ -9,7 +9,7 @@ import {
     submitRemoveDevice
 } from '../../actions/device-actions';
 import CircularProgress from 'material-ui/CircularProgress';
-
+import './index.css'
 
 const mapStateToProps = ({ dashboard, devices }) => {
     return {
@@ -29,11 +29,13 @@ class Devices extends PureComponent {
     render() {
         const { createDevice, isFetching } = this.props;
         return (
-            <Card style={{maxWidth: '600px', margin: 'auto'}}>
-                <CardTitle title="Panel sterowania urzadzeniami" />
-                {isFetching && <CircularProgress />}
-                <Form isFetching={isFetching} createDevice={createDevice} />
-                <DevicesList {...this.props} />
+            <Card>
+                <div style={{maxWidth: '600px', margin: 'auto'}}>
+                    <CardTitle title="Zarzadzanie urzadzeniami" />
+                    {isFetching && <CircularProgress />}
+                    <Form isFetching={isFetching} createDevice={createDevice} />
+                    <DevicesList {...this.props} />
+                </div>
             </Card>
         );
     }

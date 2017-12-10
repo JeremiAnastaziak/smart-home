@@ -1,3 +1,9 @@
 .row {
     display: flex;
 }
+
+.chart-title a:-webkit-any-link {
+    text-decoration: none;
+    color: rgb(0, 188, 212) !important;
+    font-size: 18px;
+}

@@ -24,6 +24,7 @@ const Form = ({ edit, toggleEdition, id }) => {
                 style={{ marginRight: '10px' }}
                 hintText="Wpisz nowa nazwe"
                 onChange={e => (this.newName = e.target.value)}
+                required
             />
             <RaisedButton label="Potwierdź" primary type="submit" />
         </form>

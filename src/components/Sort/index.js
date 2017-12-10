@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import './index.css';
 import { cyan500 } from 'material-ui/styles/colors';
 import { sortRecords } from '../../actions/dashboard-actions';
+import uuidv1 from 'uuid/v1';
 
 const mapStateToProps = ({dashboard}) => {
     return {
@@ -23,12 +24,12 @@ const Sort = ({ activeSort, onSortChange }) => {
         <div className="sort">
             <span className="sort-header" style={{color: cyan500}}>Sortowanie:</span>
             <DropDownMenu className="sort-select" value={activeSort} onChange={(e, index, value) => onSortChange(value)}>
-                <MenuItem value={'date_latest'} primaryText="Data najnowsze" />
-                <MenuItem value={'date_oldest'} primaryText="Data najstarsze" />
-                <MenuItem value={'temp_asc'} primaryText="Temp rosnąco" />
-                <MenuItem value={'temp_desc'} primaryText="Temp malejąco" />
-                <MenuItem value={'sound_asc'} primaryText="Dźwięk rosnąco" />
-                <MenuItem value={'sound_desc'} primaryText="Dźwięk malejąco" />
+                <MenuItem key={uuidv1()} value={'date_latest'} primaryText="Data najnowsze" />
+                <MenuItem key={uuidv1()} value={'date_oldest'} primaryText="Data najstarsze" />
+                <MenuItem key={uuidv1()} value={'temp_asc'} primaryText="Temp rosnąco" />
+                <MenuItem key={uuidv1()} value={'temp_desc'} primaryText="Temp malejąco" />
+                <MenuItem key={uuidv1()} value={'sound_asc'} primaryText="Dźwięk rosnąco" />
+                <MenuItem key={uuidv1()} value={'sound_desc'} primaryText="Dźwięk malejąco" />
             </DropDownMenu>
         </div>
     );

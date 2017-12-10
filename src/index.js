@@ -6,27 +6,26 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { CookiesProvider } from 'react-cookie';
 import rootReducer from './reducers/root-reducer';
 import './index.css';
 
-const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+const composeEnhancers =
+    (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+    compose;
 
-const enhancer = composeEnhancers(
-    applyMiddleware(thunk)
-);
+const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(
-    rootReducer,
-    {},
-    enhancer
-);
+const store = createStore(rootReducer, {}, enhancer);
 
 const render = () =>
     ReactDOM.render(
         <Provider store={store}>
-            <MuiThemeProvider>
-                <App store={store}/>
-            </MuiThemeProvider>
+            <CookiesProvider>
+                <MuiThemeProvider>
+                    <App store={store} />
+                </MuiThemeProvider>
+            </CookiesProvider>
         </Provider>,
         document.getElementById('root')
     );

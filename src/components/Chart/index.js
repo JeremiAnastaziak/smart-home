@@ -12,19 +12,29 @@ import {
     AreaChart,
     Area
 } from 'recharts';
+import './index.css';
 
-const mapStateToProps = ({ dashboard }) => {
-    return {
-        isFetching: dashboard.isFetching
-    };
-};
-
-const Chart = ({ measurements, title, isFetching }) => {
+const Chart = ({ measurements, title, isFetching, children }) => {
     return (
-        <Card>
+        <Card style={{ position: 'relative' }}>
+            ;
             <CardTitle title={title} style={{ padding: '5px 10px 0' }} />
-            <ResponsiveContainer width="99%" aspect={1.8}>
-                {!isFetching ? (
+            {children}
+            {isFetching && (
+                <CircularProgress
+                    style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }}
+                />
+            )}
+            <ResponsiveContainer
+                width="99%"
+                aspect={1.8}
+            >
+                {measurements && (
                     <AreaChart
                         data={measurements}
                         margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
@@ -65,13 +75,19 @@ const Chart = ({ measurements, title, isFetching }) => {
                             fillOpacity={1}
                             fill="url(#colorValue)"
                         />
+                        <CircularProgress
+                            style={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)'
+                            }}
+                        />
                     </AreaChart>
-                ) : (
-                    <CircularProgress />
                 )}
             </ResponsiveContainer>
         </Card>
     );
 };
 
-export default connect(mapStateToProps, null)(Chart);
+export default Chart;
