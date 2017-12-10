@@ -10,14 +10,15 @@ import CircularProgress from 'material-ui/CircularProgress';
 import GraphsTiles from './GraphsTiles';
 import GraphsToolbar from './GraphsToolbar';
 
-const mapStateToProps = ({ graphs }) => {
+const mapStateToProps = ({ dashboard, graphs }) => {
     console.log(graphs);
     return {
         active: graphs.active,
         data: graphs.active && graphs.fields[graphs.active].data,
         tiles: Object.keys(graphs.fields),
         isFetching: graphs.isFetching,
-        filters:  graphs.active && graphs.fields[graphs.active].filters
+        filters: graphs.active && graphs.fields[graphs.active].filters,
+        handles: dashboard.handles
     };
 };
 
@@ -37,9 +38,9 @@ const Graphs = ({
     reloadGraphData,
     changeGraphView,
     changeGraphFilter,
-    filters
+    filters,
+    handles
 }) => {
-    if (!data) return false;
     return (
         <div>
             <GraphsTiles
@@ -47,15 +48,18 @@ const Graphs = ({
                 changeGraphView={changeGraphView}
                 active={active}
             />
-            <Chart title={active} measurements={data} isFetching={isFetching}>
-                <GraphsToolbar
-                    changeGraphFilter={changeGraphFilter}
-                    field={active}
-                    reloadGraphData={reloadGraphData}
-                    isFetching={isFetching}
-                    filters={filters}
-                />
-            </Chart>
+            {data && (
+                <Chart title={active} measurements={data} isFetching={isFetching}>
+                    <GraphsToolbar
+                        changeGraphFilter={changeGraphFilter}
+                        field={active}
+                        reloadGraphData={reloadGraphData}
+                        isFetching={isFetching}
+                        filters={filters}
+                        handles={handles}
+                    />
+                </Chart>
+            )}
         </div>
     );
 };

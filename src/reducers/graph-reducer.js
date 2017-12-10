@@ -10,7 +10,8 @@ const initialFieldData = {
     data: [],
     filters: {
         startDate: '',
-        endDate: ''
+        endDate: '',
+        handle: null
     }
 };
 const initialState = {

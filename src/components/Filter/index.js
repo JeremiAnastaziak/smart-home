@@ -4,22 +4,8 @@ import MenuItem from 'material-ui/MenuItem';
 import { connect } from 'react-redux';
 import './index.css';
 import { cyan500 } from 'material-ui/styles/colors';
-import { filterRecords } from '../../actions/dashboard-actions';
 
-const mapStateToProps = ({ dashboard }) => {
-    return {
-        activeFilter: dashboard.activeFilter,
-        handles: dashboard.handles
-    };
-};
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onFilterChange: filterBy => dispatch(filterRecords(filterBy))
-    };
-};
-
-const Sort = ({ activeFilter, handles, onFilterChange }) => {
+const Filter = ({ activeFilter, handles, onFilterChange, showAll }) => {
     return (
         <div className="filter">
             <span className="filter-header" style={{ color: cyan500 }}>
@@ -30,7 +16,7 @@ const Sort = ({ activeFilter, handles, onFilterChange }) => {
                 value={activeFilter}
                 onChange={(e, index, value) => onFilterChange(value)}
             >
-                <MenuItem value={null} primaryText="wszystkie" />
+                {showAll && <MenuItem value={null} primaryText="wszystkie" />}
                 {handles && handles.map(handle => (
                     <MenuItem value={handle.id} primaryText={handle.name} />
                 ))}
@@ -39,4 +25,4 @@ const Sort = ({ activeFilter, handles, onFilterChange }) => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sort);
+export default Filter;
