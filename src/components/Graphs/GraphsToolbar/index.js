@@ -3,6 +3,7 @@ import Date from '../../Date';
 import Filter from '../../Filter';
 import IconButton from 'material-ui/IconButton';
 import ReloadIcon from 'material-ui/svg-icons/action/cached';
+import './index.css';
 
 const GraphsToolbar = ({
     reloadGraphData,
@@ -14,11 +15,7 @@ const GraphsToolbar = ({
 }) => {
     return (
         <div
-            style={{
-                display: 'flex',
-                padding: '0 10px',
-                justifyContent: 'space-between'
-            }}
+            className='graphs-toolbar'
         >
             <Date
                 hint="Data od"

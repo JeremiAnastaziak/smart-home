@@ -1,0 +1,10 @@
+.graphs-toolbar {
+    padding: 0 10px;
+}
+
+@media(min-width: 850px) {
+    .graphs-toolbar {
+        display: flex;
+        justify-content: space-between;
+    }
+}
