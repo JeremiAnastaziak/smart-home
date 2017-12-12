@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SectionAlarms from '../SectionAlarms';
+import SectionDevices from '../SectionDevices';
 import SectionRecords from '../SectionRecords';
 import SectionCharts from '../SectionCharts';
 import { groupMeasurements } from '../../data/measurements-data-helper';
@@ -12,7 +12,8 @@ const mapStateToProps = ({ dashboard }) => {
         alarms: countAlarms(dashboard.records.measurements),
         records: dashboard.records.measurements,
         chartRecords: groupMeasurements(dashboard.records.measurements),
-        isFetching: dashboard.isFetching
+        isFetching: dashboard.isFetching,
+        handles: dashboard.handles
     };
 };
 
@@ -22,10 +23,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const DashboardMain = ({ chartRecords, alarms, records, isFetching, chartsViewClick }) => {
+const DashboardMain = ({ chartRecords, alarms, records, isFetching, chartsViewClick, handles }) => {
     return (
         <div>
             {/* {records.length && <SectionAlarms alarms={alarms} />} */}
+            <SectionDevices devices={handles}/>
             <SectionRecords records={records} isFetching={isFetching} />
             <SectionCharts data={chartRecords} chartsViewClick={chartsViewClick} isFetching={isFetching}/>
         </div>

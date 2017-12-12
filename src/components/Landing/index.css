@@ -9,4 +9,14 @@
     .register {
         align-items: flex-start;
     }
+    .register > div {
+        max-width: 100vw !important;
+    }
+    .register > div > div {
+        height: calc(100vh - 64px) !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
 }

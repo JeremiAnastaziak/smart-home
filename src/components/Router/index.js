@@ -11,6 +11,7 @@ import { loadRecords } from '../../actions/dashboard-actions';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Card, CardTitle } from 'material-ui/Card';
 import { withCookies, Cookies } from 'react-cookie';
+import NavigationBottom from '../NavigationBottom';
 
 const mapStateToProps = ({ user, dashboard }) => {
     return {
@@ -53,13 +54,13 @@ class Router extends Component {
                         <CheckingSessionView />
                     ) : (
                         <div>
+                            <Header />
                             {!this.props.isAuth ? (
                                 <div className="unAuthRoutes">
                                     <Route exact path="/" component={Landing} />
                                 </div>
                             ) : (
-                                <div className="authRoutes">
-                                    <Header />
+                                <div className="authRoutes" style={{marginBottom: '66px'}}>
                                     <Route
                                         exact
                                         path="/"
@@ -75,6 +76,7 @@ class Router extends Component {
                                         path="/graphs"
                                         component={Graphs}
                                     />
+                                    <NavigationBottom />
                                 </div>
                             )}
                         </div>

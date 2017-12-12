@@ -1,0 +1,27 @@
+.device div div div {
+    padding: 0 !important;
+}
+
+.device-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.device-row+.device-row {
+    margin-bottom: 10px;
+}
+
+.device-label {
+    color: rgba(190, 120, 120, 0.26);
+}
+
+.device-footer {
+    display: flex !important;
+    justify-content: space-around !important;
+}
+
+.device-date {
+    font-size: 20px;
+    margin: 0;
+}
