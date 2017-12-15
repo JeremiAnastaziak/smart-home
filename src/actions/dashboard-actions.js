@@ -1,6 +1,7 @@
 import { fetchRecords } from '../api/api-measurements';
 import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
+import { selectDevice } from './device-actions';
 import { massageData } from '../api/helper';
 
 export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';
@@ -20,12 +21,13 @@ export function toggleSideBar() {
 }
 export function loadRecords() {
     return (dispatch, getState) => {
-        const { dashboard } = getState();
+        const { dashboard, devices } = getState();
         const { limit, offset, activeSort } = dashboard;
+        const { selected } = devices;
 
         dispatch({ type: DASHBOARD_LOAD_RECORDS });
 
-        return fetchRecords({ limit, offset, activeSort })
+        return fetchRecords({ limit, offset, activeSort, handles: selected ? [selected] : [] })
             .then(response => {
                 if ((response.status === 200) || (response.status === 201)) {
                     response.text().then(data => {
@@ -86,6 +88,13 @@ export const filterRecords = filterBy => {
 export const changeLimit = limit => {
     return (dispatch, getState) => {
         dispatch({ type: DASHBOARD_LIMIT_CHANGE, limit });
+        loadRecords()(dispatch, getState);
+    };
+}
+
+export function tableViewClick(device) {
+    return (dispatch, getState) => {
+        selectDevice(device)(dispatch, getState);
         loadRecords()(dispatch, getState);
     };
 }

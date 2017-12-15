@@ -6,17 +6,19 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toggleSideBar } from '../../actions/dashboard-actions';
-import { setAlarmView } from '../../actions/dashboard-alarm-actions';
 import Chip from 'material-ui/Chip';
 import { filterHandle } from '../../actions/dashboard-actions';
 import FlatButton from 'material-ui/FlatButton';
+import Filter from '../Filter';
 
-const Header = () => {
+const Header = ({device}) => {
     return (
         <AppBar
             title={ <Link to='/' style={{color: '#fff'}}>Dashboard</Link>}
             iconStyleLeft={{display: 'none'}}
-        />
+        >
+            {device}
+        </AppBar>
     );
 };
 

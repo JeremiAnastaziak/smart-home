@@ -8,9 +8,10 @@ import IconRecords from 'material-ui/svg-icons/editor/format-align-left';
 import IconSound from 'material-ui/svg-icons/action/settings-remote';
 import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
+import { Link } from 'react-router-dom';
 import './index.css';
 
-const SectionDevices = ({ devices }) => {
+const SectionDevices = ({ devices, loadGraphData, selectDevice }) => {
     return (
         <div className="row">
             <Card style={{ backgroundColor: red500 }}>
@@ -42,8 +43,12 @@ const SectionDevices = ({ devices }) => {
 
                     </CardText>
                     <CardActions className="device-footer">
-                        <FlatButton label="Wykresy" primary icon={<IconGraphs />}/>,
-                        <FlatButton label="Pomiary" primary icon={<IconRecords />}/>
+                        <Link to='/graphs' onClick={() => loadGraphData(device)}>
+                            <FlatButton label="Wykresy" primary icon={<IconGraphs />}/>
+                        </Link>
+                        <Link to='/table' onClick={() => selectDevice(device.id)}>
+                            <FlatButton label="Pomiary" primary icon={<IconRecords />}/>
+                        </Link>
                     </CardActions>
                 </Card>
             ))}

@@ -5,13 +5,21 @@
     }
 }
 
+.toolbar-group--bottom {
+    justify-content: space-between !important;
+}
+
 @media(max-width: 650px) {
     .toolbar-group--bottom {
         align-items: flex-start !important;
-        flex-direction: column !important;
+        flex-direction: column-reverse !important;
     }
     .toolbar {
-        height: 220px !important;
+        height: 180px !important;
         padding: 0 0 0 12px !important;
     }
+}
+
+.toolbar {
+    display: block !important;
 }

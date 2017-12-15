@@ -1,5 +1,7 @@
 import * as moment from 'moment';
 
+const url = 'https://limitless-spire-43906.herokuapp.com';
+
 moment.locale();
 
 export const massageData = (data = { measurements: [] }) => {
@@ -25,3 +27,11 @@ export const formatDateSend = date => {
     date = moment(date).format();
     return date.slice(0, date.indexOf('T')).concat(' 00:00');
 };
+
+export const reqParams = (params = {}) => {
+    return Object.keys(params).map(key => `&${key}=${params[key]}`).join('').replace('&', '?');
+};
+
+export const api = (endpoint, params, object) => {
+    return fetch(url + endpoint + reqParams(params), object)
+}

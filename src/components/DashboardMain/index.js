@@ -5,7 +5,8 @@ import SectionRecords from '../SectionRecords';
 import SectionCharts from '../SectionCharts';
 import { groupMeasurements } from '../../data/measurements-data-helper';
 import { countAlarms } from '../../data/alarm-data-helper';
-import { graphsViewChange } from '../../actions/graph-actions';
+import { graphsViewChange, graphsViewClick } from '../../actions/graph-actions';
+import { tableViewClick } from '../../actions/dashboard-actions';
 
 const mapStateToProps = ({ dashboard }) => {
     return {
@@ -17,19 +18,32 @@ const mapStateToProps = ({ dashboard }) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
-        chartsViewClick: (field) => dispatch(graphsViewChange(field))
-    }
-}
+        chartsViewClick: field => dispatch(graphsViewChange(field)),
+        loadGraphData: device => dispatch(graphsViewClick(device)),
+        selectDevice: device => dispatch(tableViewClick(device))
+    };
+};
 
-const DashboardMain = ({ chartRecords, alarms, records, isFetching, chartsViewClick, handles }) => {
+const DashboardMain = ({
+    chartRecords,
+    alarms,
+    records,
+    isFetching,
+    chartsViewClick,
+    handles,
+    loadGraphData,
+    selectDevice
+}) => {
     return (
         <div>
             {/* {records.length && <SectionAlarms alarms={alarms} />} */}
-            <SectionDevices devices={handles}/>
-            <SectionRecords records={records} isFetching={isFetching} />
-            <SectionCharts data={chartRecords} chartsViewClick={chartsViewClick} isFetching={isFetching}/>
+            <SectionDevices
+                devices={handles}
+                loadGraphData={loadGraphData}
+                selectDevice={selectDevice}
+            />
         </div>
     );
 };

@@ -8,11 +8,13 @@ import {
     DEVICE_EDIT_SUCCESS,
     DEVICE_REMOVE,
     DEVICE_REMOVE_ERROR,
-    DEVICE_REMOVE_SUCCESS
+    DEVICE_REMOVE_SUCCESS,
+    DEVICE_SELECT
 } from '../actions/device-actions';
 
 const initialState = {
-    isFetching: false
+    isFetching: false,
+    selected: ''
 };
 
 export default function deviceReducer(state = initialState, action) {
@@ -62,6 +64,11 @@ export default function deviceReducer(state = initialState, action) {
             return {
                 ...state,
                 isFetching: false
+            }
+        case DEVICE_SELECT:
+            return {
+                ...state,
+                selected: action.device
             }
         default:
             return state;

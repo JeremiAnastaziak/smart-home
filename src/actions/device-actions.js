@@ -10,6 +10,14 @@ export const DEVICE_EDIT_ERROR = 'DEVICE_EDIT_ERROR';
 export const DEVICE_REMOVE = 'DEVICE_REMOVE';
 export const DEVICE_REMOVE_SUCCESS = 'DEVICE_REMOVE_SUCCESS';
 export const DEVICE_REMOVE_ERROR = 'DEVICE_REMOVE_ERROR';
+export const DEVICE_SELECT = 'DEVICE_SELECT';
+
+export function selectDevice(device) {
+    return (dispatch, getState) => {
+        dispatch({ type: DEVICE_SELECT, device});
+
+    }
+}
 
 export function submitCreateDevice(body) {
     return (dispatch, getState) => {

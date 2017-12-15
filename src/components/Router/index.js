@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import DashboardMain from '../DashboardMain';
-import DashboardAlarm from '../DashboardAlarm';
 import Header from '../Header';
 import Graphs from '../Graphs';
 import Landing from '../Landing';
@@ -12,11 +11,13 @@ import CircularProgress from 'material-ui/CircularProgress';
 import { Card, CardTitle } from 'material-ui/Card';
 import { withCookies, Cookies } from 'react-cookie';
 import NavigationBottom from '../NavigationBottom';
+import SectionRecords from '../SectionRecords';
 
-const mapStateToProps = ({ user, dashboard }) => {
+const mapStateToProps = ({ user, dashboard, devices }) => {
     return {
         isAuth: user.isAuth,
-        isCheckingAuth: dashboard.isFetching
+        isCheckingAuth: dashboard.isFetching,
+        device: devices.selected
     };
 };
 
@@ -54,7 +55,7 @@ class Router extends Component {
                         <CheckingSessionView />
                     ) : (
                         <div>
-                            <Header />
+                            <Header device={this.props.device}/>
                             {!this.props.isAuth ? (
                                 <div className="unAuthRoutes">
                                     <Route exact path="/" component={Landing} />
@@ -75,6 +76,11 @@ class Router extends Component {
                                         exact
                                         path="/graphs"
                                         component={Graphs}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/table"
+                                        component={SectionRecords}
                                     />
                                     <NavigationBottom />
                                 </div>

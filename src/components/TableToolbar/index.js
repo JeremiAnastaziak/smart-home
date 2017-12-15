@@ -5,39 +5,34 @@ import {
     ToolbarTitle
 } from 'material-ui/Toolbar';
 
-import AlarmPagination from '../AlarmPagination';
 import MainPagination from '../MainPagination';
 import Sort from '../Sort';
 import Filter from '../Filter';
 import Limit from '../Limit';
 import { connect } from 'react-redux';
-import { filterRecords } from '../../actions/dashboard-actions';
+import { selectDevice } from '../../actions/device-actions';
 import './index.css';
 
-const mapStateToProps = ({ dashboard }) => {
+const mapStateToProps = ({ dashboard, devices }) => {
     return {
-        activeFilter: dashboard.activeFilter,
+        activeFilter: devices.selected,
         handles: dashboard.handles
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFilterChange: filterBy => dispatch(filterRecords(filterBy))
+        onFilterChange: deviceId => dispatch(selectDevice(deviceId))
     };
 };
 
-const TableToolbar = ({ isAlarmTable, activeFilter, handles, onFilterChange }) => {
+const TableToolbar = ({ activeFilter, handles, onFilterChange }) => {
     return (
         <Toolbar className="toolbar">
-            <ToolbarGroup>
-                <ToolbarTitle text="Klamki" />
-            </ToolbarGroup>
             <ToolbarGroup className="toolbar-group--bottom" style={{justifyContent: 'flex-start'}}>
-                <Filter showAll={true} activeFilter={activeFilter} handles={handles} onFilterChange={onFilterChange}/>
                 <Sort />
                 <Limit />
-                {isAlarmTable ? <AlarmPagination /> : <MainPagination />}
+                <MainPagination />
             </ToolbarGroup>
         </Toolbar>
     );
