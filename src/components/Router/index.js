@@ -12,12 +12,15 @@ import { Card, CardTitle } from 'material-ui/Card';
 import { withCookies, Cookies } from 'react-cookie';
 import NavigationBottom from '../NavigationBottom';
 import SectionRecords from '../SectionRecords';
+import HeaderSelect from '../HeaderSelect';
 
 const mapStateToProps = ({ user, dashboard, devices }) => {
     return {
         isAuth: user.isAuth,
         isCheckingAuth: dashboard.isFetching,
-        device: devices.selected
+        device: devices.selected,
+        devices: dashboard.handles
+
     };
 };
 
@@ -55,7 +58,7 @@ class Router extends Component {
                         <CheckingSessionView />
                     ) : (
                         <div>
-                            <Header device={this.props.device}/>
+
                             {!this.props.isAuth ? (
                                 <div className="unAuthRoutes">
                                     <Route exact path="/" component={Landing} />
@@ -65,22 +68,22 @@ class Router extends Component {
                                     <Route
                                         exact
                                         path="/"
-                                        component={DashboardMain}
+                                        component={() => <div> <Header device={this.props.device} /> <DashboardMain /> </div>}
                                     />
                                     <Route
                                         exact
                                         path="/devices"
-                                        component={Devices}
+                                        component={() => <div> <Header device={this.props.device} /> <Devices /> </div>}
                                     />
                                     <Route
                                         exact
                                         path="/graphs"
-                                        component={Graphs}
+                                        component={() => <div> <HeaderSelect device={this.props.device} /> <Graphs /> </div>}
                                     />
                                     <Route
                                         exact
                                         path="/table"
-                                        component={SectionRecords}
+                                        component={() => <div> <HeaderSelect device={this.props.device} /> <SectionRecords /> </div>}
                                     />
                                     <NavigationBottom />
                                 </div>

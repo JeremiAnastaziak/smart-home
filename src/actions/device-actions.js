@@ -14,8 +14,9 @@ export const DEVICE_SELECT = 'DEVICE_SELECT';
 
 export function selectDevice(device) {
     return (dispatch, getState) => {
+        const { graphs } = getState();
         dispatch({ type: DEVICE_SELECT, device});
-
+        loadRecords()(dispatch, getState);
     }
 }
 

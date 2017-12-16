@@ -9,7 +9,7 @@ import { toggleSideBar } from '../../actions/dashboard-actions';
 import Chip from 'material-ui/Chip';
 import { filterHandle } from '../../actions/dashboard-actions';
 import FlatButton from 'material-ui/FlatButton';
-import Filter from '../Filter';
+import HeaderSelect from '../HeaderSelect';
 
 const Header = ({device}) => {
     return (
@@ -17,7 +17,6 @@ const Header = ({device}) => {
             title={ <Link to='/' style={{color: '#fff'}}>Dashboard</Link>}
             iconStyleLeft={{display: 'none'}}
         >
-            {device}
         </AppBar>
     );
 };

@@ -18,7 +18,6 @@ const Chart = ({ measurements, title, isFetching, children }) => {
     return (
         <Card style={{ position: 'relative' }}>
             ;
-            <CardTitle title={title} style={{ padding: '5px 10px 0' }} />
             {children}
             {isFetching && (
                 <CircularProgress

@@ -95,7 +95,6 @@ export const changeLimit = limit => {
 export function tableViewClick(device) {
     return (dispatch, getState) => {
         selectDevice(device)(dispatch, getState);
-        loadRecords()(dispatch, getState);
     };
 }
 
