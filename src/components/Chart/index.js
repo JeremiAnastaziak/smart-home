@@ -29,10 +29,22 @@ const Chart = ({ measurements, title, isFetching, children }) => {
                     }}
                 />
             )}
-            <ResponsiveContainer
-                width="99%"
-                aspect={1.8}
-            >
+            {!isFetching &&
+                !measurements.length && (
+                    <span
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            textAlign: 'center'
+                        }}
+                    >
+                        Brak pomiarów <br/>
+                        Spróbuj wybrac inny zakres dat
+                    </span>
+                )}
+            <ResponsiveContainer width="99%" aspect={1.8}>
                 {measurements && (
                     <AreaChart
                         data={measurements}

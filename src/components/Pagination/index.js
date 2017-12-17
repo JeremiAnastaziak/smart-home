@@ -1,43 +1,41 @@
 import React from 'react';
-import IconButton from 'material-ui/IconButton';
-import ChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
-import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import './index.css';
+import PaginationArrow from './PaginationArrow';
 
 class Pagination extends React.Component {
-
-    onChangeCurrentPagePrevious = () => {
+    pageChangePrevious = () => {
         this.props.onChangeCurrentPage(this.props.activePage - 1);
-    }
+    };
 
-    onChangeCurrentPageNext = () => {
+    pageChangeNext = () => {
         this.props.onChangeCurrentPage(this.props.activePage + 1);
-    }
+    };
 
-    onChangeInputText = ({target}) => {
+    onChangeInputText = ({ target }) => {
         if (target.value > this.props.totalPages) this.props.onChangeCurrentPage(10);
         else if (target.value < 1) this.props.onChangeCurrentPage(1);
         else this.props.onChangeCurrentPage(Number(target.value));
 
         this.input.focus();
-    }
+    };
 
     onLastPageButtonClick = () => {
         this.props.onChangeCurrentPage(this.props.totalPages);
-    }
+    };
 
     render() {
         const { activePage, totalPages } = this.props;
-        if (!totalPages) return ''
+        if (!totalPages) return '';
         return (
-            <div className="pagination" style={{ display: 'flex', alignItems: 'center', maxWidth: '250px', justifyContent: 'flex-end' }}>
-                {activePage > 1 && (
-                    <IconButton touch={true} onClick={this.onChangeCurrentPagePrevious}>
-                        <ChevronLeft />
-                    </IconButton>
-                )}
+            <div
+                className="pagination"
+                style={{
+                    display: 'flex',
+                    alignItems: 'center'
+                }}
+            >
+                <PaginationArrow onClick={this.pageChangePrevious} disabled={activePage <= 1} left/>
                 <TextField
                     name="page"
                     type="number"
@@ -60,11 +58,7 @@ class Pagination extends React.Component {
                     style={{ minWidth: '40px', marginLeft: '10px' }}
                     onClick={this.onLastPageButtonClick}
                 />
-                {activePage < totalPages && (
-                    <IconButton touch={true} onClick={this.onChangeCurrentPageNext}>
-                        <ChevronRight />
-                    </IconButton>
-                )}
+                <PaginationArrow onClick={this.pageChangeNext} right disabled={activePage === totalPages}/>
             </div>
         );
     }

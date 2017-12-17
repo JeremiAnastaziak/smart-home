@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { CookiesProvider } from 'react-cookie';
 import rootReducer from './reducers/root-reducer';
 import './index.css';
 
@@ -21,11 +20,9 @@ const store = createStore(rootReducer, {}, enhancer);
 const render = () =>
     ReactDOM.render(
         <Provider store={store}>
-            <CookiesProvider>
-                <MuiThemeProvider>
-                    <App store={store} />
-                </MuiThemeProvider>
-            </CookiesProvider>
+            <MuiThemeProvider>
+                <App store={store} />
+            </MuiThemeProvider>
         </Provider>,
         document.getElementById('root')
     );

@@ -14,10 +14,10 @@ export const DEVICE_SELECT = 'DEVICE_SELECT';
 
 export function selectDevice(device) {
     return (dispatch, getState) => {
-        const { graphs } = getState();
-        dispatch({ type: DEVICE_SELECT, device});
+        const { graphs, dashboard } = getState();
+        dispatch({ type: DEVICE_SELECT, device });
         loadRecords()(dispatch, getState);
-    }
+    };
 }
 
 export function submitCreateDevice(body) {
@@ -26,16 +26,15 @@ export function submitCreateDevice(body) {
 
         return createDevice(body)
             .then(respone => {
-                console.log(respone)
                 if (respone.status === 201) {
                     dispatch({
                         type: DEVICE_CREATE_SUCCESS
                     });
                     loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 } else {
-                    dispatch({ type: DEVICE_CREATE_ERROR })
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    dispatch({ type: DEVICE_CREATE_ERROR });
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 }
             })
             .catch(error => dispatch({ type: DEVICE_CREATE_ERROR, error }));
@@ -53,10 +52,10 @@ export function submitEditDevice(body) {
                         type: DEVICE_EDIT_SUCCESS
                     });
                     loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 } else {
-                    dispatch({ type: DEVICE_EDIT_ERROR })
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    dispatch({ type: DEVICE_EDIT_ERROR });
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 }
             })
             .catch(error => dispatch({ type: DEVICE_EDIT_ERROR, error }));
@@ -74,10 +73,10 @@ export function submitRemoveDevice(body) {
                         type: DEVICE_REMOVE_SUCCESS
                     });
                     loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 } else {
-                    dispatch({ type: DEVICE_REMOVE_ERROR })
-                    showNotification(`(${respone.statusText})`)(dispatch)
+                    dispatch({ type: DEVICE_REMOVE_ERROR });
+                    showNotification(`(${respone.statusText})`)(dispatch);
                 }
             })
             .catch(error => dispatch({ type: DEVICE_REMOVE_ERROR, error }));

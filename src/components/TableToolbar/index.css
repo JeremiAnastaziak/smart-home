@@ -14,9 +14,17 @@
         align-items: flex-start !important;
         flex-direction: column-reverse !important;
     }
+    .toolbar-group--bottom > * {
+        width: 100%;
+        display: flex;
+    }
     .toolbar {
         height: 180px !important;
         padding: 0 0 0 12px !important;
+    }
+    .pagination {
+        justify-content: center;
+        width: 100%;
     }
 }
 

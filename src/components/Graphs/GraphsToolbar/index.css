@@ -1,10 +1,25 @@
 .graphs-toolbar {
     padding: 0 10px;
 }
+.graphs-toolbar {
+    display: flex;
+    justify-content: flex-start;
+}
 
-@media(min-width: 850px) {
+.graphs-toolbar > div {
+    margin-right: 15px;
+}
+
+@media (max-width: 640px) {
+    .graphs-toolbar > div {
+        margin-top: 50px;
+        max-width: 50%;
+        margin-right: 0;
+    }
+    .graphs-toolbar > div > div {
+        max-width: 90%;
+    }
     .graphs-toolbar {
-        display: flex;
         justify-content: space-between;
     }
 }

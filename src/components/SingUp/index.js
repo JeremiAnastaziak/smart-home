@@ -19,10 +19,10 @@ class SingUp extends Component {
         this.phoneErrorMessage = '';
     }
 
-    fromValid = () => {
+    isFromValid = () => {
         this.setState({
             validate: true
-        })
+        });
         this.passwordErrorMessage = '';
         this.repeatedPasswordErrorMessage = '';
         this.phoneErrorMessage = '';
@@ -30,24 +30,22 @@ class SingUp extends Component {
 
         if (phoneNumber.length !== 9) {
             this.phoneErrorMessage = 'Numer telefonu powinien miec 9 cyfr';
-            return false
+            return false;
         }
 
-        if (password.length <= 6 ) {
+        if (password.length <= 6) {
             this.passwordErrorMessage = 'Wprowadzone hasło jest zbyt krótkie';
-            return false
-        }
-        else if (password !== passwordRepeated) {
+            return false;
+        } else if (password !== passwordRepeated) {
             this.repeatedPasswordErrorMessage = 'Hasła nie są takie same';
-            return false
+            return false;
         }
-        return true
-
-    }
+        return true;
+    };
 
     submitForm = e => {
         e.preventDefault();
-        if (this.fromValid()) this.props.onRegisterSubmit(this.state);
+        if (this.isFromValid()) this.props.onRegisterSubmit(this.state);
     };
 
     render() {
@@ -64,9 +62,7 @@ class SingUp extends Component {
                     style={{ paddingBottom: '0' }}
                 />
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
-                    <form
-                        onSubmit={(e) => this.submitForm(e)}
-                    >
+                    <form onSubmit={e => this.submitForm(e)}>
                         <TextField
                             hintText="Wpisz adres e-mail"
                             floatingLabelText="E-mail"
@@ -92,7 +88,9 @@ class SingUp extends Component {
                             floatingLabelText="Hasło"
                             type="password"
                             fullWidth
-                            errorText={this.state.validate && this.passwordErrorMessage}
+                            errorText={
+                                this.state.validate && this.passwordErrorMessage
+                            }
                             onChange={e =>
                                 this.setState({
                                     password: e.target.value
@@ -104,7 +102,10 @@ class SingUp extends Component {
                             floatingLabelText="Powtórz hasło"
                             type="password"
                             fullWidth
-                            errorText={this.state.validate && this.repeatedPasswordErrorMessage}
+                            errorText={
+                                this.state.validate &&
+                                this.repeatedPasswordErrorMessage
+                            }
                             onChange={e =>
                                 this.setState({
                                     passwordRepeated: e.target.value

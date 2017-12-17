@@ -4,7 +4,6 @@ import SwipeableViews from 'react-swipeable-views';
 import { Card, CardTitle } from 'material-ui/Card';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { cyan500 } from 'material-ui/styles/colors';
-import CircularProgress from 'material-ui/CircularProgress';
 import SingIn from '../SingIn';
 import SingUp from '../SingUp';
 import { submitRegisterUser, submitLoginUser } from '../../actions/user-actions';
@@ -44,49 +43,44 @@ class Landing extends React.Component {
 
     render() {
         const { onRegisterSubmit, onLoginSubmit, isFetching } = this.props;
+        const shouldApplicateCyanColor = value =>
+            this.state.tabsIndex === value ? cyan500 : '#212121';
+        const tabStyle = value => {
+            return {
+                background: '#eee',
+                color: shouldApplicateCyanColor(value)
+            };
+        };
         return (
-            <div className="register">
-                <Card style={{ maxWidth: '500px' }}>
-                    <SwipeableViews
-                        index={this.state.tabsIndex}
-                        onChangeIndex={this.handleTabChange}
-                    >
-                        <SingIn
-                            onLoginSubmit={onLoginSubmit}
-                            isFetching={isFetching}
-                        />
-                        <SingUp
-                            onRegisterSubmit={onRegisterSubmit}
-                            isFetching={isFetching}
-                        />
-                    </SwipeableViews>
+            <Card className="register" style={{ maxWidth: '500px' }}>
+                <SwipeableViews
+                    index={this.state.tabsIndex}
+                    onChangeIndex={this.handleTabChange}
+                >
+                    <SingIn onLoginSubmit={onLoginSubmit} isFetching={isFetching} />
+                    <SingUp
+                        onRegisterSubmit={onRegisterSubmit}
+                        isFetching={isFetching}
+                    />
+                </SwipeableViews>
 
-                    <Tabs
-                        onChange={this.handleTabChange}
-                        value={this.state.tabsIndex}
-                        inkBarStyle={{ backgroundColor: cyan500 }}
-                    >
-                        <Tab
-                            style={{
-                                background: '#eee',
-                                color:
-                                    this.state.tabsIndex === 0 ? cyan500 : '#212121'
-                            }}
-                            label="Logowanie"
-                            value={0}
-                        />
-                        <Tab
-                            style={{
-                                background: '#eee',
-                                color:
-                                    this.state.tabsIndex === 1 ? cyan500 : '#212121'
-                            }}
-                            label="Rejestracja"
-                            value={1}
-                        />
-                    </Tabs>
-                </Card>
-            </div>
+                <Tabs
+                    onChange={this.handleTabChange}
+                    value={this.state.tabsIndex}
+                    inkBarStyle={{ backgroundColor: cyan500 }}
+                >
+                    <Tab
+                        style={tabStyle(0)}
+                        label="Logowanie"
+                        value={0}
+                    />
+                    <Tab
+                        style={tabStyle(1)}
+                        label="Rejestracja"
+                        value={1}
+                    />
+                </Tabs>
+            </Card>
         );
     }
 }

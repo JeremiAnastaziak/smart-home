@@ -6,12 +6,10 @@ import {
     graphsViewChange,
     changeGraphFilter
 } from '../../actions/graph-actions';
-import CircularProgress from 'material-ui/CircularProgress';
 import GraphsTiles from './GraphsTiles';
 import GraphsToolbar from './GraphsToolbar';
 
 const mapStateToProps = ({ dashboard, graphs }) => {
-    console.log(graphs);
     return {
         active: graphs.active,
         data: graphs.active && graphs.fields[graphs.active].data,

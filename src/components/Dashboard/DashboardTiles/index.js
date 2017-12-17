@@ -11,14 +11,9 @@ import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-const SectionDevices = ({ devices, loadGraphData, selectDevice }) => {
+const DashboardTiles = ({ devices = [], loadGraphData, selectDevice }) => {
     return (
         <div className="row">
-            <Card style={{ backgroundColor: red500 }}>
-                <CardHeader style={{color: '#fff'}}
-                    title="Alarm pali sie!"
-                />
-            </Card>
             {devices.map(device => (
                 <Card
                     style={{ textAlign: 'center', paddingRight: 0 }}
@@ -46,7 +41,7 @@ const SectionDevices = ({ devices, loadGraphData, selectDevice }) => {
                         <Link to='/graphs' onClick={() => loadGraphData(device)}>
                             <FlatButton label="Wykresy" primary icon={<IconGraphs />}/>
                         </Link>
-                        <Link to='/table' onClick={() => selectDevice(device.id)}>
+                        <Link to='/table' onClick={() => selectDevice(device)}>
                             <FlatButton label="Pomiary" primary icon={<IconRecords />}/>
                         </Link>
                     </CardActions>
@@ -56,4 +51,4 @@ const SectionDevices = ({ devices, loadGraphData, selectDevice }) => {
     );
 };
 
-export default SectionDevices;
+export default DashboardTiles;

@@ -19,7 +19,7 @@ export function graphsViewChange(selectedField) {
 
 export function graphsViewClick(device) {
     return (dispatch, getState) => {
-        selectDevice(device.id)(dispatch, getState);
+        selectDevice(device)(dispatch, getState);
     };
 }
 
@@ -35,7 +35,7 @@ export function loadGraphData() {
         return loadGraph({
             fieldName: graphs.active,
             ...filters,
-            handle: devices.selected
+            handle: devices.selected.id
         }).then(response => {
             if (response.status === 200) {
                 response.text().then(data => {

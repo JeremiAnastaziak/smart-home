@@ -4,8 +4,6 @@ import {
     DASHBOARD_LOAD_RECORDS,
     DASHBOARD_LOAD_RECORDS_SUCCESS,
     DASHBOARD_LOAD_RECORDS_ERROR,
-    DASHBOARD_SIDEBAR_TOGGLE,
-    DASHBOARD_HANDLE_FILTER,
     DASHBOARD_SORT,
     DASHBOARD_FILTER,
     DASHBOARD_LIMIT_CHANGE
@@ -16,9 +14,7 @@ const initialState = {
     isFetching: false,
     offset: 0,
     limit: 5,
-    showSidebar: false,
     activePage: 1,
-    activeHandle: '',
     activeFilter: null,
     activeSort: 'date_latest'
 };
@@ -51,16 +47,6 @@ export default function dashboardReducer(state = initialState, action) {
                 isFetching: false
             }
         }
-        case DASHBOARD_SIDEBAR_TOGGLE:
-            return {
-                ...state,
-                showSidebar: !state.showSidebar
-            };
-        case DASHBOARD_HANDLE_FILTER:
-            return {
-                ...state,
-                activeHandle: action.handle ? action.handle : ''
-            };
         case DASHBOARD_SORT:
             return {
                 ...state,

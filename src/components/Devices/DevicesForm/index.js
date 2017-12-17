@@ -5,41 +5,51 @@ import TextField from 'material-ui/TextField';
 
 class DevicesForm extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             name: '',
             id: ''
-        }
+        };
     }
 
-    submitForm = (e) => {
+    submitForm = e => {
         e.preventDefault();
-        this.props.createDevice(this.state)
-    }
+        this.props.createDeviceSubmit(this.state);
+    };
 
     render() {
         return (
-            <div>
-                <CardHeader className="devices-title" title="Dodaj nowe urządzenia" style={{paddingBottom: 0, marginBottom: '-20px'}}/>
+            <form onSubmit={e => this.submitForm(e)}>
+                <CardHeader
+                    className="devices-title"
+                    title="Dodaj nowe urządzenie"
+                    style={{ paddingBottom: 0, marginBottom: '-20px' }}
+                />
                 <CardText>
-                    <form onSubmit={(e) => this.submitForm(e)}>
-                        <TextField
-                            floatingLabelText="ID urządzenia"
-                            required
-                            onChange={e => this.setState({ id: e.target.value })}
-                        />
-                        <br/>
-                        <TextField
-                            floatingLabelText="Nazwa urządzenia"
-                            required
-                            onChange={e => this.setState({ name: e.target.value })}
-                            style={{margin: '-15px 0 10px'}}
-                        />
-                        <br/>
-                        <RaisedButton label="Dodaj" primary type="submit" disabled={this.props.isFetching}/>
-                    </form>
+                    <TextField
+                        floatingLabelText="ID urządzenia podane przez producenta"
+                        required
+                        onChange={e => this.setState({ id: e.target.value })}
+                        fullWidth
+                    />
+                    <br />
+                    <TextField
+                        floatingLabelText="Twoja własna nazwa urządzenia"
+                        required
+                        onChange={e => this.setState({ name: e.target.value })}
+                        style={{ margin: '-15px 0 10px' }}
+                        fullWidth
+                    />
+                    <br />
+                    <RaisedButton
+                        label="Dodaj"
+                        primary
+                        type="submit"
+                        disabled={this.props.isFetching}
+                        fullWidth
+                    />
                 </CardText>
-            </div>
+            </form>
         );
     }
 }

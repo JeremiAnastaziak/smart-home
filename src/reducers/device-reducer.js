@@ -14,7 +14,10 @@ import {
 
 const initialState = {
     isFetching: false,
-    selected: ''
+    selected: {
+        id: '',
+        name: ''
+    }
 };
 
 export default function deviceReducer(state = initialState, action) {

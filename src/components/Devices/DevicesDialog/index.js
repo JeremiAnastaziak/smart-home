@@ -2,20 +2,20 @@ import React from 'react';
 import FlatButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 
-const DeleteDialog = ({ name, id, remove, open, toggleDialog }) => {
+const DeleteDialog = ({ name, id, open, devicesRemoveClick, devicesDialogToggle }) => {
     this.open = open;
     const actions = [
         <FlatButton
             label="Anuluj"
-            onClick={() => toggleDialog(id, name, false)}
+            onClick={() => devicesDialogToggle(id, name, false)}
         />,
         <FlatButton
             label="Usuń"
             primary
             style={{marginLeft: '20px'}}
             onClick={() => {
-                toggleDialog(id, name, false);
-                remove({ id });
+                devicesDialogToggle(id, name, false);
+                devicesRemoveClick({ id });
             }}
         />
     ];
@@ -25,7 +25,7 @@ const DeleteDialog = ({ name, id, remove, open, toggleDialog }) => {
             actions={actions}
             modal={false}
             open={open}
-            onRequestClose={() => toggleDialog(id, name, false)}
+            onRequestClose={() => devicesDialogToggle(id, name, false)}
         >
             Czy na pewno usunąc urządzenie o nazwie "{name}"?
         </Dialog>

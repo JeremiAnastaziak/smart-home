@@ -10,8 +10,8 @@ const mapStateToProps = ({ dashboard }) => {
 };
 
 
-const SectionRecords = (props) => {
-    return <TableCustom title="Ostatnie rekordy" {...props} />;
+const Measurements = (props) => {
+    return <TableCustom {...props} />;
 };
 
-export default connect(mapStateToProps)(SectionRecords);
+export default connect(mapStateToProps)(Measurements);

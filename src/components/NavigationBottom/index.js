@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import FontIcon from 'material-ui/FontIcon';
 import {
     BottomNavigation,
@@ -9,13 +10,8 @@ import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import IconDevices from 'material-ui/svg-icons/hardware/developer-board';
 import IconGraphs from 'material-ui/svg-icons/action/trending-up';
 import IconHome from 'material-ui/svg-icons/action/home';
-import { Link } from 'react-router-dom';
+import IconTable from 'material-ui/svg-icons/action/list';
 
-/**
- * A simple example of `BottomNavigation`, with three labels and icons
- * provided. The selected `BottomNavigationItem` is determined by application
- * state (for instance, by the URL).
- */
 class NavigationBottom extends Component {
     state = {
         selectedIndex: 0
@@ -43,12 +39,20 @@ class NavigationBottom extends Component {
                             selected={this.state.selectedIndex === 1}
                         />
                     </Link>
+                    <Link to="/table">
+                        <BottomNavigationItem
+                            style={{ height: '56px' }}
+                            icon={<IconTable />}
+                            onClick={() => this.select(2)}
+                            selected={this.state.selectedIndex === 2}
+                        />
+                    </Link>
                     <Link to="/devices">
                         <BottomNavigationItem
                             style={{ height: '56px' }}
                             icon={<IconDevices />}
-                            onClick={() => this.select(2)}
-                            selected={this.state.selectedIndex === 2}
+                            onClick={() => this.select(3)}
+                            selected={this.state.selectedIndex === 3}
                         />
                     </Link>
                 </BottomNavigation>

@@ -15,22 +15,22 @@ class SingIn extends React.Component {
         this.passwordErrorMessage = '';
     }
 
-    formValid = () => {
+    isFormValid = () => {
         this.setState({
             validate: true
-        })
+        });
         this.passwordErrorMessage = '';
         if (this.state.password.length < 6) {
             this.passwordErrorMessage = 'Hasło jest zbyt krótkie';
             return false;
         }
         return true;
-    }
+    };
 
-    submitForm = (e) => {
+    submitForm = e => {
         e.preventDefault();
-        if(this.formValid()) this.props.onLoginSubmit(this.state);
-    }
+        if (this.isFormValid()) this.props.onLoginSubmit(this.state);
+    };
 
     render() {
         const { isFetching } = this.props;
@@ -46,9 +46,7 @@ class SingIn extends React.Component {
                 />
 
                 <CardText style={{ display: 'flex', flexDirection: 'column' }}>
-                    <form
-                        onSubmit={(e) => this.submitForm(e)}
-                    >
+                    <form onSubmit={e => this.submitForm(e)}>
                         <TextField
                             hintText="Wpisz adres e-mail"
                             floatingLabelText="E-mail"
@@ -62,7 +60,9 @@ class SingIn extends React.Component {
                             floatingLabelText="Hasło"
                             type="password"
                             fullWidth
-                            errorText={this.state.validate && this.passwordErrorMessage}
+                            errorText={
+                                this.state.validate && this.passwordErrorMessage
+                            }
                             onChange={e =>
                                 this.setState({
                                     password: e.target.value

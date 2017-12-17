@@ -14,11 +14,11 @@ class DevicesList extends Component {
         };
     }
 
-    toggleEdition = id => {
+    toggleDeviceEdition = id => {
         this.setState({ editId: !this.state.editId ? id : '' });
     };
 
-    toggleDialog = (id, name, show) => {
+    toggleDeviceDialog = (id, name, show) => {
         this.setState({
             deleteId: id,
             deleteName: name,
@@ -27,16 +27,16 @@ class DevicesList extends Component {
     };
 
     render() {
-        const { devices, editDevice, removeDevice, isFetching } = this.props;
+        const { devices, isFetching, editDeviceSubmit, removeDeviceSubmit } = this.props;
         return (
             <div>
                 <CardHeader className="devices-title"  style={{paddingBottom: 0}}title="Lista aktywnych urządzeń" />
                 <DeleteDialog
-                    toggleDialog={this.toggleDialog}
                     open={this.state.dialog}
                     name={this.state.deleteName}
                     id={this.state.deleteId}
-                    remove={removeDevice}
+                    removeDeviceSubmit={removeDeviceSubmit}
+                    toggleDeviceEdition={this.toggleDeviceEdition}
                 />
                 <List>
                     {devices &&
@@ -44,10 +44,9 @@ class DevicesList extends Component {
                             <DevicesListElement
                                 key={device.id}
                                 {...device}
-                                edit={editDevice}
-                                remove={removeDevice}
-                                toggleEdition={() => this.toggleEdition(device.id)}
-                                toggleDialog={this.toggleDialog}
+                                editDeviceSubmit={editDeviceSubmit}
+                                toggleDeviceEdition={() => this.toggleDeviceEdition(device.id)}
+                                toggleDeviceDialog={this.toggleDeviceDialog}
                                 isDuringEdition={device.id === this.state.editId}
                                 disableIcon={isFetching}
                             />

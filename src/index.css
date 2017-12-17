@@ -18,9 +18,6 @@
     margin: 10px;
 }
 
-.row > *:last-child {
-}
-
 a:-webkit-any-link {
     text-decoration: none;
     color: #fff !important;
@@ -28,7 +25,7 @@ a:-webkit-any-link {
 
 .desk {
     background: #f2f5f7;
-    min-height: 100vh;
+    min-height: calc(100vh - 70px);
 }
 
 input::-webkit-outer-spin-button,
@@ -39,5 +36,5 @@ input::-webkit-inner-spin-button {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
+    -webkit-box-shadow: 0 0 0 310px white inset;
 }

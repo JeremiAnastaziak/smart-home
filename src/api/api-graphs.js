@@ -4,7 +4,7 @@ export const loadGraph = ({ startDate, endDate, fieldName, handle }) => {
     endDate = endDate && formatDateSend(endDate);
     fieldName = fieldName.toUpperCase();
 
-    return fetch(`https://limitless-spire-43906.herokuapp.com/graphs/measurements?${handle ? `handleId=${handle}` : ''}&fieldName=${fieldName}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`, {
+    return fetch(`https://limitless-spire-43906.herokuapp.com/users/graphs/measurements?${handle ? `handleId=${handle}` : ''}&fieldName=${fieldName}${startDate ? `&startDate=${startDate}` : ''}${endDate ? `&endDate=${endDate}` : ''}`, {
         method: 'GET',
         headers: {
             Accept: '*/*',
