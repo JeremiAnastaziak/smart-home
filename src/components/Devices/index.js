@@ -35,7 +35,7 @@ class Devices extends PureComponent {
             isFetching
         } = this.props;
         return (
-            <Card style={{ maxWidth: '600px', margin: 'auto' }}>
+            <Card style={{ margin: '10px' }}>
                 {isFetching && <CircularProgress />}
                 <DevicesForm
                     isFetching={isFetching}

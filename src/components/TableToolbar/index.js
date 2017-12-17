@@ -16,7 +16,8 @@ import './index.css';
 const mapStateToProps = ({ dashboard, devices }) => {
     return {
         activeFilter: devices.selected,
-        handles: dashboard.handles
+        handles: dashboard.handles,
+        shouldShown: dashboard.records.measurements.length
     };
 };
 
@@ -26,7 +27,8 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const TableToolbar = ({ activeFilter, handles, onFilterChange }) => {
+const TableToolbar = ({ activeFilter, handles, shouldShown, onFilterChange }) => {
+    if (!shouldShown) return false;
     return (
         <Toolbar className="toolbar">
             <ToolbarGroup className="toolbar-group--bottom" style={{justifyContent: 'flex-start'}}>

@@ -22,7 +22,7 @@ const Loading = () => {
                             alignItems: 'center'
                         }}
                     >
-                        <p style={{ textAlign: 'center' }}>
+                        <p style={{ textAlign: 'center', marginTop: 0 }}>
                             Sprawdzam sesję uzytkownika
                         </p>
                         <CircularProgress size={30} />

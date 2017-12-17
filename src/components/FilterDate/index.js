@@ -19,13 +19,13 @@ minDate.setDate(minDate.getDate() - 1);
 minDate.setHours(0, 0, 0, 0);
 maxDate.setHours(0, 0, 0, 0);
 
-const FilterDate = ({ hint, onDateChange, min }) => {
+const FilterDate = ({ hint, onDateChange, min, value }) => {
     return (
         <DatePicker
             floatingLabelText={hint}
             DateTimeFormat={DateTimeFormat}
             locale="pl-PL"
-            defaultDate={min ? minDate : maxDate}
+            defaultDate={value || min ? minDate : maxDate}
             maxDate={maxDate}
             autoOk
             cancelLabel="Anuluj"

@@ -25,13 +25,23 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
             <div style={{ overflowX: 'scroll', overflowY: 'hidden' }}>
                 <Table style={{ minWidth: '700px' }}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        <TableRow>
-                            <TableHeaderColumn>Date</TableHeaderColumn>
-                            <TableHeaderColumn>Temperatura</TableHeaderColumn>
-                            <TableHeaderColumn>Poziom dzwieku</TableHeaderColumn>
-                            <TableHeaderColumn>Stan klamki</TableHeaderColumn>
-                            <TableHeaderColumn>Alarmy</TableHeaderColumn>
-                        </TableRow>
+                        {!isFetching && !records.length ? (
+                            <p
+                                style={{
+                                    textAlign: 'center'
+                                }}
+                            >
+                                Brak dostępnych pomiarów
+                            </p>
+                        ) : (
+                            <TableRow>
+                                <TableHeaderColumn>Data</TableHeaderColumn>
+                                <TableHeaderColumn>Temperatura</TableHeaderColumn>
+                                <TableHeaderColumn>Poziom dzwieku</TableHeaderColumn>
+                                <TableHeaderColumn>Stan klamki</TableHeaderColumn>
+                                <TableHeaderColumn>Alarmy</TableHeaderColumn>
+                            </TableRow>
+                        )}
                     </TableHeader>
 
                     <TableBody displayRowCheckbox={false}>

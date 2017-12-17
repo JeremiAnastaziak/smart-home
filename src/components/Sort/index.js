@@ -39,13 +39,13 @@ const Sort = ({ activeSort, onSortChange }) => {
                 value={activeSort}
                 onChange={(e, index, value) => onSortChange(value)}
             >
-                {sortOptions.map(option => {
+                {sortOptions.map(option => (
                     <MenuItem
                         key={uuidv1()}
                         value={option.value}
                         primaryText={option.text}
-                    />;
-                })}
+                    />
+                ))}
             </DropDownMenu>
         </div>
     );

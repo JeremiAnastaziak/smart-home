@@ -1,0 +1,8 @@
+.bottom-nav a {
+    text-align: center;
+}
+
+.bottom-nav button {
+    max-width: 100% !important;
+    width: 100% !important;
+}

@@ -11,6 +11,7 @@ import IconDevices from 'material-ui/svg-icons/hardware/developer-board';
 import IconGraphs from 'material-ui/svg-icons/action/trending-up';
 import IconHome from 'material-ui/svg-icons/action/home';
 import IconTable from 'material-ui/svg-icons/action/list';
+import './index.css';
 
 class NavigationBottom extends Component {
     state = {
@@ -22,7 +23,7 @@ class NavigationBottom extends Component {
     render() {
         return (
             <Paper zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 9999}}>
-                <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                <BottomNavigation className="bottom-nav" selectedIndex={this.state.selectedIndex} style={{width: '100vw'}}>
                     <Link to="/">
                         <BottomNavigationItem
                             style={{ height: '56px' }}

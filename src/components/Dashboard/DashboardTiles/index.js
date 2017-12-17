@@ -13,10 +13,10 @@ import './index.css';
 
 const DashboardTiles = ({ devices = [], loadGraphData, selectDevice }) => {
     return (
-        <div className="row">
+        <div>
             {devices.map(device => (
                 <Card
-                    style={{ textAlign: 'center', paddingRight: 0 }}
+                    style={{ textAlign: 'center', paddingRight: 0, margin: '10px' }}
                     className="device"
                 >
                     <CardTitle

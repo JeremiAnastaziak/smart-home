@@ -9,7 +9,7 @@ export const massageData = (data = { measurements: [] }) => {
         measurements: data.measurements.map(record => {
             return {
                 ...record,
-                date: moment(record.date).format('lll'),
+                date: moment(record.date).format('l') + ' ' + moment(record.date).format('LT'),
                 temperature: {
                     ...record.temperature,
                     value: Number(parseFloat(record.temperature.value).toFixed(2))
@@ -22,6 +22,17 @@ export const massageData = (data = { measurements: [] }) => {
         })
     });
 };
+
+export const messageGraphData = ({ data = []}) => {
+    return Object.assign({}, {
+        data: data.map(item => {
+            return {
+                ...item,
+                date: moment(item.date).format('l') + ' ' + moment(item.date).format('LT'),
+            }
+        })
+    })
+}
 
 export const formatDateSend = date => {
     date = moment(date).format();

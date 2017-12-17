@@ -1,4 +1,5 @@
 import { loadGraph } from '../api/api-graphs';
+import { messageGraphData } from '../api/helper';
 import { showNotification } from './notification-actions';
 import { selectDevice } from './device-actions';
 export const GRAPHS_SET_FIELD = 'GRAPHS_SET_FIELD';
@@ -40,6 +41,9 @@ export function loadGraphData() {
             if (response.status === 200) {
                 response.text().then(data => {
                     data = JSON.parse(data);
+                    console.log(data);
+                    if(data.data.length) data = messageGraphData(data);
+                    console.log(data);
                     dispatch({
                         type: GRAPHS_LOAD_DATA_SUCCESS,
                         data: data.data,
