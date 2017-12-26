@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './HeaderIcon';
 
-const Header = ({ locked }) => {
+const Header = () => {
     return (
         <AppBar
             style={{ textAlign: 'center' }}
@@ -13,7 +13,7 @@ const Header = ({ locked }) => {
                 </Link>
             }
             iconStyleLeft={{ display: 'none' }}
-            iconElementRight={<HeaderIcon locked={locked} />}
+            iconElementRight={<HeaderIcon/>}
         />
     );
 };

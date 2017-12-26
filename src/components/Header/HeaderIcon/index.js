@@ -5,6 +5,13 @@ import IconButton from 'material-ui/IconButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
+const mapStateToProps = () => {
+    return {
+        locked: false
+    }
+}
+
+
 class HeaderIcon extends Component {
     constructor(props) {
         super(props);
@@ -32,18 +39,30 @@ class HeaderIcon extends Component {
               onClick={this.toggleDialog}
             />,
           ];
-        return (
+
+        const lockedScenario = (
             <div>
-                <IconButton onClick={() => this.toggleDialog()}>
-                    {this.props.locked ? (
-                        <LockedIcon color="#fff" />
-                    ) : (
-                        <UnLockedIcon color="#fff" />
-                    )}
-                </IconButton>
+                <UnLockedIcon color="#fff" />
                 <Dialog title="Ustaw uzbrojenie" modal={false} open={this.state.dialog} actions={actions}>
                     Twój dom nie jest teraz uzbrojony. Czy napewno chcesz go uzbroic?
                 </Dialog>
+            </div>
+        )
+
+        const unLockedScenario = (
+            <div>
+                <LockedIcon color="#fff" />
+                <Dialog title="Ustaw uzbrojenie" modal={false} open={this.state.dialog} actions={actions}>
+                    Twój dom jest uzbrojony. Czy napewno chcesz wyłączyc uzbrojenie?
+                </Dialog>
+            </div>
+        )
+        return (
+            <div>
+                <IconButton onClick={() => this.toggleDialog()}>
+                    {false ? unLockedScenario : lockedScenario}
+                </IconButton>
+
             </div>
         );
     }

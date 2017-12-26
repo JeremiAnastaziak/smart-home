@@ -10,7 +10,7 @@ const initialFieldData = {
     data: []
 };
 const initialState = {
-    active: '',
+    active: 'temperature',
     filters: {
         startDate: '',
         endDate: ''

@@ -22,7 +22,7 @@ class NavigationBottom extends Component {
 
     render() {
         return (
-            <Paper zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 9999}}>
+            <Paper zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 999}}>
                 <BottomNavigation className="bottom-nav" selectedIndex={this.state.selectedIndex} style={{width: '100vw'}}>
                     <Link to="/">
                         <BottomNavigationItem

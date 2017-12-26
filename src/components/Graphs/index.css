@@ -1,0 +1,19 @@
+
+.graphs-tiles-item {
+    padding: 15px;
+    flex: 0 50%;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.graphs-tiles-item--selected {
+    background-color: #00bcd4 !important;
+    color: #fff !important;
+}
+
+@media (min-width: 640px) {
+    .graphs-tiles {
+        display: flex;
+    }
+}

@@ -8,6 +8,7 @@ import {
 } from '../../actions/graph-actions';
 import GraphsTiles from './GraphsTiles';
 import GraphsToolbar from './GraphsToolbar';
+import './index.css';
 
 const mapStateToProps = ({ dashboard, graphs }) => {
     return {

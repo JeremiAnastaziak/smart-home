@@ -37,7 +37,7 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
                             <TableRow>
                                 <TableHeaderColumn>Data</TableHeaderColumn>
                                 <TableHeaderColumn>Temperatura</TableHeaderColumn>
-                                <TableHeaderColumn>Poziom dzwieku</TableHeaderColumn>
+                                <TableHeaderColumn>Moc sygnału</TableHeaderColumn>
                                 <TableHeaderColumn>Stan klamki</TableHeaderColumn>
                                 <TableHeaderColumn>Alarmy</TableHeaderColumn>
                             </TableRow>
