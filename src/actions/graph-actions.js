@@ -30,12 +30,11 @@ export function loadGraphData() {
 
         if (!graphs.active) return false;
 
-        const filters = graphs.fields[graphs.active].filters;
         dispatch({ type: GRAPHS_LOAD_DATA });
 
         return loadGraph({
             fieldName: graphs.active,
-            ...filters,
+            ...graphs.filters,
             handle: devices.selected.id
         }).then(response => {
             if (response.status === 200) {

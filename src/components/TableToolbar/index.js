@@ -7,7 +7,6 @@ import {
 
 import MainPagination from '../MainPagination';
 import Sort from '../Sort';
-import Filter from '../Filter';
 import Limit from '../Limit';
 import { connect } from 'react-redux';
 import { selectDevice } from '../../actions/device-actions';

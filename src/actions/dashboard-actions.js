@@ -27,8 +27,7 @@ export function loadRecords() {
         })
             .then(response => {
                 if (response.status === 200 || response.status === 201) {
-                    response.text().then(data => {
-                        data = massageData(JSON.parse(data));
+                    response.json().then(data => {
                         console.log(massageData(data));
                         dispatch({
                             type: DASHBOARD_LOAD_RECORDS_SUCCESS,

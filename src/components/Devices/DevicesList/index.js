@@ -36,7 +36,7 @@ class DevicesList extends Component {
                     name={this.state.deleteName}
                     id={this.state.deleteId}
                     removeDeviceSubmit={removeDeviceSubmit}
-                    toggleDeviceEdition={this.toggleDeviceEdition}
+                    toggleDeviceDialog={this.toggleDeviceDialog}
                 />
                 <List>
                     {devices &&

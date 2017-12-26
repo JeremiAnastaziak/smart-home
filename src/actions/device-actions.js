@@ -1,5 +1,6 @@
 import { createDevice, editDevice, removeDevice } from '../api/api-device';
 import { loadRecords } from './dashboard-actions';
+import { loadGraphData } from './graph-actions';
 import { showNotification } from './notification-actions';
 export const DEVICE_CREATE = 'DEVICE_CREATE';
 export const DEVICE_CREATE_SUCCESS = 'DEVICE_CREATE_SUCCESS';
@@ -17,6 +18,7 @@ export function selectDevice(device) {
         const { graphs, dashboard } = getState();
         dispatch({ type: DEVICE_SELECT, device });
         loadRecords()(dispatch, getState);
+        loadGraphData()(dispatch, getState);
     };
 }
 

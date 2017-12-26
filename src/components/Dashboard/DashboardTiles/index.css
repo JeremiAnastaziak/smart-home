@@ -25,3 +25,27 @@
     font-size: 20px;
     margin: 0;
 }
+
+.devices {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.device {
+    flex: 0 50%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.device-more-icon {
+    position: absolute !important;
+    right: 5px;
+    top: 5px;
+}
+
+@media (max-width: 640px) {
+    .device {
+        flex: 0 100%;
+    }
+}

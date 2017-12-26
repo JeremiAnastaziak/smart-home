@@ -7,15 +7,14 @@ import {
 } from '../actions/graph-actions';
 
 const initialFieldData = {
-    data: [],
-    filters: {
-        startDate: '',
-        endDate: '',
-        handle: null
-    }
+    data: []
 };
 const initialState = {
     active: '',
+    filters: {
+        startDate: '',
+        endDate: ''
+    },
     fields: {
         temperature: initialFieldData,
         sound_level: initialFieldData
@@ -56,15 +55,9 @@ export default function graphReducer(state = initialState, action) {
         case GRAPHS_FILTER_CHANGE:
             return {
                 ...state,
-                fields: {
-                    ...state.fields,
-                    [state.active]: {
-                        ...state.fields[state.active],
-                        filters: {
-                            ...state.fields[state.active].filters,
-                            ...action.filter
-                        }
-                    }
+                filters: {
+                    ...state.filters,
+                    ...action.filter
                 }
             };
         default:

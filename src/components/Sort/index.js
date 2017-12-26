@@ -9,7 +9,7 @@ import uuidv1 from 'uuid/v1';
 
 const sortOptions = [
     { value: 'date_latest', text: 'Data najnowsze' },
-    { value: 'date_latest', text: 'Data najstarsze' },
+    { value: 'date_oldest', text: 'Data najstarsze' },
     { value: 'temp_asc', text: 'Temp rosnąco' },
     { value: 'temp_desc', text: 'Temp malejąco' },
     { value: 'sound_asc', text: 'Dźwięk rosnąco' },

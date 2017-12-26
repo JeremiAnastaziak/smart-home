@@ -9,20 +9,22 @@ import IconSound from 'material-ui/svg-icons/action/settings-remote';
 import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
+import DashboardTilesMenu from '../DashboardTilesMenu';
 import './index.css';
 
 const DashboardTiles = ({ devices = [], loadGraphData, selectDevice }) => {
     return (
-        <div>
+        <div className="devices">
             {devices.map(device => (
                 <Card
-                    style={{ textAlign: 'center', paddingRight: 0, margin: '10px' }}
+                    style={{ textAlign: 'center', paddingRight: 0}}
                     className="device"
                 >
                     <CardTitle
                         title={device.name}
                         style={{ textAlign: 'center', paddingBottom: '0 16px'}}
                     />
+                    <DashboardTilesMenu device={device}/>
                     <IconFire  style={{color: red500}} />
                     <CardText style={{ textAlign: 'center', padding: 0 }}>
                         <p className="device-label">Ostatni pomiar:</p>

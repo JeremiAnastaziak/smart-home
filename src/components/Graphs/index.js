@@ -15,7 +15,7 @@ const mapStateToProps = ({ dashboard, graphs }) => {
         data: graphs.active && graphs.fields[graphs.active].data,
         tiles: Object.keys(graphs.fields),
         isFetching: graphs.isFetching,
-        filters: graphs.active && graphs.fields[graphs.active].filters,
+        filters: graphs.active && graphs.filters,
         handles: dashboard.handles
     };
 };
