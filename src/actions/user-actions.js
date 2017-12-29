@@ -1,5 +1,5 @@
 import { registerUser, loginUser } from '../api/api-user';
-import { loadRecords } from './dashboard-actions';
+import { loadRecords, fetchInitialData } from './dashboard-actions';
 import { showNotification } from './notification-actions';
 export const USER_REGISTER = 'USER_REGISTER';
 export const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
@@ -43,11 +43,11 @@ export function submitLoginUser(body) {
                     dispatch({
                         type: USER_LOGIN_SUCCESS
                     });
-                    loadRecords()(dispatch, getState);
+                    fetchInitialData()(dispatch, getState);
                     showNotification(`Witaj ${extractLogin(body.email)}! Zostałeś zalogowany.`)(dispatch)
                 } else if (response.statusText === 'Unauthorized') {
                     dispatch({ type: USER_LOGIN_ERROR })
-                    loadRecords()(dispatch, getState);
+                    //loadRecords()(dispatch, getState);
                     showNotification(`Wprowadziłeś niepoprawne credentiale, chyba. (${response.statusText})`)(dispatch)
                 }
             })

@@ -5,20 +5,25 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { fetchRecords } from '../../../api/api-measurements';
+import { formatDateSend } from '../../../api/helper';
 import { exportCSVFile } from '../../../lib/csv.js';
 import * as moment from 'moment';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import FilterDate from '../../FilterDate';
 
-const saveDataToCSV = device => {
+const saveDataToCSV = (device, filter) => {
+    console.log(device);
     const params = {
         activeSort: 'date_latest',
-        handles: 'F53E3101',
-        // startDate: '2017-12-06 00:00',
-        // endDate: '2017-12-26 00:00',
-        handles: device.id
+        handles: '123123'
     };
+    if (filter.startDate) params.startDate = formatDateSend(filter.startDate);
+    if (filter.endDate) params.endDate = formatDateSend(filter.endDate);
+
     fetchRecords(params).then(response => {
         response.json().then(data => {
-            var fileTitle = `${device.name}-pomiary`; // or 'my-unique-title'
+            var fileTitle = `${device.handleName}-pomiary`; // or 'my-unique-title'
             var headers = {
                 date: 'Data'.replace(/,/g, ''), // remove commas to avoid errors
                 handleName: 'Nazwa klamki',
@@ -26,9 +31,12 @@ const saveDataToCSV = device => {
                 temperature: 'Temperatura'
             };
 
-            const itemsFormatted = data.measurements.map(item => {
+            const itemsFormatted = data.handleMeasurements.map(item => {
                 return {
-                    date: moment(item.date).format('l') + ' ' + moment(item.date).format('LT'),
+                    date:
+                        moment(item.date).format('l') +
+                        ' ' +
+                        moment(item.date).format('LT'),
                     handleName: item.handleName,
                     handlePosition: item.handlePosition,
                     temperature: item.temperature.value
@@ -40,40 +48,65 @@ const saveDataToCSV = device => {
     });
 };
 
-const DashboardTilesMenu = ({ device }) => {
-    return (
-        <IconMenu
-            className="device-more-icon"
-            iconButtonElement={
-                <IconButton>
-                    <MoreVertIcon />
-                </IconButton>
-            }
-            anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-            targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-        >
-            <MenuItem
-                primaryText="Eksport do CSV"
-                onClick={() => saveDataToCSV(device)}
-            />
-        </IconMenu>
-    );
-};
+class DashboardTilesMenu extends React.Component {
 
-{
-    /* rightIcon={<ArrowDropRight />}
-                menuItems={[
+    constructor(props) {
+        super(props);
+        this.state = { dialog: false, startDate: '', endDate: '' };
+    }
+
+    toggleDialog = () => this.setState({dialog: !this.state.dialog});
+
+    fetchData = () => {
+        saveDataToCSV(this.props.device, this.state);
+        this.toggleDialog();
+    }
+
+    render() {
+        const actions = [
+            <FlatButton
+              label="Anuluj"
+              primary={true}
+              onClick={() => this.toggleDialog()}
+            />,
+            <FlatButton
+              label="Pobierz"
+              primary={true}
+              keyboardFocused={true}
+              onClick={() => this.fetchData()}
+            />,
+          ];
+        return (
+            <div>
+                <IconMenu
+                    className="device-more-icon"
+                    iconButtonElement={
+                        <IconButton>
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                >
                     <MenuItem
-                        primaryText="Ostatni miesiąc"
-                        onClick={() => saveDataToCSV(device, 'month')}
-                    />,
-                    <MenuItem primaryText="Ostatni kwartał"
-                    onClick={() => saveDataToCSV(device, 'quarter')}
-                    />,
-                    <MenuItem primaryText="Ostatni rok"
-                    onClick={() => saveDataToCSV(device, 'year')}
+                        primaryText="Eksport do CSV"
+                        onClick={() => this.toggleDialog()}
                     />
-                ]} */
+                </IconMenu>
+                <Dialog
+                    title="Eksport danych do CSV"
+                    actions={actions}
+                    modal={false}
+                    open={this.state.dialog}
+                    onRequestClose={this.handleClose}
+                    >
+                    Wybierz przedział czasu
+                    <FilterDate hint="Dane od dnia" onDateChange={(date) => this.setState({startDate: date})}/>
+                    <FilterDate hint="Dane do dnia" onDateChange={(date) => this.setState({endDate: date})}/>
+                </Dialog>
+            </div>
+        );
+    }
 }
 
 export default DashboardTilesMenu;

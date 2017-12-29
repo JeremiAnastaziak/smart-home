@@ -4,12 +4,15 @@ const url = 'https://limitless-spire-43906.herokuapp.com';
 
 moment.locale();
 
-export const massageData = (data = { measurements: [] }) => {
+export const massageData = (data = { handleMeasurements: [] }) => {
     return Object.assign({}, data, {
-        measurements: data.measurements.map(record => {
+        measurements: data.handleMeasurements.map(record => {
             return {
                 ...record,
-                date: moment(record.date).format('l') + ' ' + moment(record.date).format('LT'),
+                date:
+                    moment(record.date).format('l') +
+                    ' ' +
+                    moment(record.date).format('LT'),
                 temperature: {
                     ...record.temperature,
                     value: Number(parseFloat(record.temperature.value).toFixed(2))
@@ -23,16 +26,36 @@ export const massageData = (data = { measurements: [] }) => {
     });
 };
 
-export const messageGraphData = ({ data = []}) => {
-    return Object.assign({}, {
-        data: data.map(item => {
+export const massageLatestData = data => {
+    return Object.assign({}, data, {
+        handleMeasurements: data.handleMeasurements.map(handle => {
             return {
-                ...item,
-                date: moment(item.date).format('l') + ' ' + moment(item.date).format('LT'),
-            }
+                ...handle,
+                date:
+                    moment(handle.date).format('l') +
+                    ' ' +
+                    moment(handle.date).format('LT')
+            };
         })
-    })
-}
+    });
+};
+
+export const messageGraphData = ({ data = [] }) => {
+    return Object.assign(
+        {},
+        {
+            data: data.map(item => {
+                return {
+                    ...item,
+                    date:
+                        moment(item.date).format('l') +
+                        ' ' +
+                        moment(item.date).format('LT')
+                };
+            })
+        }
+    );
+};
 
 export const formatDateSend = date => {
     date = moment(date).format();
@@ -40,9 +63,12 @@ export const formatDateSend = date => {
 };
 
 export const reqParams = (params = {}) => {
-    return Object.keys(params).map(key => `&${key}=${params[key]}`).join('').replace('&', '?');
+    return Object.keys(params)
+        .map(key => `&${key}=${params[key]}`)
+        .join('')
+        .replace('&', '?');
 };
 
 export const api = (endpoint, params, object) => {
-    return fetch(url + endpoint + reqParams(params), object)
-}
+    return fetch(url + endpoint + reqParams(params), object);
+};

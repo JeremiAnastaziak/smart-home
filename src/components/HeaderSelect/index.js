@@ -26,6 +26,11 @@ class HeaderSelect extends React.Component {
         this.state = { open: false };
     }
 
+    componentDidMount() {
+        if(this.props.selectedDevice.id) return false;
+        this.props.deviceClick(this.props.devices[0]);
+    }
+
     handleToggle = () => this.setState({ open: !this.state.open });
 
     handleItemClick = device => {

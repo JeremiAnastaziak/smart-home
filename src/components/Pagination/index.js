@@ -13,7 +13,7 @@ class Pagination extends React.Component {
     };
 
     onChangeInputText = ({ target }) => {
-        if (target.value > this.props.totalPages) this.props.onChangeCurrentPage(10);
+        if (target.value > this.props.totalPages) this.props.onChangeCurrentPage(this.props.totalPages);
         else if (target.value < 1) this.props.onChangeCurrentPage(1);
         else this.props.onChangeCurrentPage(Number(target.value));
 

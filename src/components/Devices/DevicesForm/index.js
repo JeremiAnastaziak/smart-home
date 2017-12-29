@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 class DevicesForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            type: 'HANDLE',
             name: '',
             id: ''
         };
@@ -26,6 +28,16 @@ class DevicesForm extends Component {
                     style={{ paddingBottom: 0, marginBottom: '-20px' }}
                 />
                 <CardText>
+                    <SelectField
+                        floatingLabelText="Typ urządzenia"
+                        value={this.state.type}
+                        fullWidth
+                        required
+                        onChange={(e, index, value) => this.setState({ type: value })}
+                        >
+                        <MenuItem value={'HANDLE'} primaryText="Klamka" />
+                        <MenuItem value={'NODE'} primaryText="Node" />
+                    </SelectField>
                     <TextField
                         floatingLabelText="ID urządzenia podane przez producenta"
                         required

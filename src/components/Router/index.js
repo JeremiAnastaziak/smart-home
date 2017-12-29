@@ -10,7 +10,7 @@ import NavigationBottom from '../NavigationBottom';
 import Measurements from '../Measurements';
 import HeaderSelect from '../HeaderSelect';
 import Loading from '../Loading';
-import { loadRecords } from '../../actions/dashboard-actions';
+import { fetchInitialData } from '../../actions/dashboard-actions';
 
 
 const mapStateToProps = ({ user, dashboard }) => {
@@ -22,7 +22,7 @@ const mapStateToProps = ({ user, dashboard }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        checkUserAuth: () => dispatch(loadRecords())
+        checkUserAuth: () => dispatch(fetchInitialData())
     };
 };
 

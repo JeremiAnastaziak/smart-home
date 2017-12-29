@@ -4,19 +4,24 @@ import {
     DASHBOARD_LOAD_RECORDS,
     DASHBOARD_LOAD_RECORDS_SUCCESS,
     DASHBOARD_LOAD_RECORDS_ERROR,
+    DASHBOARD_LATEST,
+    DASHBOARD_LATEST_ERROR,
+    DASHBOARD_LATEST_SUCCESS,
     DASHBOARD_SORT,
     DASHBOARD_FILTER,
     DASHBOARD_LIMIT_CHANGE
 } from '../actions/dashboard-actions';
 
 const initialState = {
+    latest: {},
     records: dummyData,
     isFetching: false,
     offset: 0,
     limit: 5,
     activePage: 1,
     activeFilter: null,
-    activeSort: 'date_latest'
+    activeSort: 'date_latest',
+    handles:[{"id":"123123","name":"Testowa1","deviceType":"HANDLE"},{"id":"das","name":"dasd","deviceType":"HANDLE"}]
 };
 
 export default function dashboardReducer(state = initialState, action) {
@@ -44,6 +49,26 @@ export default function dashboardReducer(state = initialState, action) {
         case DASHBOARD_LOAD_RECORDS_ERROR: {
             return {
                 ...state,
+                isFetching: false
+            }
+        }
+        case DASHBOARD_LATEST: {
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case DASHBOARD_LATEST_SUCCESS: {
+            return {
+                ...state,
+                latest: action.latest,
+                isFetching: false
+            }
+        }
+        case DASHBOARD_LATEST_ERROR: {
+            return {
+                ...state,
+                latest: action.latest,
                 isFetching: false
             }
         }
