@@ -57,7 +57,7 @@ export const messageGraphData = ({ data = [] }) => {
     );
 };
 
-export const formatDateSend = date => {
+export const apiDateFormat = date => {
     date = moment(date).format();
     return date.slice(0, date.indexOf('T')).concat(' 00:00');
 };
@@ -69,6 +69,23 @@ export const reqParams = (params = {}) => {
         .replace('&', '?');
 };
 
-export const api = (endpoint, params, object) => {
-    return fetch(url + endpoint + reqParams(params), object);
+export const api = (endpoint, params, init) => {
+    return fetch(
+        url + endpoint + reqParams(params),
+        Object.assign(
+            {
+                headers: {
+                    Accept: '*/*',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            },
+            init
+        )
+    ).then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Network response was not ok.');
+    });
 };

@@ -1,4 +1,3 @@
-import dummyData from '../api/dummyApi';
 import {
     DEVICE_CREATE,
     DEVICE_CREATE_ERROR,

@@ -1,4 +1,3 @@
-import dummyData from '../api/dummyApi';
 import {
     DASHBOARD_PAGINATION_CHANGE_PAGE,
     DASHBOARD_LOAD_RECORDS,
@@ -14,7 +13,7 @@ import {
 
 const initialState = {
     latest: {},
-    records: dummyData,
+    records: { measurements: [], count: 0},
     isFetching: false,
     offset: 0,
     limit: 5,

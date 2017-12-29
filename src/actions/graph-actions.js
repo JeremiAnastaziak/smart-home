@@ -38,26 +38,13 @@ export function loadGraphData() {
             fieldName: graphs.active,
             ...graphs.filters,
             handle: devices.selected && devices.selected.id
-        }).then(response => {
-            if (response.status === 200) {
-                response.text().then(data => {
-                    data = JSON.parse(data);
-                    console.log(data);
-                    if(data.data.length) data = messageGraphData(data);
-                    console.log(data);
-                    dispatch({
-                        type: GRAPHS_LOAD_DATA_SUCCESS,
-                        data: data.data,
-                        fieldName: graphs.active
-                    });
-                });
-            } else if (response.status === 422) {
-                dispatch({ type: GRAPHS_LOAD_DATA_ERROR });
-                showNotification('StartDate cant be after EndDate')(
-                    dispatch,
-                    getState
-                );
-            }
+        }).then(data => {
+            if (data.data.length) data = messageGraphData(data);
+            dispatch({
+                type: GRAPHS_LOAD_DATA_SUCCESS,
+                data: data.data,
+                fieldName: graphs.active
+            });
         });
     };
 }
@@ -65,7 +52,6 @@ export function loadGraphData() {
 export function changeGraphFilter(filter) {
     return (dispatch, getState) => {
         dispatch({ type: GRAPHS_FILTER_CHANGE, filter });
-
         loadGraphData()(dispatch, getState);
     };
 }

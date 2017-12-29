@@ -28,16 +28,11 @@ export function submitCreateDevice(body) {
 
         return createDevice(body)
             .then(respone => {
-                if (respone.status === 201) {
-                    dispatch({
-                        type: DEVICE_CREATE_SUCCESS
-                    });
-                    loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                } else {
-                    dispatch({ type: DEVICE_CREATE_ERROR });
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                }
+                dispatch({
+                    type: DEVICE_CREATE_SUCCESS
+                });
+                loadRecords()(dispatch, getState);
+                showNotification(`(${respone.statusText})`)(dispatch);
             })
             .catch(error => dispatch({ type: DEVICE_CREATE_ERROR, error }));
     };
@@ -49,16 +44,11 @@ export function submitEditDevice(body) {
 
         return editDevice(body)
             .then(respone => {
-                if (respone.status === 204) {
-                    dispatch({
-                        type: DEVICE_EDIT_SUCCESS
-                    });
-                    loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                } else {
-                    dispatch({ type: DEVICE_EDIT_ERROR });
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                }
+                dispatch({
+                    type: DEVICE_EDIT_SUCCESS
+                });
+                loadRecords()(dispatch, getState);
+                showNotification(`(${respone.statusText})`)(dispatch);
             })
             .catch(error => dispatch({ type: DEVICE_EDIT_ERROR, error }));
     };
@@ -70,16 +60,11 @@ export function submitRemoveDevice(body) {
 
         return removeDevice(body)
             .then(respone => {
-                if (respone.status === 204) {
-                    dispatch({
-                        type: DEVICE_REMOVE_SUCCESS
-                    });
-                    loadRecords()(dispatch, getState);
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                } else {
-                    dispatch({ type: DEVICE_REMOVE_ERROR });
-                    showNotification(`(${respone.statusText})`)(dispatch);
-                }
+                dispatch({
+                    type: DEVICE_REMOVE_SUCCESS
+                });
+                loadRecords()(dispatch, getState);
+                showNotification(`(${respone.statusText})`)(dispatch);
             })
             .catch(error => dispatch({ type: DEVICE_REMOVE_ERROR, error }));
     };

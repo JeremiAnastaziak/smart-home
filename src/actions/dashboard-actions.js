@@ -2,6 +2,7 @@ import { fetchRecords } from '../api/api-measurements';
 import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
 import { selectDevice } from './device-actions';
+import { getSettingsAction } from './settings-actions';
 import { massageData, massageLatestData } from '../api/helper';
 import { initialFetch } from '../api/api-latest';
 
@@ -17,22 +18,24 @@ export const DASHBOARD_LATEST_SUCCESS = 'DASHBOARD_LATEST_SUCCESS';
 export const DASHBOARD_LATEST_ERROR = 'DASHBOARD_LATEST_ERROR';
 
 export const fetchInitialData = () => {
-    return(dispatch, getState) => {
+    return (dispatch, getState) => {
         dispatch({ type: DASHBOARD_LATEST });
 
         return initialFetch()
-            .then(data => data.json()
-                .then(json => {
-                    dispatch({ type: DASHBOARD_LATEST_SUCCESS, latest: massageLatestData(json) });
-                    const { user } = getState();
-                    if (!user.isAuth) {
-                        dispatch({ type: USER_LOGIN_SUCCESS });
-                    }
-                }))
+            .then(json => {
+                dispatch({
+                    type: DASHBOARD_LATEST_SUCCESS,
+                    latest: massageLatestData(json)
+                });
+                const { user } = getState();
+                if (!user.isAuth) {
+                    dispatch({ type: USER_LOGIN_SUCCESS });
+                }
+                getSettingsAction()(dispatch, getState);
+            })
             .catch(error => dispatch({ type: DASHBOARD_LATEST_ERROR, error }));
-    }
-}
-
+    };
+};
 
 export function loadRecords() {
     return (dispatch, getState) => {
@@ -47,28 +50,21 @@ export function loadRecords() {
             activeSort,
             handles: selected && selected.id ? [selected.id] : []
         })
-            .then(response => {
-                if (response.status === 200 || response.status === 201) {
-                    response.json().then(data => {
-                        dispatch({
-                            type: DASHBOARD_LOAD_RECORDS_SUCCESS,
-                            handles: data.handles,
-                            records: {
-                                count: data.count,
-                                measurements: data.handleMeasurements
-                            }
-                        });
-                        if (!user.isAuth) {
-                            const { dashboard } = getState();
-                            dispatch({ type: USER_LOGIN_SUCCESS });
-                            selectDevice(dashboard.handles[0])(dispatch, getState);
-                        }
-                        //showNotification(`(${response.statusText})`)(dispatch);
-                    });
-                } else {
-                    dispatch({ type: DASHBOARD_LOAD_RECORDS_ERROR });
-                    //showNotification(`(${response.statusText})`)(dispatch);
+            .then(data => {
+                dispatch({
+                    type: DASHBOARD_LOAD_RECORDS_SUCCESS,
+                    handles: data.handles,
+                    records: {
+                        count: data.count,
+                        measurements: data.handleMeasurements
+                    }
+                });
+                if (!user.isAuth) {
+                    const { dashboard } = getState();
+                    dispatch({ type: USER_LOGIN_SUCCESS });
+                    selectDevice(dashboard.handles[0])(dispatch, getState);
                 }
+                //showNotification(`(${response.statusText})`)(dispatch);
             })
             .catch(error => {
                 dispatch({ type: DASHBOARD_LOAD_RECORDS_ERROR });
@@ -110,4 +106,3 @@ export function tableViewClick(device) {
         selectDevice(device)(dispatch, getState);
     };
 }
-

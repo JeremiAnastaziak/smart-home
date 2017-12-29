@@ -1,11 +1,8 @@
-export function registerUser(body) {
-    return fetch(`https://limitless-spire-43906.herokuapp.com/users`, {
+import { api } from './helper';
+
+export const registerUser = (body) =>
+    api('/users', {}, {
         method: 'POST',
-        headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
         body: JSON.stringify({
             ...body,
             handles: [
@@ -13,18 +10,11 @@ export function registerUser(body) {
             ]
           })
     });
-}
 
-export function loginUser(body) {
-    return fetch(`https://limitless-spire-43906.herokuapp.com/login`, {
+export const loginUser = (body) =>
+    api('/login', {}, {
         method: 'POST',
-        headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
         body: JSON.stringify(
             body
           )
     });
-}

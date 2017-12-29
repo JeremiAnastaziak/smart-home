@@ -1,11 +1,4 @@
 import { api } from './helper';
 
-export function fetchRecords(params) {
-    return api('/users/measurements/handles', params, {
-        headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-    });
-}
+export const fetchRecords = (params) =>
+    api('/users/measurements/handles', params);

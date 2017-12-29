@@ -5,11 +5,13 @@ import userReducer from './user-reducer';
 import notificationReducer from './notification-reducer';
 import deviceReducer from './device-reducer';
 import graphReducer from './graph-reducer';
+import settingsReducer from './settings-reducer';
 
 export default combineReducers({
     dashboard: dashboardReducer,
-    user: userReducer,
-    notification: notificationReducer,
+    graphs: graphReducer,
     devices: deviceReducer,
-    graphs: graphReducer
+    user: userReducer,
+    settings: settingsReducer,
+    notification: notificationReducer
 })

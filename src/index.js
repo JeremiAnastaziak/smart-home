@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import rootReducer from './reducers/root-reducer';
+import appReducer from './reducers/app-reducer';
 import './index.css';
 
 const composeEnhancers =
@@ -15,7 +15,7 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
 
-const store = createStore(rootReducer, {}, enhancer);
+const store = createStore(appReducer, {}, enhancer);
 
 const render = () =>
     ReactDOM.render(
