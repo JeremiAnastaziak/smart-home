@@ -69,7 +69,8 @@ export const reqParams = (params = {}) => {
         .replace('&', '?');
 };
 
-export const api = (endpoint, params, init) => {
+export const api = (endpoint, params, init = { method: 'GET' }) => {
+    console.log(init);
     return fetch(
         url + endpoint + reqParams(params),
         Object.assign(
@@ -84,8 +85,9 @@ export const api = (endpoint, params, init) => {
         )
     ).then(response => {
         if (response.ok) {
-            return response.json();
+            if (init.method !== 'PUT') return response.json();
+        } else {
+            throw new Error('Network response was not ok.');
         }
-        throw new Error('Network response was not ok.');
     });
 };

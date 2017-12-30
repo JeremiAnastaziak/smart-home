@@ -7,17 +7,23 @@ export const SETTINGS_GET = 'SETTINGS_GET';
 export const SETTINGS_GET_SUCCESS = 'SETTINGS_GET_SUCCESS';
 export const SETTINGS_GET_ERROR = 'SETTINGS_GET_ERROR';
 
-export const changeSettingsAction = () => (dispatch, getState) => {
+export const changeSettingsAction = settingsChanged => (dispatch, getState) => {
     dispatch({ type: SETTINGS_CHANGE });
+    console.log(settingsChanged);
 
-    changeSettings()
-        .then(data => dispatch({type: SETTINGS_CHANGE_SUCCESS}))
-        .catch(error => dispatch({type: SETTINGS_CHANGE_ERROR}));
+    const settingsNow = getState().settings;
+    const settingsDesired = Object.assign(settingsNow, settingsChanged);
+
+    changeSettings({ ...settingsDesired })
+        .then(data => dispatch({ type: SETTINGS_CHANGE_SUCCESS, settings: settingsDesired }))
+        .catch(
+            error => dispatch({ type: SETTINGS_CHANGE_ERROR })
+        );
 };
 
 export const getSettingsAction = () => (dispatch, getState) => {
     dispatch({ type: SETTINGS_GET });
     getSettings()
-        .then(data => dispatch({type: SETTINGS_GET_SUCCESS}))
-        .catch(error => dispatch({type: SETTINGS_GET_ERROR}));
+        .then(data => dispatch({ type: SETTINGS_GET_SUCCESS, settings: data.settings }))
+        .catch(error => dispatch({ type: SETTINGS_GET_ERROR }));
 };

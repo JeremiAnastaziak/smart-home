@@ -1,8 +1,9 @@
 import { api } from './helper';
 
-export const changeSettings = (params = {}) => {
-    return api('/users/settings', params, {
-        method: 'PUT'
+export const changeSettings = (body = {}) => {
+    return api('/users/settings', {}, {
+        method: 'PUT',
+        body: JSON.stringify(body)
     });
 };
 
