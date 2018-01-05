@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import LockedIcon from 'material-ui/svg-icons/action/lock';
 import UnLockedIcon from 'material-ui/svg-icons/action/lock-open';
 import IconButton from 'material-ui/IconButton';
+import SettingsIcon from 'material-ui/svg-icons/action/settings';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { changeSettingsAction } from '../../../actions/settings-actions';
 import { connect } from 'react-redux';
+import Toggle from 'material-ui/Toggle';
+import { List, ListItem } from 'material-ui/List';
+import TextField from 'material-ui/TextField';
 
 const mapStateToProps = ({ settings }) => {
     return {
-        locked: settings.alarmEnabled
+        settings
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        toggleAlarm: (settings) => dispatch(changeSettingsAction(settings))
+        changeSettings: settings => dispatch(changeSettingsAction(settings))
     };
 };
 
@@ -34,7 +38,10 @@ class HeaderIcon extends Component {
     };
 
     submitDialog = () => {
-        this.props.toggleAlarm({ alarmEnabled: !this.props.locked });
+        this.props.changeSettings({
+            alarmEnabled: this.state.alarm || !this.props.settings.alarmEnabled,
+            minTemperature: this.state.temp || this.props.settings.minTemperature
+        });
         this.toggleDialog();
     };
 
@@ -48,38 +55,43 @@ class HeaderIcon extends Component {
             />
         ];
 
-        const lockedScenario = (
-            <div>
-                <UnLockedIcon color="#fff" />
-                <Dialog
-                    title="Ustaw uzbrojenie"
-                    modal={false}
-                    open={this.state.dialog}
-                    actions={actions}
-                >
-                    Twój dom nie jest teraz uzbrojony. Czy napewno chcesz go uzbroic?
-                </Dialog>
-            </div>
-        );
-
-        const unLockedScenario = (
-            <div>
-                <LockedIcon color="#fff" />
-                <Dialog
-                    title="Ustaw uzbrojenie"
-                    modal={false}
-                    open={this.state.dialog}
-                    actions={actions}
-                >
-                    Twój dom jest uzbrojony. Czy napewno chcesz wyłączyc uzbrojenie?
-                </Dialog>
-            </div>
-        );
         return (
             <div>
                 <IconButton onClick={() => this.toggleDialog()}>
-                    {this.props.locked ? unLockedScenario : lockedScenario}
+                    <SettingsIcon color="#fff" />
                 </IconButton>
+                <Dialog
+                    title="Ustawienia"
+                    modal={false}
+                    open={this.state.dialog}
+                    actions={actions}
+                    contentStyle={{maxWidth: '300px'}}
+                >
+                    <List>
+                        <ListItem
+                            primaryText="Uzbrojenie"
+                            rightToggle={
+                                <Toggle
+                                    onToggle={(e, value) =>
+                                        this.setState({ alarm: value })}
+                                    defaultToggled={this.props.settings.alarmEnabled}
+                                />
+                            }
+                        />
+                        <ListItem
+                            primaryText="Minimalna temperatura"
+                            rightToggle={
+                                <TextField
+                                    onChange={(e, value) =>
+                                        this.setState({ temp: value })}
+                                    type="number"
+                                    defaultValue={this.props.settings.minTemperature}
+                                    name="minTemp"
+                                />
+                            }
+                        />
+                    </List>
+                </Dialog>
             </div>
         );
     }

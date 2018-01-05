@@ -12,6 +12,9 @@ export const DEVICE_REMOVE = 'DEVICE_REMOVE';
 export const DEVICE_REMOVE_SUCCESS = 'DEVICE_REMOVE_SUCCESS';
 export const DEVICE_REMOVE_ERROR = 'DEVICE_REMOVE_ERROR';
 export const DEVICE_SELECT = 'DEVICE_SELECT';
+export const DEVICE_GET = 'DEVICE_GET';
+export const DEVICE_GET_SUCCESS = 'DEVICE_GET_SUCCESS';
+export const DEVICE_GET_ERROR = 'DEVICE_GET_ERROR';
 
 export function selectDevice(device) {
     return (dispatch, getState) => {
@@ -20,6 +23,9 @@ export function selectDevice(device) {
         loadRecords()(dispatch, getState);
         loadGraphData()(dispatch, getState);
     };
+}
+
+export function getDevicesAction(device) {
 }
 
 export function submitCreateDevice(body) {

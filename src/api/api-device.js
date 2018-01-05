@@ -12,6 +12,9 @@ export const editDevice = ({ id, name }) =>
         body: name
     });
 
+export const getDevices = () =>
+    api(`/users/devices`, {}, {});
+
 export const removeDevice = ({ id }) =>
     api(`/users/devices/${id}`, {}, {
         method: 'DELETE'
