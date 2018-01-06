@@ -10,6 +10,7 @@ import DevicesFormEdition from '../DevicesFormEdition';
 const DevicesListElement = ({
     name,
     id,
+    deviceType,
     editDeviceSubmit,
     toggleDeviceDialog,
     toggleDeviceEdition,
@@ -18,7 +19,7 @@ const DevicesListElement = ({
 }) => {
     this.openDialog = false;
     const shouldToggleEdition = isDuringEdition ?
-        <DevicesFormEdition editDeviceSubmit={editDeviceSubmit} toggleDeviceEdition={toggleDeviceEdition} id={id} />
+        <DevicesFormEdition editDeviceSubmit={editDeviceSubmit} toggleDeviceEdition={toggleDeviceEdition} id={id} deviceType={deviceType}/>
         : name;
 
     return (

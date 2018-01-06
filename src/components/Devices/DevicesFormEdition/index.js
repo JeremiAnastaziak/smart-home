@@ -2,10 +2,10 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-const DevicesFormEdition = ({ editDeviceSubmit, toggleDeviceEdition, id }) => {
+const DevicesFormEdition = ({ editDeviceSubmit, toggleDeviceEdition, id, deviceType }) => {
     const submitForm = e => {
         e.preventDefault();
-        editDeviceSubmit({ id, name: this.newName });
+        editDeviceSubmit({ id, name: this.newName, deviceType });
         toggleDeviceEdition();
     };
 

@@ -17,7 +17,6 @@
     "moment": "^2.19.2",
     "react": "^16.1.1",
     "react-animated-number": "^0.4.3",
-    "react-cookie": "^2.1.2",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
@@ -39,6 +38,7 @@
     "copy": "react-scripts build && rm -rf ../jeremianastaziak3.github.io/* && cp -r build/* ../jeremianastaziak3.github.io"
   },
   "devDependencies": {
+    "react-cookie": "^2.1.2",
     "uuid": "^3.1.0"
   },
   "proxy": "https://limitless-spire-43906.herokuapp.com"

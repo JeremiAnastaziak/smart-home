@@ -9,7 +9,7 @@ import { selectDevice } from '../../actions/device-actions';
 
 const mapStateToProps = ({ dashboard, devices }) => {
     return {
-        devices: dashboard.handles || [],
+        devices: dashboard.devices || [],
         selectedDevice: devices.selected || {}
     };
 };

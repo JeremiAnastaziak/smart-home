@@ -34,7 +34,7 @@ const GraphsTiles = ({ fields, active, deviceType, changeGraphView }) => {
                     key={tile}
                     label={tile}
                     onClick={() => changeGraphView(tile)}
-                    zDepth={tile === active ? 2 : 0}
+                    zDepth={tile === active ? 2 : 1}
                     className={classNames('graphs-tiles-item', {
                         'graphs-tiles-item--selected': tile === active
                     })}

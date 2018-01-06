@@ -37,6 +37,22 @@ export const massageLatestData = data => {
         })
 };
 
+export const extractDevicesFromLatestData = (data) => {
+    return data.handleMeasurements.map(item => {
+        return {
+            id: item.handleId,
+            name: item.handleName,
+            deviceType: 'HANDLE'
+        }
+    }).concat(data.nodes.map(item => {
+        return {
+            id: item.nodeId,
+            name: item.nodeName,
+            deviceType: 'NODE'
+        }
+    }))
+}
+
 export const messageGraphData = ({ data = [] }) => {
     return Object.assign(
         {},
@@ -63,8 +79,22 @@ export const reqParams = (params = {}) => {
         .replace('&', '?');
 };
 
-export const api = (endpoint, params, init = { method: 'GET' }) => {
-    console.log(init);
+export const api = (endpoint, params = {}, init = { method: 'GET' }, withoutResponseBody) => {
+    if (withoutResponseBody) {
+        return fetch(
+            url + endpoint + reqParams(params),
+            Object.assign(
+                {
+                    headers: {
+                        Accept: '*/*',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include'
+                },
+                init
+            )
+        )
+    }
     return fetch(
         url + endpoint + reqParams(params),
         Object.assign(

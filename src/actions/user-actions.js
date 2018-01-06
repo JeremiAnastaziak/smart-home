@@ -1,4 +1,4 @@
-import { registerUser, loginUser } from '../api/api-user';
+import { registerUser, loginUser, logoutUser } from '../api/api-user';
 import { loadRecords, fetchInitialData } from './dashboard-actions';
 import { showNotification } from './notification-actions';
 export const USER_REGISTER = 'USER_REGISTER';
@@ -7,6 +7,9 @@ export const USER_REGISTER_ERROR = 'USER_REGISTER_ERROR';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
 export const USER_LOGIN_ERROR = 'USER_LOGIN_ERROR';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
+export const USER_LOGOUT_ERROR = 'USER_LOGOUT_ERROR';
 
 const extractLogin = email => email.slice(0, email.indexOf('@'));
 
@@ -47,3 +50,18 @@ export function submitLoginUser(body) {
             .catch(error => dispatch({ type: USER_LOGIN_ERROR, error }));
     };
 }
+
+export const submitLogoutUser = () =>
+    (dispatch) => {
+        dispatch({ type: USER_LOGOUT});
+        console.log(document.cookie);
+        return logoutUser()
+            .then(() => {
+                dispatch({
+                    type: USER_LOGOUT_SUCCESS
+                });
+            })
+            .catch(() => dispatch({
+                type: USER_LOGOUT_ERROR
+            }))
+    }

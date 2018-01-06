@@ -11,10 +11,10 @@ import {
 } from '../../actions/device-actions';
 import './index.css';
 
-const mapStateToProps = ({ dashboard, devices }) => {
+const mapStateToProps = ({ devices }) => {
     return {
-        devices: dashboard.handles,
-        isFetching: dashboard.isFetching || devices.isFetching
+        devices: devices.items,
+        isFetching: devices.isFetching
     };
 };
 
@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 class Devices extends PureComponent {
+
     render() {
         const {
             createDeviceSubmit,

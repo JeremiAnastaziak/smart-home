@@ -8,11 +8,15 @@ import {
     DEVICE_REMOVE,
     DEVICE_REMOVE_ERROR,
     DEVICE_REMOVE_SUCCESS,
-    DEVICE_SELECT
+    DEVICE_SELECT,
+    DEVICE_GET,
+    DEVICE_GET_ERROR,
+    DEVICE_GET_SUCCESS
 } from '../actions/device-actions';
 
 const initialState = {
     isFetching: false,
+    items: [],
     selected: {
         id: '',
         name: ''
@@ -33,8 +37,7 @@ export default function deviceReducer(state = initialState, action) {
             };
         case DEVICE_CREATE_ERROR:
             return {
-                ...state,
-                isFetching: false
+                ...state
             };
         case DEVICE_EDIT: {
             return {
@@ -44,8 +47,7 @@ export default function deviceReducer(state = initialState, action) {
         }
         case DEVICE_EDIT_SUCCESS:
             return {
-                ...state,
-                isFetching: false
+                ...state
             };
         case DEVICE_EDIT_ERROR:
             return {
@@ -59,8 +61,7 @@ export default function deviceReducer(state = initialState, action) {
             }
         case DEVICE_REMOVE_SUCCESS:
             return {
-                ...state,
-                isFetching: false
+                ...state
             }
         case DEVICE_REMOVE_ERROR:
             return {
@@ -71,6 +72,22 @@ export default function deviceReducer(state = initialState, action) {
             return {
                 ...state,
                 selected: action.device
+            }
+        case DEVICE_GET:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case DEVICE_GET_SUCCESS:
+            return {
+                ...state,
+                items: action.devices,
+                isFetching: false
+            }
+        case DEVICE_GET_ERROR:
+            return {
+                ...state,
+                isFetching: false
             }
         default:
             return state;

@@ -20,7 +20,7 @@ const initialState = {
     activePage: 1,
     activeFilter: null,
     activeSort: 'date_latest',
-    handles:[{"id":"123","name":"klamka1","deviceType":"HANDLE"},{"id":"123123","name":"node1","deviceType":"NODE"}]
+    devices: []
 };
 
 export default function dashboardReducer(state = initialState, action) {
@@ -42,8 +42,7 @@ export default function dashboardReducer(state = initialState, action) {
                 records: {
                     ...action.records
                 },
-                isFetching: false,
-                handles: action.handles
+                isFetching: false
             };
         case DASHBOARD_LOAD_RECORDS_ERROR: {
             return {
@@ -61,7 +60,8 @@ export default function dashboardReducer(state = initialState, action) {
             return {
                 ...state,
                 latest: action.latest,
-                isFetching: false
+                isFetching: false,
+                devices: action.devices
             }
         }
         case DASHBOARD_LATEST_ERROR: {

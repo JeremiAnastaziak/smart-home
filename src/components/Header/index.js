@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './HeaderIcon';
+import HeaderLogout from './HeaderLogout';
 
 const Header = () => {
     return (
@@ -12,7 +13,7 @@ const Header = () => {
                     Dashboard
                 </Link>
             }
-            iconStyleLeft={{ display: 'none' }}
+            iconElementLeft={<HeaderLogout/>}
             iconElementRight={<HeaderIcon/>}
         />
     );

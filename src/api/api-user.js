@@ -12,9 +12,19 @@ export const registerUser = (body) =>
     });
 
 export const loginUser = (body) =>
-    api('/login', {}, {
+    fetch('https://limitless-spire-43906.herokuapp.com/login', {}, {
         method: 'POST',
         body: JSON.stringify(
             body
           )
     });
+
+export const logoutUser = () =>
+    api('/logout', {}, {
+        method: 'POST',
+        headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    })

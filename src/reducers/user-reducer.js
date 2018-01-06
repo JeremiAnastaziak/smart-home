@@ -4,7 +4,10 @@ import {
     USER_REGISTER_ERROR,
     USER_LOGIN,
     USER_LOGIN_SUCCESS,
-    USER_LOGIN_ERROR
+    USER_LOGIN_ERROR,
+    USER_LOGOUT,
+    USER_LOGOUT_ERROR,
+    USER_LOGOUT_SUCCESS
 } from '../actions/user-actions';
 
 const initialState = {
@@ -25,7 +28,7 @@ export default function userReducer(state = initialState, action) {
                 isFetching: false,
                 isAuth: true
             };
-        case USER_REGISTER_ERROR: 
+        case USER_REGISTER_ERROR:
             return {
                 ...state,
                 isFetching: false
@@ -46,6 +49,27 @@ export default function userReducer(state = initialState, action) {
         }
 
         case USER_LOGIN_ERROR: {
+            return {
+                ...state,
+                isFetching: false
+            }
+        }
+        case USER_LOGOUT: {
+            return {
+                ...state,
+                isFetching: true
+            };
+        }
+
+        case USER_LOGOUT_SUCCESS: {
+            return {
+                ...state,
+                isFetching: false,
+                isAuth: false
+            };
+        }
+
+        case USER_LOGOUT_ERROR: {
             return {
                 ...state,
                 isFetching: false

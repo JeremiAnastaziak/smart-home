@@ -1,9 +1,9 @@
 import { fetchRecords } from '../api/api-measurements';
 import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
-import { selectDevice } from './device-actions';
+import { selectDevice, getDevicesAction } from './device-actions';
 import { getSettingsAction } from './settings-actions';
-import { massageData, massageLatestData } from '../api/helper';
+import { massageData, massageLatestData, extractDevicesFromLatestData } from '../api/helper';
 import { initialFetch } from '../api/api-latest';
 
 export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';
@@ -25,13 +25,15 @@ export const fetchInitialData = () => {
             .then(json => {
                 dispatch({
                     type: DASHBOARD_LATEST_SUCCESS,
-                    latest: massageLatestData(json)
+                    latest: massageLatestData(json),
+                    devices: extractDevicesFromLatestData(json)
                 });
                 const { user } = getState();
                 if (!user.isAuth) {
                     dispatch({ type: USER_LOGIN_SUCCESS });
                 }
                 getSettingsAction()(dispatch, getState);
+                getDevicesAction()(dispatch, getState);
             })
             .catch(error => dispatch({ type: DASHBOARD_LATEST_ERROR, error }));
     };
