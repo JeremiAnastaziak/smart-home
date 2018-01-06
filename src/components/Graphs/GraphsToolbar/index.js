@@ -21,6 +21,7 @@ const GraphsToolbar = ({
             <FilterDate
                 hint="Data do"
                 value={filters.endDate || null}
+                minData={filters.startDate}
                 onDateChange={value => changeGraphFilter({ endDate: value })}
             />
             <IconButton

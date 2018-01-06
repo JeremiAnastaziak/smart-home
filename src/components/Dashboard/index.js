@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(
                 graphsViewClick({
                     name: device.handleName || device.nodeName,
-                    id: device.deviceType === 'HANDLE' ? '123' : '123123',
+                    id: device.nodeId || device.handleId,
                     deviceType: device.deviceType
                 })
             ),
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(
                 tableViewClick({
                     name: device.handleName || device.nodeName,
-                    id: device.deviceType === 'HANDLE' ? '123' : '123123',
+                    id: device.nodeId || device.handleId,
                     deviceType: device.deviceType
                 })
             )

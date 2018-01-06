@@ -4,12 +4,33 @@
 
 .device-row {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+.device-row-item {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-row-item-header {
+    margin: 0 0 5px;
+    font-weight: 300;
+    font-size: 12px;
+}
+
+.device-row-item svg {
+    padding-right: 8px;
 }
 
 .device-row+.device-row {
     margin-bottom: 10px;
+}
+
+.flex1 {
+    flex: 1;
 }
 
 .device-label {

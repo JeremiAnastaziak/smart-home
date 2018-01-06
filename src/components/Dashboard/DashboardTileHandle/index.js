@@ -25,28 +25,44 @@ const DashboardTileHandle = ({ device, loadGraphData, loadTableData }) => {
                 style={{ textAlign: 'center', paddingBottom: '0 16px' }}
             />
             <DashboardTilesMenu device={device} />
-            <IconFire style={{ color: red500 }} />
-            <CardText style={{ textAlign: 'center', padding: 0 }}>
-                <p className="device-label">Ostatni pomiar:</p>
+            <IconFire style={{ color: red500, marginBottom: '10px' }} />
+            <CardText
+                style={{ textAlign: 'center', padding: 0, minHeight: '180px' }}
+            >
+                <h6 className="device-row-item-header">Ostatni pomiar:</h6>
                 <h3 className="device-date">{device.date}</h3>
                 <h3 className="device-row">
-                    <IconTemp style={{ color: '#FFEB3B' }} />
-                    <span>
-                        {device.temperature.value + ' ' + device.temperature.unit}
+                    <span className="flex1">
+                        <h6 className="device-row-item-header">Temperatura</h6>
+                        <span className="device-row-item">
+                            <IconTemp style={{ color: '#FFEB3B' }} />
+                            {device.temperature.value +
+                                ' ' +
+                                device.temperature.unit}
+                        </span>
                     </span>
-                </h3>
-                <h3 className="device-row">
-                    <IconSound />
-                    <span>
-                        {device.soundLevel.value + ' ' + device.soundLevel.unit}
+                    <span className="flex1">
+                        <h6 className="device-row-item-header">Moc sygnału</h6>
+                        <span className="device-row-item">
+                            <IconSound />
+                            {device.soundLevel.value + ' ' + device.soundLevel.unit}
+                        </span>
                     </span>
                 </h3>
             </CardText>
-            <CardActions className="device-footer">
-                <Link to="/graphs" onClick={() => loadGraphData({ ...device, deviceType: 'HANDLE'})}>
+            <CardActions className="device-footer" style={{ padding: 0 }}>
+                <Link
+                    to="/graphs"
+                    onClick={() =>
+                        loadGraphData({ ...device, deviceType: 'HANDLE' })}
+                >
                     <FlatButton label="Wykresy" primary icon={<IconGraphs />} />
                 </Link>
-                <Link to="/table" onClick={() => loadTableData({ ...device, deviceType: 'HANDLE'})}>
+                <Link
+                    to="/table"
+                    onClick={() =>
+                        loadTableData({ ...device, deviceType: 'HANDLE' })}
+                >
                     <FlatButton label="Pomiary" primary icon={<IconRecords />} />
                 </Link>
             </CardActions>
