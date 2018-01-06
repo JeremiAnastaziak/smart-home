@@ -16,9 +16,8 @@ import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
 import DashboardTilesMenu from '../DashboardTilesMenu';
-import './index.css';
 
-const DashboardTile = ({ device, loadGraphData, selectDevice }) => {
+const DashboardTileHandle = ({ device, loadGraphData, loadTableData }) => {
     return (
         <Card style={{ textAlign: 'center', paddingRight: 0 }} className="device">
             <CardTitle
@@ -44,10 +43,10 @@ const DashboardTile = ({ device, loadGraphData, selectDevice }) => {
                 </h3>
             </CardText>
             <CardActions className="device-footer">
-                <Link to="/graphs" onClick={() => loadGraphData(device)}>
+                <Link to="/graphs" onClick={() => loadGraphData({ ...device, deviceType: 'HANDLE'})}>
                     <FlatButton label="Wykresy" primary icon={<IconGraphs />} />
                 </Link>
-                <Link to="/table" onClick={() => selectDevice(device)}>
+                <Link to="/table" onClick={() => loadTableData({ ...device, deviceType: 'HANDLE'})}>
                     <FlatButton label="Pomiary" primary icon={<IconRecords />} />
                 </Link>
             </CardActions>
@@ -55,4 +54,4 @@ const DashboardTile = ({ device, loadGraphData, selectDevice }) => {
     );
 };
 
-export default DashboardTile;
+export default DashboardTileHandle;

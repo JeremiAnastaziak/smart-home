@@ -1,4 +1,4 @@
 import { api } from './helper';
 
-export const fetchRecords = (params) =>
-    api('/users/measurements/handles', params);
+export const fetchRecords = (deviceType, params) =>
+    api(`/users/measurements/${deviceType === 'HANDLE' ? 'handles' : 'nodes'}`, params);

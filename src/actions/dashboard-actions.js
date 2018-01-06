@@ -44,19 +44,25 @@ export function loadRecords() {
         const { selected } = devices;
         dispatch({ type: DASHBOARD_LOAD_RECORDS });
 
-        return fetchRecords({
+        // wtf
+        const handlesOrNodes = selected.deviceType === 'HANDLE' ? {
+            handles: selected && selected.id ? [selected.id] : []
+        } : {
+            nodes: selected && selected.id ? [selected.id] : []
+        }
+
+        return fetchRecords(selected.deviceType, Object.assign({
             limit,
             offset,
-            activeSort,
-            handles: selected && selected.id ? [selected.id] : []
-        })
+            activeSort
+        }, handlesOrNodes))
             .then(data => {
                 dispatch({
                     type: DASHBOARD_LOAD_RECORDS_SUCCESS,
                     handles: data.handles,
                     records: {
                         count: data.count,
-                        measurements: data.handleMeasurements
+                    measurements: data.handleMeasurements || data.nodeMeasurements
                     }
                 });
                 if (!user.isAuth) {
@@ -67,6 +73,7 @@ export function loadRecords() {
                 //showNotification(`(${response.statusText})`)(dispatch);
             })
             .catch(error => {
+                console.log(error);
                 dispatch({ type: DASHBOARD_LOAD_RECORDS_ERROR });
                 //showNotification(`(${JSON.stringify(error)})`)(dispatch);
             });

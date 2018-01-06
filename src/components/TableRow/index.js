@@ -24,7 +24,7 @@ const TableRowCustom = ({ record, isFetching }) => {
         <TableRow className={isFetching ? 'apply-placeholder' : ''}>
             <TableRowColumnCustom data={record.date} />
             <TableRowColumnCustom data={record.temperature.value} />
-            <TableRowColumnCustom data={record.soundLevel.value} />
+            <TableRowColumnCustom data={record.soundLevel && record.soundLevel.value} />
             <TableRowColumnCustom data={record.handlePosition} />
             <TableRowColumnCustom {...record.alarm} />
         </TableRow>

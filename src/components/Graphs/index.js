@@ -10,14 +10,15 @@ import GraphsTiles from './GraphsTiles';
 import GraphsToolbar from './GraphsToolbar';
 import './index.css';
 
-const mapStateToProps = ({ dashboard, graphs }) => {
+const mapStateToProps = ({ dashboard, graphs, devices }) => {
     return {
         active: graphs.active,
         data: graphs.active && graphs.fields[graphs.active].data,
-        tiles: Object.keys(graphs.fields),
+        fields: Object.keys(graphs.fields),
         isFetching: graphs.isFetching,
         filters: graphs.active && graphs.filters,
-        handles: dashboard.handles
+        handles: dashboard.handles,
+        deviceType: devices.selected.deviceType
     };
 };
 
@@ -32,20 +33,22 @@ const mapDispatchToProps = dispatch => {
 const Graphs = ({
     data,
     active,
-    tiles,
+    fields,
     isFetching,
     reloadGraphData,
     changeGraphView,
     changeGraphFilter,
     filters,
-    handles
+    handles,
+    deviceType
 }) => {
     return (
         <div>
             <GraphsTiles
-                tiles={tiles}
+                fields={fields}
                 changeGraphView={changeGraphView}
                 active={active}
+                deviceType={deviceType}
             />
             {data && (
                 <Chart title={active} measurements={data} isFetching={isFetching}>

@@ -4,40 +4,37 @@ const url = 'https://limitless-spire-43906.herokuapp.com';
 
 moment.locale();
 
-export const massageData = (data = { handleMeasurements: [] }) => {
+export const dateFormat = (date) => {
+    return moment(date).format('l') +
+    ' ' +
+    moment(date).format('LT')
+}
+
+export const massageData = (data = { handleMeasurements: [], nodes: [] }) => {
     return Object.assign({}, data, {
         measurements: data.handleMeasurements.map(record => {
             return {
                 ...record,
-                date:
-                    moment(record.date).format('l') +
-                    ' ' +
-                    moment(record.date).format('LT'),
-                temperature: {
-                    ...record.temperature,
-                    value: Number(parseFloat(record.temperature.value).toFixed(2))
-                },
-                soundLevel: {
-                    ...record.soundLevel,
-                    value: Number(parseFloat(record.soundLevel.value).toFixed(2))
-                }
+                date: dateFormat(record.date)
             };
         })
     });
 };
 
+const massageCollection = (collection) =>
+    collection.map(item => {
+        return {
+            ...item,
+            date: dateFormat(item.date)
+
+        };
+    })
+
 export const massageLatestData = data => {
     return Object.assign({}, data, {
-        handleMeasurements: data.handleMeasurements.map(handle => {
-            return {
-                ...handle,
-                date:
-                    moment(handle.date).format('l') +
-                    ' ' +
-                    moment(handle.date).format('LT')
-            };
+        handleMeasurements: massageCollection(data.handleMeasurements),
+        nodes: massageCollection(data.nodes)
         })
-    });
 };
 
 export const messageGraphData = ({ data = [] }) => {
@@ -47,10 +44,7 @@ export const messageGraphData = ({ data = [] }) => {
             data: data.map(item => {
                 return {
                     ...item,
-                    date:
-                        moment(item.date).format('l') +
-                        ' ' +
-                        moment(item.date).format('LT')
+                    date: dateFormat(item.date)
                 };
             })
         }

@@ -20,7 +20,7 @@ const initialState = {
     activePage: 1,
     activeFilter: null,
     activeSort: 'date_latest',
-    handles:[{"id":"123123","name":"Testowa1","deviceType":"HANDLE"},{"id":"das","name":"dasd","deviceType":"HANDLE"}]
+    handles:[{"id":"123","name":"klamka1","deviceType":"HANDLE"},{"id":"123123","name":"node1","deviceType":"NODE"}]
 };
 
 export default function dashboardReducer(state = initialState, action) {

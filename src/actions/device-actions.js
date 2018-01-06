@@ -1,6 +1,6 @@
 import { createDevice, editDevice, removeDevice } from '../api/api-device';
 import { loadRecords } from './dashboard-actions';
-import { loadGraphData } from './graph-actions';
+import { loadGraphData, graphsViewChange } from './graph-actions';
 import { showNotification } from './notification-actions';
 export const DEVICE_CREATE = 'DEVICE_CREATE';
 export const DEVICE_CREATE_SUCCESS = 'DEVICE_CREATE_SUCCESS';
@@ -20,6 +20,7 @@ export function selectDevice(device) {
     return (dispatch, getState) => {
         const { graphs, dashboard } = getState();
         dispatch({ type: DEVICE_SELECT, device });
+        graphsViewChange('temperature')(dispatch, getState);
         loadRecords()(dispatch, getState);
         loadGraphData()(dispatch, getState);
     };

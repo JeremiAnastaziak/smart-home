@@ -22,7 +22,6 @@ export function graphsViewClick(device) {
     return (dispatch, getState) => {
         const { devices } = getState();
         selectDevice(device)(dispatch, getState);
-        console.log('select');
     };
 }
 
@@ -34,10 +33,10 @@ export function loadGraphData() {
 
         dispatch({ type: GRAPHS_LOAD_DATA });
 
-        return loadGraph({
+        return loadGraph(devices.selected.deviceType, {
             fieldName: graphs.active,
             ...graphs.filters,
-            handle: devices.selected && devices.selected.id
+            deviceId: devices.selected && devices.selected.id
         }).then(data => {
             if (data.data.length) data = messageGraphData(data);
             dispatch({

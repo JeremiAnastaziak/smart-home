@@ -17,7 +17,10 @@ const initialState = {
     },
     fields: {
         temperature: initialFieldData,
-        sound_level: initialFieldData
+        sound_level: initialFieldData,
+        carbonDioxide: initialFieldData,
+        lightIntensity: initialFieldData,
+        humidity: initialFieldData
     },
     isFetching: false
 };
