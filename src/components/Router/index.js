@@ -65,7 +65,7 @@ class Router extends Component {
                         />
                         <Route
                             exact
-                            path="/table"
+                            path="/measurements"
                             component={() => (
                                 <div>
                                     <HeaderSelect />

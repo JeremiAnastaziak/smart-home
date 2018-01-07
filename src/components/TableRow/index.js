@@ -2,31 +2,27 @@ import React from 'react';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import './index.css';
 
-const TableRowColumnCustom = ({ data, fire, burglary, frost }) => {
-    const renderData = !data // if alarm column renders
-        ? ''
-              .concat(fire ? 'FIRE ' : '')
-              .concat(frost ? 'FROST ' : '')
-              .concat(burglary ? 'BURGLARY' : '')
-        : data;
+const TableRowCustom = ({ record, isFetching, content }) => {
 
-    return (
-        <TableRowColumn>
-            <span>
-            {renderData}
-            </span>
-        </TableRowColumn>
-    );
-};
+    const renderAlarmInfo = alarm =>
+        ''
+            .concat(alarm.fire ? 'POŻAROWY ' : '')
+            .concat(alarm.frost ? 'ZAMROZENIOWY ' : '')
+            .concat(alarm.burglary ? 'WŁAMANIOWY' : '');
 
-const TableRowCustom = ({ record, isFetching }) => {
     return (
         <TableRow className={isFetching ? 'apply-placeholder' : ''}>
-            <TableRowColumnCustom data={record.date} />
-            <TableRowColumnCustom data={record.temperature.value} />
-            <TableRowColumnCustom data={record.soundLevel && record.soundLevel.value} />
-            <TableRowColumnCustom data={record.handlePosition} />
-            <TableRowColumnCustom {...record.alarm} />
+            {Object.keys(content).map(dataKey => record[dataKey] && (
+                <TableRowColumn key={record.id}>
+                    <span>
+                        {record[dataKey].hasOwnProperty('value')
+                            ? record[dataKey].value + ' ' + record[dataKey].unit
+                            : record[dataKey].hasOwnProperty('fire')
+                              ? renderAlarmInfo(record[dataKey])
+                              : record[dataKey]}
+                    </span>
+                </TableRowColumn>
+            ))}
         </TableRow>
     );
 };

@@ -1,6 +1,5 @@
 import { fetchRecords } from '../api/api-measurements';
 import { apiDateFormat } from '../api/helper';
-import * as moment from 'moment';
 
 function convertToCSV(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
@@ -70,10 +69,7 @@ export const saveDataToCSV = (device, filter) => {
 
         const itemsFormatted = data.handleMeasurements.map(item => {
             return {
-                date:
-                    moment(item.date).format('l') +
-                    ' ' +
-                    moment(item.date).format('LT'),
+                date: item.date,
                 handleName: item.handleName,
                 handlePosition: item.handlePosition,
                 temperature: item.temperature.value

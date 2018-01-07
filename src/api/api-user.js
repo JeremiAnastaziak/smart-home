@@ -12,7 +12,7 @@ export const registerUser = (body) =>
     });
 
 export const loginUser = (body) =>
-    fetch('https://limitless-spire-43906.herokuapp.com/login', {}, {
+    api('/login', {}, {
         method: 'POST',
         body: JSON.stringify(
             body

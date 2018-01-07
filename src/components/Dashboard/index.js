@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(
                 graphsViewClick({
                     name: device.handleName || device.nodeName,
-                    id: device.nodeId || device.handleId,
+                    id: device.deviceId,
                     deviceType: device.deviceType
                 })
             ),
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(
                 tableViewClick({
                     name: device.handleName || device.nodeName,
-                    id: device.nodeId || device.handleId,
+                    id: device.deviceId,
                     deviceType: device.deviceType
                 })
             )
@@ -34,9 +34,10 @@ const mapDispatchToProps = dispatch => {
 };
 
 const Dashboard = ({ latest, loadGraphData, loadTableData }) => {
+    console.log(latest);
     return (
         <div className="devices">
-            {latest.handleMeasurements.map(handle => (
+            {latest.handles.map(handle => (
                 <DashboardTileHandle
                     key={handle.id}
                     device={handle}

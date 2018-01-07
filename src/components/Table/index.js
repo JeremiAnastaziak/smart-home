@@ -4,7 +4,8 @@ import {
     TableBody,
     TableHeader,
     TableHeaderColumn,
-    TableRow
+    TableRow,
+    TableRowColumn
 } from 'material-ui/Table';
 
 import uuidv1 from 'uuid/v1';
@@ -15,7 +16,29 @@ import TableToolbar from '../TableToolbar';
 import TableRowCustom from '../TableRow';
 import './hack.css';
 
-const TableCustom = ({ records, isFetching, alarmTable }) => {
+const TableCustom = ({ records, isFetching, alarmTable, content }) => {
+    const renderTableHeader = () => {
+        if (!isFetching && !records.length) {
+            return (
+                <p
+                    style={{
+                        textAlign: 'center'
+                    }}
+                >
+                    Brak dostępnych pomiarów
+                </p>
+            );
+        }
+
+        return (
+            <TableRow>
+                {Object.keys(content).map(header => (
+                    <TableHeaderColumn>{content[header]}</TableHeaderColumn>
+                ))}
+            </TableRow>
+        );
+    };
+
     return (
         <Card
             className="row-margins"
@@ -25,23 +48,7 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
             <div style={{ overflowX: 'scroll', overflowY: 'hidden' }}>
                 <Table style={{ minWidth: '700px' }}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        {!isFetching && !records.length ? (
-                            <p
-                                style={{
-                                    textAlign: 'center'
-                                }}
-                            >
-                                Brak dostępnych pomiarów
-                            </p>
-                        ) : (
-                            <TableRow>
-                                <TableHeaderColumn>Data</TableHeaderColumn>
-                                <TableHeaderColumn>Temperatura</TableHeaderColumn>
-                                <TableHeaderColumn>Moc sygnału</TableHeaderColumn>
-                                <TableHeaderColumn>Stan klamki</TableHeaderColumn>
-                                <TableHeaderColumn>Alarmy</TableHeaderColumn>
-                            </TableRow>
-                        )}
+                        {renderTableHeader()}
                     </TableHeader>
 
                     <TableBody displayRowCheckbox={false}>
@@ -52,6 +59,7 @@ const TableCustom = ({ records, isFetching, alarmTable }) => {
                                     key={uuidv1()}
                                     record={record}
                                     isFetching={isFetching}
+                                    content={content}
                                 />
                             ))}
                     </TableBody>

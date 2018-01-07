@@ -1,7 +1,6 @@
 import {apiDateFormat, api } from './helper';
 
 export const loadGraph = (deviceType, { startDate, endDate, fieldName, deviceId }) => {
-    const adjustDeviceId = deviceType === 'HANDLE' ? { handleId: deviceId} : { nodeId: deviceId };
 
     const ajustFieldName = (fieldName) => {
         switch(fieldName) {
@@ -14,11 +13,12 @@ export const loadGraph = (deviceType, { startDate, endDate, fieldName, deviceId 
         }
     }
 
-    const params = Object.assign({
+    const params = {
         startDate: startDate && apiDateFormat(startDate),
         endDate: endDate && apiDateFormat(endDate),
         fieldName: ajustFieldName(fieldName).toUpperCase(),
-    }, adjustDeviceId);
+        deviceId
+    };
 
     return api(`/users/graphs/${deviceType === 'HANDLE' ? 'handles' : 'nodes'}`, params);
 }

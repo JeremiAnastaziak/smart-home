@@ -40,7 +40,7 @@ class NavigationBottom extends Component {
                             selected={this.state.selectedIndex === 1}
                         />
                     </Link>
-                    <Link to="/table">
+                    <Link to="/measurements">
                         <BottomNavigationItem
                             style={{ height: '56px' }}
                             icon={<IconTable />}

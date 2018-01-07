@@ -10,9 +10,9 @@ export const dateFormat = (date) => {
     moment(date).format('LT')
 }
 
-export const massageData = (data = { handleMeasurements: [], nodes: [] }) => {
+export const massageData = (data = { handles: [], nodes: [] }) => {
     return Object.assign({}, data, {
-        measurements: data.handleMeasurements.map(record => {
+        measurements: data.handles.map(record => {
             return {
                 ...record,
                 date: dateFormat(record.date)
@@ -32,21 +32,21 @@ const massageCollection = (collection) =>
 
 export const massageLatestData = data => {
     return Object.assign({}, data, {
-        handleMeasurements: massageCollection(data.handleMeasurements),
+        handles: massageCollection(data.handles),
         nodes: massageCollection(data.nodes)
         })
 };
 
 export const extractDevicesFromLatestData = (data) => {
-    return data.handleMeasurements.map(item => {
+    return data.handles.map(item => {
         return {
-            id: item.handleId,
+            id: item.deviceId,
             name: item.handleName,
             deviceType: 'HANDLE'
         }
     }).concat(data.nodes.map(item => {
         return {
-            id: item.nodeId,
+            id: item.deviceId,
             name: item.nodeName,
             deviceType: 'NODE'
         }
@@ -80,21 +80,6 @@ export const reqParams = (params = {}) => {
 };
 
 export const api = (endpoint, params = {}, init = { method: 'GET' }, withoutResponseBody) => {
-    if (withoutResponseBody) {
-        return fetch(
-            url + endpoint + reqParams(params),
-            Object.assign(
-                {
-                    headers: {
-                        Accept: '*/*',
-                        'Content-Type': 'application/json'
-                    },
-                    credentials: 'include'
-                },
-                init
-            )
-        )
-    }
     return fetch(
         url + endpoint + reqParams(params),
         Object.assign(

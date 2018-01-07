@@ -28,7 +28,6 @@ const DashboardTileNode = ({ device, loadGraphData, loadTableData }) => {
                 style={{ textAlign: 'center', paddingBottom: '0 16px' }}
             />
             <DashboardTilesMenu device={device} />
-            <IconFire style={{ color: red500, marginBottom: '10px' }} />
             <CardText style={{ textAlign: 'center', padding: 0, minHeight: '180px' }}>
                 <h6 className="device-row-item-header">Ostatni pomiar:</h6>
                 <h3 className="device-date">{device.date}</h3>

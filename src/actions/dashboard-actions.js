@@ -25,7 +25,7 @@ export const fetchInitialData = () => {
             .then(json => {
                 dispatch({
                     type: DASHBOARD_LATEST_SUCCESS,
-                    latest: massageLatestData(json),
+                    latest: json,
                     devices: extractDevicesFromLatestData(json)
                 });
                 const { user } = getState();
@@ -64,7 +64,7 @@ export function loadRecords() {
                     handles: data.handles,
                     records: {
                         count: data.count,
-                    measurements: data.handleMeasurements || data.nodeMeasurements
+                    measurements: data.measurements || data.measurements
                     }
                 });
                 if (!user.isAuth) {
