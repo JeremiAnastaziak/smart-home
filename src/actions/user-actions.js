@@ -22,7 +22,7 @@ export function submitRegisterUser(body) {
                 dispatch({
                     type: USER_REGISTER_SUCCESS
                 });
-                loadRecords()(dispatch, getState);
+                fetchInitialData()(dispatch, getState);
                 showNotification(
                     `Witaj ${extractLogin(
                         body.email
@@ -60,6 +60,9 @@ export const submitLogoutUser = () =>
                 dispatch({
                     type: USER_LOGOUT_SUCCESS
                 });
+                dispatch({
+                    type: 'RESET_STORE'
+                })
             })
             .catch(() => dispatch({
                 type: USER_LOGOUT_ERROR

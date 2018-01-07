@@ -4,7 +4,10 @@ import DashboardTileHandle from './DashboardTileHandle';
 import DashboardTileNode from './DashboardTileNode';
 import { graphsViewClick } from '../../actions/graph-actions';
 import { tableViewClick } from '../../actions/dashboard-actions';
+import Paper from 'material-ui/Paper';
 import './index.css';
+import { Link } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const mapStateToProps = ({ dashboard }) => {
     return {
@@ -33,7 +36,22 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const Dashboard = ({ latest = { handles: [], nodes: [] }, loadGraphData, loadTableData }) => {
+const DashboardEmpty = () => (
+    <Paper style={{padding: '18px', width: '100%'}}>
+        <h3>Nie znaleziono zadnych pomiarów. Sprobuj dodac nowe urządzenie.</h3>
+        <Link
+            to="/devices"
+        >
+            <RaisedButton label="Dodaj nowe urządzenie" primary/>
+        </Link>
+    </Paper>
+);
+
+const Dashboard = ({
+    latest = { handles: [], nodes: [] },
+    loadGraphData,
+    loadTableData
+}) => {
     return (
         <div className="devices">
             {latest.handles.map(handle => (
@@ -52,6 +70,7 @@ const Dashboard = ({ latest = { handles: [], nodes: [] }, loadGraphData, loadTab
                     loadTableData={loadTableData}
                 />
             ))}
+            {!latest.nodes.length && !latest.handles.length && <DashboardEmpty />}
         </div>
     );
 };

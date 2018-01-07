@@ -7,7 +7,7 @@ import deviceReducer from './device-reducer';
 import graphReducer from './graph-reducer';
 import settingsReducer from './settings-reducer';
 
-export default combineReducers({
+const appReducer = combineReducers({
     dashboard: dashboardReducer,
     graphs: graphReducer,
     devices: deviceReducer,
@@ -15,3 +15,7 @@ export default combineReducers({
     settings: settingsReducer,
     notification: notificationReducer
 })
+
+export default (state, action) => {
+    return appReducer(state, action)
+}
