@@ -19,6 +19,7 @@ export const DEVICE_GET_ERROR = 'DEVICE_GET_ERROR';
 export function selectDevice(device) {
     return (dispatch, getState) => {
         const { graphs, dashboard } = getState();
+        if(!device) return false;
         dispatch({ type: DEVICE_SELECT, device });
         graphsViewChange('temperature')(dispatch, getState);
         loadRecords()(dispatch, getState);

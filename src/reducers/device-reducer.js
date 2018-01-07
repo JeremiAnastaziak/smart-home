@@ -19,7 +19,8 @@ const initialState = {
     items: [],
     selected: {
         id: '',
-        name: ''
+        name: '',
+        deviceType: 'HANDLE'
     }
 };
 

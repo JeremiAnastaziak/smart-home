@@ -25,6 +25,7 @@ const GraphsToolbar = ({
                 onDateChange={value => changeGraphFilter({ endDate: value })}
             />
             <IconButton
+                tooltip="Odswiez dane"
                 onClick={() => reloadGraphData()}
                 disabled={isFetching}
                 style={{ position: 'absolute', right: 0, top: 0 }}

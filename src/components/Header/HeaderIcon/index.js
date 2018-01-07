@@ -57,7 +57,7 @@ class HeaderIcon extends Component {
 
         return (
             <div>
-                <IconButton onClick={() => this.toggleDialog()}>
+                <IconButton tooltip="Ustawienia" onClick={() => this.toggleDialog()}>
                     <SettingsIcon color="#fff" />
                 </IconButton>
                 <Dialog

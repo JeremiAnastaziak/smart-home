@@ -1,7 +1,7 @@
-import { api } from './helper';
+import { api, apiLite } from './helper';
 
 export const registerUser = (body) =>
-    api('/users', {}, {
+apiLite('/users', {
         method: 'POST',
         body: JSON.stringify({
             ...body,
@@ -12,7 +12,7 @@ export const registerUser = (body) =>
     });
 
 export const loginUser = (body) =>
-    api('/login', {}, {
+    apiLite('/login', {
         method: 'POST',
         body: JSON.stringify(
             body
@@ -20,7 +20,7 @@ export const loginUser = (body) =>
     });
 
 export const logoutUser = () =>
-    api('/logout', {}, {
+    apiLite('/logout', {
         method: 'POST',
         headers: {
             Accept: '*/*',

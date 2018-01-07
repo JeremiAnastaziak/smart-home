@@ -19,6 +19,7 @@ import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
 import DashboardTilesMenu from '../DashboardTilesMenu';
+import renderIcons from '../icons';
 
 const DashboardTileNode = ({ device, loadGraphData, loadTableData }) => {
     return (
@@ -28,6 +29,7 @@ const DashboardTileNode = ({ device, loadGraphData, loadTableData }) => {
                 style={{ textAlign: 'center', paddingBottom: '0 16px' }}
             />
             <DashboardTilesMenu device={device} />
+            {renderIcons(device)}
             <CardText style={{ textAlign: 'center', padding: 0, minHeight: '180px' }}>
                 <h6 className="device-row-item-header">Ostatni pomiar:</h6>
                 <h3 className="device-date">{device.date}</h3>

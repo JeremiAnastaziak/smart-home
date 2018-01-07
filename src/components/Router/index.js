@@ -39,7 +39,7 @@ class Router extends Component {
                     <Loading />
                 ) : !isAuth ? (
                     <div className="unAuthRoutes">
-                        <Route exact path="/" component={Landing} />
+                        <Route path="/" component={Landing} />
                     </div>
                 ) : (
                     <div className="authRoutes" style={{ marginBottom: '66px' }}>

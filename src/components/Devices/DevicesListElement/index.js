@@ -30,10 +30,10 @@ const DevicesListElement = ({
                 secondaryTextLines={1}
                 rightIconButton={
                     <div>
-                        <IconButton onClick={() => toggleDeviceEdition()} disabled={disableIcon}>
+                        <IconButton tooltip="Edytuj nazwę" onClick={() => toggleDeviceEdition()} disabled={disableIcon}>
                             <EditIcon />
                         </IconButton>
-                        <IconButton onClick={() => toggleDeviceDialog(id, name, true)} disabled={disableIcon}>
+                        <IconButton tooltip="Usuń urządzenie" onClick={() => toggleDeviceDialog(id, name, true)} disabled={disableIcon}>
                             <DeleteIcon />
                         </IconButton>
                     </div>

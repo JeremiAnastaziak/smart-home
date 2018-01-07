@@ -47,13 +47,13 @@ export function loadRecords() {
         dispatch({ type: DASHBOARD_LOAD_RECORDS });
 
         // wtf
-        const handlesOrNodes = selected.deviceType === 'HANDLE' ? {
+        const handlesOrNodes = selected && selected.deviceType === 'HANDLE' ? {
             handles: selected && selected.id ? [selected.id] : []
         } : {
             nodes: selected && selected.id ? [selected.id] : []
         }
 
-        return fetchRecords(selected.deviceType, Object.assign({
+        return fetchRecords(selected && selected.deviceType || 'HANDLE', Object.assign({
             limit,
             offset,
             activeSort

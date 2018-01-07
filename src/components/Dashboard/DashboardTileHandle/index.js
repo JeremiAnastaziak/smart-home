@@ -17,6 +17,7 @@ import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
 import DashboardTilesMenu from '../DashboardTilesMenu';
 import {IconFrost} from '../../../assets/icons';
+import renderIcons from '../icons';
 
 const DashboardTileHandle = ({ device, loadGraphData, loadTableData }) => {
     return (
@@ -26,28 +27,7 @@ const DashboardTileHandle = ({ device, loadGraphData, loadTableData }) => {
                 style={{ textAlign: 'center', paddingBottom: '0 16px' }}
             />
             <DashboardTilesMenu device={device} />
-            {device.alarm.frost && <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-	 width="40px" height="40px" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
-<path fill="#90CAF9" d="M6,10.001C10,10,10,34,12,34s3-22,6-22s5,30,7,30s4-29,7-29s3,12,5,12s2-14.999,5-14.999
-	C40,10,10,10,6,10.001z"/>
-<rect x="6" y="6" fill="#DD2C00" width="36" height="4"/>
-<g>
-	<path fill="#2196F3" d="M25,10.002V42c2,0,4-29,7-29v-2.999C29.806,10.001,27.417,10.001,25,10.002z"/>
-	<path fill="#2196F3" d="M42,10.001c-0.512,0-2.369,0-5,0V25C39,25,39,10.001,42,10.001z"/>
-	<path fill="#2196F3" d="M18,10.002c-2.719,0-5.305,0-6,0V34c2,0,3-22,6-22V10.002z"/>
-</g>
-</svg>}
-{device.alarm.fire &&
-<svg version="1.1"  xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40px" height="40px"
-	 viewBox="0 0 48 48" enable-background="new 0 0 48 48">
-<path fill="#F44336" d="M10,42h28c2.2,0,4-1.8,4-4V15.7c0-1.6-1-3.1-2.6-3.7L24,6L8.6,12C7,12.6,6,14.1,6,15.7V38
-	C6,40.2,7.8,42,10,42z"/>
-<path fill="#FFC107" d="M30.6,19.6c0,0.2-0.6,3.8-2.4,5.4c2.4-7.7-4.2-12-4.2-12s-1,5.7-3,7.8c-0.1-2.5-1.5-4-1.5-4
-	c-1,4.4-4.5,8.3-4.5,11.1c0,5,4,9,9,9s9-4,9-9C33,24.4,32,21.8,30.6,19.6z"/>
-<path fill="#FFF9C4" d="M27,32.5c0,1.7-1.3,3-3,3s-3-1.3-3-3c0-1.7,3-7.5,3-7.5S27,30.8,27,32.5z"/>
-</svg>
-}
-
+            {renderIcons(device)}
             <CardText
                 style={{ textAlign: 'center', padding: 0, minHeight: '180px' }}
             >

@@ -5,9 +5,7 @@ const url = 'https://limitless-spire-43906.herokuapp.com';
 moment.locale();
 
 export const dateFormat = (date) => {
-    return moment(date).format('l') +
-    ' ' +
-    moment(date).format('LT')
+    return date
 }
 
 export const massageData = (data = { handles: [], nodes: [] }) => {
@@ -78,6 +76,22 @@ export const reqParams = (params = {}) => {
         .join('')
         .replace('&', '?');
 };
+
+export const apiLite = (endpoint, init = { method: 'GET' }) => {
+    return fetch(
+        url + endpoint,
+        Object.assign(
+            {
+                headers: {
+                    Accept: '*/*',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            },
+            init
+        )
+    )
+}
 
 export const api = (endpoint, params = {}, init = { method: 'GET' }, withoutResponseBody) => {
     return fetch(

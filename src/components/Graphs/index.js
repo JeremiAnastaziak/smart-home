@@ -18,7 +18,7 @@ const mapStateToProps = ({ dashboard, graphs, devices }) => {
         isFetching: graphs.isFetching,
         filters: graphs.active && graphs.filters,
         handles: dashboard.handles,
-        deviceType: devices.selected.deviceType
+        deviceType: devices.selected && devices.selected.deviceType
     };
 };
 

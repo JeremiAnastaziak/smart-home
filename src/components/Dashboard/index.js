@@ -33,8 +33,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-const Dashboard = ({ latest, loadGraphData, loadTableData }) => {
-    console.log(latest);
+const Dashboard = ({ latest = { handles: [], nodes: [] }, loadGraphData, loadTableData }) => {
     return (
         <div className="devices">
             {latest.handles.map(handle => (

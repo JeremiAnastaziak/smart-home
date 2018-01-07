@@ -6,7 +6,7 @@ const mapStateToProps = ({ dashboard, devices }) => {
     return {
         records: dashboard.records.measurements,
         isFetching: dashboard.isFetching,
-        deviceType: devices.selected.deviceType
+        deviceType: devices.selected && devices.selected.deviceType
     };
 };
 

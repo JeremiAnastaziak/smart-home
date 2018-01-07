@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { submitLogoutUser } from '../../../actions/user-actions';
-import IconUser from 'material-ui/svg-icons/action/cached';
+import IconUser from 'material-ui/svg-icons/navigation/subdirectory-arrow-left';
 import IconButton from 'material-ui/IconButton';
 
 const mapDispatchToProps = (dispatch) => {
@@ -18,7 +18,7 @@ class HeaderLogout extends React.Component {
     }
     render() {
         return (
-            <IconButton onClick={() => this.props.submitLogoutUser()}><IconUser color="#fff"/></IconButton>
+            <IconButton tooltip="Wyloguj" onClick={() => this.props.submitLogoutUser()}><IconUser color="#fff"/></IconButton>
         )
     }
 }
