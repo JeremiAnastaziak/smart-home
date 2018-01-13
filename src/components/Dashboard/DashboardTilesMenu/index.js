@@ -7,7 +7,9 @@ import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import { saveDataToCSV } from '../../../lib/csv.js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import FilterDate from '../../FilterDate';
+import { red500 } from 'material-ui/styles/colors';
 
 class DashboardTilesMenu extends React.Component {
     constructor(props) {
@@ -23,19 +25,29 @@ class DashboardTilesMenu extends React.Component {
     };
 
     render() {
+        const startDateNumber = new Date(this.state.startDate).getTime();
+        const endDateNumber = new Date(this.state.endDate).getTime();
+
         const actions = [
             <FlatButton
                 label="Anuluj"
-                primary={true}
-                onClick={() => this.toggleDialog()}
+                onClick={() => {
+                    this.toggleDialog();
+                    this.setState({
+                        startDate: '',
+                        endDate: ''
+                    });
+                }}
             />,
-            <FlatButton
+            <RaisedButton
                 label="Pobierz"
                 primary={true}
                 keyboardFocused={true}
+                disabled={startDateNumber > endDateNumber}
                 onClick={() => this.fetchData()}
             />
         ];
+
         return (
             <div>
                 <IconMenu
@@ -64,11 +76,17 @@ class DashboardTilesMenu extends React.Component {
                     <FilterDate
                         hint="Dane od dnia"
                         onDateChange={date => this.setState({ startDate: date })}
+                        min
                     />
                     <FilterDate
                         hint="Dane do dnia"
                         onDateChange={date => this.setState({ endDate: date })}
                     />
+                    {startDateNumber > endDateNumber && (
+                        <p style={{ color: red500 }}>
+                            Data zakończenia nie może być starsza od daty rozpoczęcia
+                        </p>
+                    )}
                 </Dialog>
             </div>
         );

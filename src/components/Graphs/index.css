@@ -3,7 +3,7 @@
     padding: 15px;
     flex: 0 50%;
     text-align: center;
-    margin: 10px;
+    margin: 5px 0;
     cursor: pointer;
 }
 
@@ -22,5 +22,8 @@
     }
     .graphs-page > div:last-child {
         flex:3;
+    }
+    .graphs-tiles-item {
+        margin: 0 0 0 -5px !important;
     }
 }

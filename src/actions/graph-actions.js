@@ -31,6 +31,9 @@ export function loadGraphData() {
 
         if (!graphs.active) return false;
 
+        const startDateNumber = new Date(graphs.filters.startDate).getTime();
+        const endDateNumber = new Date(graphs.filters.endDate).getTime();
+        if(startDateNumber > endDateNumber) return false;
         dispatch({ type: GRAPHS_LOAD_DATA });
 
         return loadGraph(devices.selected.deviceType, {
