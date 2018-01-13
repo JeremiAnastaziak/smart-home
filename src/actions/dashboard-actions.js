@@ -3,7 +3,7 @@ import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
 import { selectDevice, getDevicesAction } from './device-actions';
 import { getSettingsAction } from './settings-actions';
-import { massageData, massageLatestData, extractDevicesFromLatestData } from '../api/helper';
+import { extractDevicesFromLatestData } from '../api/helper';
 import { initialFetch } from '../api/api-latest';
 
 export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';

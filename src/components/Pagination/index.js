@@ -26,7 +26,7 @@ class Pagination extends React.Component {
 
     render() {
         const { activePage, totalPages } = this.props;
-        if (!totalPages) return '';
+        if (!totalPages || totalPages === 1) return '';
         return (
             <div
                 className="pagination"

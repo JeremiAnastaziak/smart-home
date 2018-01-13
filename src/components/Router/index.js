@@ -43,12 +43,12 @@ class Router extends Component {
                     </div>
                 ) : (
                     <div className="authRoutes" style={{ marginBottom: '66px' }}>
+                        <Header />
                         <Route
                             exact
                             path="/"
                             component={() => (
                                 <div>
-                                    <Header />
                                     <Dashboard />
                                 </div>
                             )}
@@ -78,7 +78,6 @@ class Router extends Component {
                             path="/devices"
                             component={() => (
                                 <div>
-                                    <Header />
                                     <Devices />
                                 </div>
                             )}

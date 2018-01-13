@@ -41,12 +41,11 @@ const TableCustom = ({ records, isFetching, alarmTable, content }) => {
 
     return (
         <Card
-            className="row-margins"
-            style={{ position: 'relative', overflow: 'hidden' }}
+            style={{ position: 'relative', overflow: 'hidden', margin: "0 0 10px" }}
         >
             <TableToolbar isAlarmTable={alarmTable} />
-            <div style={{ overflowX: 'scroll', overflowY: 'hidden' }}>
-                <Table style={{ minWidth: '700px' }}>
+            <div style={{ overflowX: 'auto', overflowY: 'auto' }}>
+                <Table style={{ minWidth: '700px' }} className="table-custom">
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                         {renderTableHeader()}
                     </TableHeader>

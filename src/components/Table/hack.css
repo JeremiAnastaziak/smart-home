@@ -1,3 +1,7 @@
-div.row-margins > div > div:nth-child(2) > div > div:nth-child(2) {
+#root > div > div > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) > div > div:nth-child(2) {
     overflow: unset !important;
+}
+
+.table-custom td, .table-custom th{
+    padding: 0 16px !important;
 }

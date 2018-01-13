@@ -18,7 +18,7 @@ class HeaderLogout extends React.Component {
     }
     render() {
         return (
-            <IconButton tooltip="Wyloguj" onClick={() => this.props.submitLogoutUser()}><IconUser color="#fff"/></IconButton>
+            <IconButton  style={{padding: '12px 59px'}} tooltip="Wyloguj" onClick={() => this.props.submitLogoutUser()}><IconUser color="#fff"/></IconButton>
         )
     }
 }

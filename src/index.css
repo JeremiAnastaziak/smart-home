@@ -23,8 +23,11 @@ a:-webkit-any-link {
     color: #fff !important;
 }
 
-.desk {
+html {
     background: #f2f5f7;
+}
+
+.desk {
     min-height: calc(100vh - 70px);
 }
 

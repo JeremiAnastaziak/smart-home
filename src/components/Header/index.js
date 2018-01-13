@@ -7,12 +7,14 @@ import HeaderLogout from './HeaderLogout';
 const Header = () => {
     return (
         <AppBar
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: 'center'}}
+            titleStyle={{flex: 'none'}}
             title={
-                <Link to="/" style={{ color: '#fff' }}>
+                <Link to="/" style={{ color: '#fff', padding: '10px 0', marginLeft: '34px'}}>
                     Dashboard
                 </Link>
             }
+            className="header"
             iconElementLeft={<HeaderLogout/>}
             iconElementRight={<HeaderIcon/>}
         />

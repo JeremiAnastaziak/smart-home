@@ -26,7 +26,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 class Devices extends PureComponent {
-
     render() {
         const {
             createDeviceSubmit,
@@ -36,19 +35,23 @@ class Devices extends PureComponent {
             isFetching
         } = this.props;
         return (
-            <Card style={{ margin: '10px' }}>
-                {isFetching && <CircularProgress />}
-                <DevicesForm
-                    isFetching={isFetching}
-                    createDeviceSubmit={createDeviceSubmit}
-                />
-                <DevicesList
-                    devices={devices}
-                    isFetching={isFetching}
-                    removeDeviceSubmit={removeDeviceSubmit}
-                    editDeviceSubmit={editDeviceSubmit}
-                />
-            </Card>
+            <div className="devices-page">
+                <Card style={{ margin: ' 0 0 10px' }}>
+                    {isFetching && <CircularProgress />}
+                    <DevicesForm
+                        isFetching={isFetching}
+                        createDeviceSubmit={createDeviceSubmit}
+                    />
+                </Card>
+                <Card>
+                    <DevicesList
+                        devices={devices}
+                        isFetching={isFetching}
+                        removeDeviceSubmit={removeDeviceSubmit}
+                        editDeviceSubmit={editDeviceSubmit}
+                    />
+                </Card>
+            </div>
         );
     }
 }

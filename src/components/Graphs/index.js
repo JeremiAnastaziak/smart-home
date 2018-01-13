@@ -43,7 +43,7 @@ const Graphs = ({
     deviceType
 }) => {
     return (
-        <div>
+        <div className="graphs-page">
             <GraphsTiles
                 fields={fields}
                 changeGraphView={changeGraphView}

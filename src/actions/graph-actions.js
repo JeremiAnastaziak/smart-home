@@ -38,7 +38,7 @@ export function loadGraphData() {
             ...graphs.filters,
             deviceId: devices.selected && devices.selected.id
         }).then(data => {
-            if (data.data.length) data = messageGraphData(data);
+            if (data.data.length) data = data;
             dispatch({
                 type: GRAPHS_LOAD_DATA_SUCCESS,
                 data: data.data,

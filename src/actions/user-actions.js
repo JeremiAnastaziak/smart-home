@@ -39,13 +39,24 @@ export function submitLoginUser(body) {
 
         return loginUser(body)
             .then(response => {
-                dispatch({
-                    type: USER_LOGIN_SUCCESS
-                });
-                fetchInitialData()(dispatch, getState);
-                showNotification(
-                    `Witaj ${extractLogin(body.email)}! Zostałeś zalogowany.`
-                )(dispatch);
+                if(response.status === 200) {
+                    dispatch({
+                        type: USER_LOGIN_SUCCESS
+                    });
+                    fetchInitialData()(dispatch, getState);
+                    showNotification(
+                        `Witaj ${extractLogin(body.email)}! Zostałeś zalogowany.`
+                    )(dispatch);
+                }
+                else {
+                    dispatch({
+                        type: USER_LOGIN_ERROR
+                    });
+                    showNotification(
+                        `Uzytkownik badz haslo sa niepoprawne.`
+                    )(dispatch);
+                }
+
             })
             .catch(error => dispatch({ type: USER_LOGIN_ERROR, error }));
     };
@@ -54,7 +65,6 @@ export function submitLoginUser(body) {
 export const submitLogoutUser = () =>
     (dispatch) => {
         dispatch({ type: USER_LOGOUT});
-        console.log(document.cookie);
         return logoutUser()
             .then(() => {
                 dispatch({

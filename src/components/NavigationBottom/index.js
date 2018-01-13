@@ -22,11 +22,12 @@ class NavigationBottom extends Component {
 
     render() {
         return (
-            <Paper zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 999}}>
-                <BottomNavigation className="bottom-nav" selectedIndex={this.state.selectedIndex} style={{width: '100vw'}}>
+            <Paper className="bottom-nav" zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 999}}>
+                <BottomNavigation selectedIndex={this.state.selectedIndex} style={{width: '100vw'}}>
                     <Link to="/">
                         <BottomNavigationItem
                             style={{ height: '56px' }}
+                            label="Ostatnie"
                             icon={<IconHome />}
                             onClick={() => this.select(0)}
                             selected={this.state.selectedIndex === 0}
@@ -35,6 +36,7 @@ class NavigationBottom extends Component {
                     <Link to="/graphs">
                         <BottomNavigationItem
                             style={{ height: '56px' }}
+                            label="Wykresy"
                             icon={<IconGraphs />}
                             onClick={() => this.select(1)}
                             selected={this.state.selectedIndex === 1}
@@ -43,6 +45,7 @@ class NavigationBottom extends Component {
                     <Link to="/measurements">
                         <BottomNavigationItem
                             style={{ height: '56px' }}
+                            label="Pomiary"
                             icon={<IconTable />}
                             onClick={() => this.select(2)}
                             selected={this.state.selectedIndex === 2}
@@ -50,6 +53,7 @@ class NavigationBottom extends Component {
                     </Link>
                     <Link to="/devices">
                         <BottomNavigationItem
+                            label="Urządzenia"
                             style={{ height: '56px' }}
                             icon={<IconDevices />}
                             onClick={() => this.select(3)}

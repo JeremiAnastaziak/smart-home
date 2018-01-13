@@ -12,7 +12,7 @@ import {
 } from '../actions/dashboard-actions';
 
 const initialState = {
-    latest: {},
+    latest: { nodes: [], handles: []},
     records: { measurements: [], count: 0},
     isFetching: false,
     offset: 0,

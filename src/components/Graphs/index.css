@@ -12,8 +12,15 @@
     color: #fff !important;
 }
 
-@media (min-width: 640px) {
-    .graphs-tiles {
+
+@media (min-width: 1200px) {
+    .graphs-page {
         display: flex;
+    }
+    .graphs-page > div:first-child {
+        flex:1;
+    }
+    .graphs-page > div:last-child {
+        flex:3;
     }
 }

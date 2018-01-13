@@ -54,7 +54,7 @@ const Dashboard = ({
 }) => {
     return (
         <div className="devices">
-            {latest.handles.map(handle => (
+            {latest.handles && latest.handles.map(handle => (
                 <DashboardTileHandle
                     key={handle.id}
                     device={handle}
@@ -62,7 +62,7 @@ const Dashboard = ({
                     loadTableData={loadTableData}
                 />
             ))}
-            {latest.nodes.map(node => (
+            {latest.nodes && latest.nodes.map(node => (
                 <DashboardTileNode
                     key={node.id}
                     device={node}

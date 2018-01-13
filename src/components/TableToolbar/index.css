@@ -1,8 +1,5 @@
-@media(max-width: 1075px) {
-    .toolbar {
-        flex-direction: column;
-        height: 112px !important;
-    }
+.toolbar {
+    flex-direction: column;
 }
 
 .toolbar-group--bottom {
@@ -19,7 +16,7 @@
         display: flex;
     }
     .toolbar {
-        height: 180px !important;
+        height: auto !important;
         padding: 0 0 0 12px !important;
     }
     .pagination {

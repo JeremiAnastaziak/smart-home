@@ -16,7 +16,7 @@ import './index.css';
 
 const Chart = ({ measurements, title, isFetching, children }) => {
     return (
-        <Card style={{ position: 'relative', margin: '10px' }}>
+        <Card style={{ position: 'relative'}}>
             ;
             {children}
             {isFetching && (

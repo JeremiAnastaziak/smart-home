@@ -70,7 +70,7 @@ const DashboardTileNode = ({ device, loadGraphData, loadTableData }) => {
                 <Link to="/graphs" onClick={() => loadGraphData({ ...device, deviceType: 'NODE'})}>
                     <FlatButton label="Wykresy" primary icon={<IconGraphs />} />
                 </Link>
-                <Link to="/table" onClick={() => loadTableData({ ...device, deviceType: 'NODE'})}>
+                <Link to="/measurements" onClick={() => loadTableData({ ...device, deviceType: 'NODE'})}>
                     <FlatButton label="Pomiary" primary icon={<IconRecords />} />
                 </Link>
             </CardActions>

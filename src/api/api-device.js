@@ -1,7 +1,7 @@
-import { api } from './helper';
+import { api, apiLite } from './helper';
 
 export const createDevice = ({ id, name, type }) =>
-    api('/users/devices', {}, {
+    apiLite('/users/devices', {
         method: 'POST',
         body: JSON.stringify({ id, name, deviceType: type })
     }, true);
@@ -16,6 +16,6 @@ export const getDevices = () =>
     api(`/users/devices`, {}, {});
 
 export const removeDevice = ({ id }) =>
-    api(`/users/devices/${id}`, {}, {
+    apiLite(`/users/devices/${id}`, {
         method: 'DELETE'
     }, true);

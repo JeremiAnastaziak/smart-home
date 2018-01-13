@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardHeader } from 'material-ui/Card';
+import { CardHeader, CardText } from 'material-ui/Card';
 import { List } from 'material-ui/List';
 import DevicesListElement from '../DevicesListElement';
 import DeleteDialog from '../DevicesDialog';
@@ -38,6 +38,7 @@ class DevicesList extends Component {
                     removeDeviceSubmit={removeDeviceSubmit}
                     toggleDeviceDialog={this.toggleDeviceDialog}
                 />
+                {!devices.length && <CardText>Brak urządzeń</CardText>}
                 <List>
                     {devices &&
                         devices.map(device => (

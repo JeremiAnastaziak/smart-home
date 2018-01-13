@@ -4,37 +4,6 @@ const url = 'https://limitless-spire-43906.herokuapp.com';
 
 moment.locale();
 
-export const dateFormat = (date) => {
-    return date
-}
-
-export const massageData = (data = { handles: [], nodes: [] }) => {
-    return Object.assign({}, data, {
-        measurements: data.handles.map(record => {
-            return {
-                ...record,
-                date: dateFormat(record.date)
-            };
-        })
-    });
-};
-
-const massageCollection = (collection) =>
-    collection.map(item => {
-        return {
-            ...item,
-            date: dateFormat(item.date)
-
-        };
-    })
-
-export const massageLatestData = data => {
-    return Object.assign({}, data, {
-        handles: massageCollection(data.handles),
-        nodes: massageCollection(data.nodes)
-        })
-};
-
 export const extractDevicesFromLatestData = (data) => {
     return data.handles.map(item => {
         return {
@@ -50,20 +19,6 @@ export const extractDevicesFromLatestData = (data) => {
         }
     }))
 }
-
-export const messageGraphData = ({ data = [] }) => {
-    return Object.assign(
-        {},
-        {
-            data: data.map(item => {
-                return {
-                    ...item,
-                    date: dateFormat(item.date)
-                };
-            })
-        }
-    );
-};
 
 export const apiDateFormat = date => {
     date = moment(date).format();
