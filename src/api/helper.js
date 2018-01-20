@@ -5,6 +5,7 @@ const url = 'https://limitless-spire-43906.herokuapp.com';
 moment.locale();
 
 export const extractDevicesFromLatestData = (data) => {
+    console.log(data);
     return data.handles.map(item => {
         return {
             id: item.deviceId,
@@ -18,6 +19,10 @@ export const extractDevicesFromLatestData = (data) => {
             deviceType: 'NODE'
         }
     }))
+}
+
+export const extractAlarmsFromLatestData = (data) => {
+    return data.handles.filter(item => Object.values(item.alarm).reduce((a, b) => a || b));
 }
 
 export const apiDateFormat = date => {

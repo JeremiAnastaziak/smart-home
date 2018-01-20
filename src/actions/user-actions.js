@@ -18,16 +18,27 @@ export function submitRegisterUser(body) {
         dispatch({ type: USER_REGISTER });
 
         return registerUser(body)
-            .then(respone => {
-                dispatch({
-                    type: USER_REGISTER_SUCCESS
-                });
-                fetchInitialData()(dispatch, getState);
-                showNotification(
-                    `Witaj ${extractLogin(
-                        body.email
-                    )}! Twoje konto zostało utworzone.`
-                )(dispatch);
+            .then(response => {
+                if(response.status === 200 || response.status === 201) {
+                    dispatch({
+                        type: USER_REGISTER_SUCCESS
+                    });
+                    fetchInitialData()(dispatch, getState);
+                    showNotification(
+                        `Witaj ${extractLogin(
+                            body.email
+                        )}! Twoje konto zostało utworzone.`
+                    )(dispatch);
+                }
+                else {
+                    dispatch({
+                        type: USER_REGISTER_ERROR
+                    });
+                    showNotification(
+                        `Użytkownik z tym adresem e-mail już istnieje.`
+                    )(dispatch);
+                }
+
             })
             .catch(error => dispatch({ type: USER_REGISTER_ERROR, error }));
     };
@@ -49,11 +60,12 @@ export function submitLoginUser(body) {
                     )(dispatch);
                 }
                 else {
+                    console.log(response);
                     dispatch({
                         type: USER_LOGIN_ERROR
                     });
                     showNotification(
-                        `Uzytkownik badz haslo sa niepoprawne.`
+                        `Brak użytkownika lub niepoprawne hasło.`
                     )(dispatch);
                 }
 

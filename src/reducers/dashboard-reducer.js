@@ -61,7 +61,8 @@ export default function dashboardReducer(state = initialState, action) {
                 ...state,
                 latest: action.latest,
                 isFetching: false,
-                devices: action.devices
+                devices: action.devices,
+                devicesWithAlarm: action.devicesWithAlarm
             }
         }
         case DASHBOARD_LATEST_ERROR: {

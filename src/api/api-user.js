@@ -4,10 +4,7 @@ export const registerUser = (body) =>
 apiLite('/users', {
         method: 'POST',
         body: JSON.stringify({
-            ...body,
-            handles: [
-                'Handle 1 mock', 'Handle 2 mock'
-            ]
+            ...body
           })
     });
 

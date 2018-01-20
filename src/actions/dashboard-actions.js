@@ -3,7 +3,7 @@ import { USER_LOGIN_SUCCESS } from './user-actions';
 import { showNotification } from './notification-actions';
 import { selectDevice, getDevicesAction } from './device-actions';
 import { getSettingsAction } from './settings-actions';
-import { extractDevicesFromLatestData } from '../api/helper';
+import { extractDevicesFromLatestData, extractAlarmsFromLatestData } from '../api/helper';
 import { initialFetch } from '../api/api-latest';
 
 export const DASHBOARD_PAGINATION_CHANGE_PAGE = 'DASHBOARD_PAGINATION_CHANGE';
@@ -26,7 +26,8 @@ export const fetchInitialData = () => {
                 dispatch({
                     type: DASHBOARD_LATEST_SUCCESS,
                     latest: json,
-                    devices: extractDevicesFromLatestData(json)
+                    devices: extractDevicesFromLatestData(json),
+                    devicesWithAlarm: extractAlarmsFromLatestData(json)
                 });
                 const { user } = getState();
                 if (!user.isAuth) {

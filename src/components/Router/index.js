@@ -12,7 +12,6 @@ import HeaderSelect from '../HeaderSelect';
 import Loading from '../Loading';
 import { fetchInitialData } from '../../actions/dashboard-actions';
 
-
 const mapStateToProps = ({ user, dashboard }) => {
     return {
         isAuth: user.isAuth,
@@ -44,44 +43,46 @@ class Router extends Component {
                 ) : (
                     <div className="authRoutes" style={{ marginBottom: '66px' }}>
                         <Header />
-                        <Route
-                            exact
-                            path="/"
-                            component={() => (
-                                <div>
-                                    <Dashboard />
-                                </div>
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/graphs"
-                            component={() => (
-                                <div>
-                                    <HeaderSelect />
-                                    <Graphs />
-                                </div>
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/measurements"
-                            component={() => (
-                                <div>
-                                    <HeaderSelect />
-                                    <Measurements />
-                                </div>
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/devices"
-                            component={() => (
-                                <div>
-                                    <Devices />
-                                </div>
-                            )}
-                        />
+                        <div style={{ marginTop: '64px' }}>
+                            <Route
+                                exact
+                                path="/"
+                                component={() => (
+                                    <div>
+                                        <Dashboard />
+                                    </div>
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/graphs"
+                                component={() => (
+                                    <div>
+                                        <HeaderSelect />
+                                        <Graphs />
+                                    </div>
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/measurements"
+                                component={() => (
+                                    <div>
+                                        <HeaderSelect />
+                                        <Measurements />
+                                    </div>
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/devices"
+                                component={() => (
+                                    <div>
+                                        <Devices />
+                                    </div>
+                                )}
+                            />
+                        </div>
                         <NavigationBottom />
                     </div>
                 )}

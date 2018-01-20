@@ -29,6 +29,7 @@ html {
 
 .desk {
     min-height: calc(100vh - 70px);
+    position: relative;
 }
 
 input::-webkit-outer-spin-button,

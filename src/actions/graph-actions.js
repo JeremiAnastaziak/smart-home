@@ -53,7 +53,26 @@ export function loadGraphData() {
 
 export function changeGraphFilter(filter) {
     return (dispatch, getState) => {
+
         dispatch({ type: GRAPHS_FILTER_CHANGE, filter });
+
+        const { filters } = getState().graphs;
+
+        const minDate = new Date();
+        const maxDate = new Date();
+
+        const startDateNumber = filters.startDate ?
+            new Date(filters.startDate).getTime() :
+            new Date(minDate.setDate(minDate.getDate() - 1)).getTime();
+
+        const endDateNumber = filters.endDate ?
+            new Date(filters.endDate).getTime() :
+            new Date().getTime();
+
+        if(startDateNumber > endDateNumber) {
+            return false;
+        }
+
         loadGraphData()(dispatch, getState);
     };
 }

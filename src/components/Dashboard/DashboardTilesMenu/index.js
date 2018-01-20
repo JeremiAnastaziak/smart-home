@@ -14,7 +14,7 @@ import { red500 } from 'material-ui/styles/colors';
 class DashboardTilesMenu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { dialog: false, startDate: '', endDate: '' };
+        this.state = { dialog: false, startDate: null, endDate: null };
     }
 
     toggleDialog = () => this.setState({ dialog: !this.state.dialog });
@@ -25,8 +25,16 @@ class DashboardTilesMenu extends React.Component {
     };
 
     render() {
-        const startDateNumber = new Date(this.state.startDate).getTime();
-        const endDateNumber = new Date(this.state.endDate).getTime();
+        const minDate = new Date();
+        const maxDate = new Date();
+
+        const startDateNumber = this.state.startDate ?
+            new Date(this.state.startDate).getTime() :
+            new Date(minDate.setDate(minDate.getDate() - 1)).getTime();
+
+        const endDateNumber = this.state.endDate ?
+            new Date(this.state.endDate).getTime() :
+            new Date().getTime();
 
         const actions = [
             <FlatButton
