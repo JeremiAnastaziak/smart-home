@@ -3,3 +3,9 @@
         display: none;
     }
 }
+
+@media(min-width: 900px) {
+    .header-logout {
+        padding: 12px 59px !important;
+    }
+}

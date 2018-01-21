@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './HeaderIcon';
 import HeaderLogout from './HeaderLogout';
+import './index.css';
 
 const Header = () => {
     return (

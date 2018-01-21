@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import DashboardTile from './DashboardTile';
 import DashboardTileHandle from './DashboardTileHandle';
 import DashboardTileNode from './DashboardTileNode';
 import DashboardAlarm from './DashboardAlarm';
@@ -79,21 +80,27 @@ const Dashboard = ({
             <div className="devices">
                 {latest.handles &&
                     latest.handles.map(handle => (
-                        <DashboardTileHandle
+                        <DashboardTile
                             key={handle.id}
-                            device={handle}
                             loadGraphData={loadGraphData}
                             loadTableData={loadTableData}
-                        />
+                            device={handle}
+                            deviceType="HANDLE"
+                        >
+                            <DashboardTileHandle key={handle.id} device={handle} />
+                        </DashboardTile>
                     ))}
                 {latest.nodes &&
                     latest.nodes.map(node => (
-                        <DashboardTileNode
-                            key={node.id}
-                            device={node}
-                            loadGraphData={loadGraphData}
-                            loadTableData={loadTableData}
-                        />
+                        <DashboardTile
+                        key={node.id}
+                        loadGraphData={loadGraphData}
+                        loadTableData={loadTableData}
+                        device={node}
+                        deviceType="NODE"
+                    >
+                        <DashboardTileNode key={node.id} device={node} />
+                    </DashboardTile>
                     ))}
             </div>
         </div>

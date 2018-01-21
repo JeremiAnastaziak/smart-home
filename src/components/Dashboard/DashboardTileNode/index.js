@@ -21,60 +21,41 @@ import { Link } from 'react-router-dom';
 import DashboardTilesMenu from '../DashboardTilesMenu';
 import renderIcons from '../icons';
 
-const DashboardTileNode = ({ device, loadGraphData, loadTableData }) => {
+const DashboardTileNode = ({ device }) => {
     return (
-        <Card style={{ textAlign: 'center', paddingRight: 0 }} className="device">
-            <CardTitle
-                title={device.nodeName}
-                style={{ textAlign: 'center', paddingBottom: '0 16px' }}
-            />
-            <DashboardTilesMenu device={device} />
-            {renderIcons(device)}
-            <CardText style={{ textAlign: 'center', padding: 0, minHeight: '180px' }}>
-                <h6 className="device-row-item-header">Ostatni pomiar:</h6>
-                <h3 className="device-date">{device.date}</h3>
-                <h3 className="device-row">
-                <span className="flex1">
-                        <h6 className="device-row-item-header">Temperatura</h6>
-                    <span className="device-row-item">
-                        <IconTemp style={{ color: '#FFEB3B' }} />
-                        {device.temperature.value + ' ' + device.temperature.unit}
+        <div className="device-meta">
+            <span className="device-meta-item">
+                <h6 className="device-meta-item-header">Temperatura</h6>
+                <span className="device-meta-item-text">
+                    <IconTemp style={{ color: '#FFEB3B' }} />
+                    {device.temperature.value + ' ' + device.temperature.unit}
+                </span>
+            </span>
+            <span className="device-meta-item">
+                <h6 className="device-meta-item-header">Światło</h6>
+                <span className="device-meta-item-text">
+                    <IconLight color="#41e0e2de" />
+                    {device.lightIntensity.value + ' ' + device.lightIntensity.unit}
+                </span>
+            </span>
+            <span className="device-meta-item">
+                <h6 className="device-meta-item-header">Dwutlenek węgla</h6>
+                <span className="device-meta-item-text">
+                    <IconCO2 style={{ color: '#ff8d7f' }} />
+                    <span>
+                        {device.carbonDioxide.value + ' ' + 'CO'}
+                        <sup>2</sup>
                     </span>
-                    </span>
-                    <span className="flex1">
-                        <h6 className="device-row-item-header">Światło</h6>
-                    <span className="device-row-item">
-                        <IconLight color="#41e0e2de"/>
-                        {device.lightIntensity.value + ' ' + device.lightIntensity.unit}
-                    </span>
-                    </span>
-                </h3>
-                <h3 className="device-row">
-                <span className="flex1">
-                        <h6 className="device-row-item-header">Dwutlenek węgla</h6>
-                    <span className="device-row-item">
-                        <IconCO2 style={{ color: '#ff8d7f' }} />
-                        <span>{device.carbonDioxide.value + ' ' + 'CO'}<sup>2</sup></span>
-                    </span>
-                    </span>
-                    <span className="flex1">
-                        <h6 className="device-row-item-header">Wilgotność</h6>
-                    <span className="device-row-item">
-                        <IconHumidity color="#03a9f4"/>
-                        {device.humidity.value + ' ' + device.humidity.unit}
-                    </span>
-                    </span>
-                </h3>
-            </CardText>
-            <CardActions className="device-footer">
-                <Link to="/graphs" onClick={() => loadGraphData({ ...device, deviceType: 'NODE'})}>
-                    <FlatButton label="Wykresy" primary icon={<IconGraphs />} />
-                </Link>
-                <Link to="/measurements" onClick={() => loadTableData({ ...device, deviceType: 'NODE'})}>
-                    <FlatButton label="Pomiary" primary icon={<IconRecords />} />
-                </Link>
-            </CardActions>
-        </Card>
+                </span>
+            </span>
+            <span className="device-meta-item">
+                <h6 className="device-meta-item-header">Wilgotność</h6>
+                <span className="device-meta-item-text">
+                    <IconHumidity color="#03a9f4" />
+                    {device.humidity.value + ' ' + device.humidity.unit}
+                </span>
+            </span>
+        </div>
     );
 };
 

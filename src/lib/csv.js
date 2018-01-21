@@ -1,82 +1,51 @@
 import { fetchRecords } from '../api/api-measurements';
 import { apiDateFormat } from '../api/helper';
+import { formatHandleData } from './csv-handle';
+import { exportCSVFile } from './csv-export';
+import { formatNodeData } from './csv-node';
 
-function convertToCSV(objArray) {
-    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    var str = '';
-
-    for (var i = 0; i < array.length; i++) {
-        var line = '';
-        for (var index in array[i]) {
-            if (line != '') line += ','
-
-            line += array[i][index];
-        }
-
-        str += line + '\r\n';
-    }
-
-    return str;
-}
-
-export function exportCSVFile(headers, items, fileTitle) {
-    if (headers) {
-        items.unshift(headers);
-    }
-
-    // Convert Object to JSON
-    var jsonObject = JSON.stringify(items);
-
-    var csv = convertToCSV(jsonObject);
-
-    var exportedFilenmae = fileTitle + '.csv' || 'export.csv';
-
-    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    if (navigator.msSaveBlob) { // IE 10+
-        navigator.msSaveBlob(blob, exportedFilenmae);
-    } else {
-        var link = document.createElement("a");
-        if (link.download !== undefined) { // feature detection
-            // Browsers that support HTML5 download attribute
-            var url = URL.createObjectURL(blob);
-            link.setAttribute("href", url);
-            link.setAttribute("download", exportedFilenmae);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
-}
-
-export const saveDataToCSV = (device, filter) => {
+export const saveDataToCSV = (device, deviceType, filter) => {
     console.log(device);
+
+    const devices =
+        deviceType === 'HANDLE'
+            ? { handles: device.deviceId }
+            : { nodes: device.deviceId };
+
+    const minDate = new Date();
     const params = {
         activeSort: 'date_latest',
-        handles: '123123'
+        startDate: apiDateFormat(new Date(minDate.setDate(minDate.getDate() - 1))),
+        endDate: apiDateFormat(new Date()),
+        ...devices
     };
     if (filter.startDate) params.startDate = apiDateFormat(filter.startDate);
     if (filter.endDate) params.endDate = apiDateFormat(filter.endDate);
 
-    fetchRecords(params).then(data => {
-        const fileTitle = `${device.handleName}-pomiary`; // or 'my-unique-title'
-        const headers = {
-            date: 'Data'.replace(/,/g, ''), // remove commas to avoid errors
-            handleName: 'Nazwa klamki',
-            handlePosition: 'Pozycja klamki',
-            temperature: 'Temperatura'
-        };
+    fetchRecords(deviceType, params).then(data => {
+        if (deviceType === 'HANDLE') {
+            if(!data.measurements.length) {
+                return false;
+            }
 
-        const itemsFormatted = data.handleMeasurements.map(item => {
-            return {
-                date: item.date,
-                handleName: item.handleName,
-                handlePosition: item.handlePosition,
-                temperature: item.temperature.value
-            };
-        });
+            const { fileTitle, headers, itemsFormatted } = formatHandleData(
+                data,
+                device
+            );
+            exportCSVFile(headers, itemsFormatted, fileTitle);
+        } else if (deviceType === 'NODE') {
+            if(!data.measurements.length) {
+                return false;
+            }
 
-        exportCSVFile(headers, itemsFormatted, fileTitle);
+            const { fileTitle, headers, itemsFormatted } = formatNodeData(
+                data,
+                device
+            );
+            exportCSVFile(headers, itemsFormatted, fileTitle);
+        } else {
+            return false;
+        }
     });
 };
 // call the exportCSVFile() function to process the JSON and trigger the download

@@ -11,7 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FilterDate from '../../FilterDate';
 import { red500 } from 'material-ui/styles/colors';
 
-class DashboardTilesMenu extends React.Component {
+class DashboardTileCSV extends React.Component {
     constructor(props) {
         super(props);
         this.state = { dialog: false, startDate: null, endDate: null };
@@ -20,7 +20,7 @@ class DashboardTilesMenu extends React.Component {
     toggleDialog = () => this.setState({ dialog: !this.state.dialog });
 
     fetchData = () => {
-        saveDataToCSV(this.props.device, this.state);
+        saveDataToCSV(this.props.device, this.props.deviceType, this.state);
         this.toggleDialog();
     };
 
@@ -101,4 +101,4 @@ class DashboardTilesMenu extends React.Component {
     }
 }
 
-export default DashboardTilesMenu;
+export default DashboardTileCSV;
