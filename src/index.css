@@ -25,6 +25,8 @@ a:-webkit-any-link {
 
 html {
     background: #f2f5f7;
+    max-height: 100vh;
+    overflow-x: hidden;
 }
 
 .desk {
@@ -42,3 +44,10 @@ input::-webkit-inner-spin-button {
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 310px white inset;
 }
+
+@media (max-width: 900px) {
+    .authRoutes {
+        margin-bottom: 66px !important;
+    }
+}
+

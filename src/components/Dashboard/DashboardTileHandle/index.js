@@ -15,7 +15,6 @@ import IconSound from 'material-ui/svg-icons/action/settings-remote';
 import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
-import DashboardTilesMenu from '../DashboardTilesMenu';
 import { IconFrost } from '../../../assets/icons';
 import renderIcons from '../icons';
 

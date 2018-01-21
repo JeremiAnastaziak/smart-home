@@ -10,44 +10,28 @@ import {
 
 import uuidv1 from 'uuid/v1';
 
-import { Card } from 'material-ui/Card';
+import { Card, CardText } from 'material-ui/Card';
 import CircularProgress from 'material-ui/CircularProgress';
 import TableToolbar from '../TableToolbar';
 import TableRowCustom from '../TableRow';
 import './hack.css';
 
 const TableCustom = ({ records, isFetching, alarmTable, content }) => {
-    const renderTableHeader = () => {
-        if (!isFetching && !records.length) {
-            return (
-                <p
-                    style={{
-                        textAlign: 'center'
-                    }}
-                >
-                    Brak dostępnych pomiarów
-                </p>
-            );
-        }
-
-        return (
-            <TableRow>
-                {Object.keys(content).map(header => (
-                    <TableHeaderColumn>{content[header]}</TableHeaderColumn>
-                ))}
-            </TableRow>
-        );
-    };
 
     return (
         <Card
             style={{ position: 'relative', overflow: 'hidden', margin: "0 0 10px" }}
         >
+            {!isFetching && !records.length ? <CardText>Brak pomiarów</CardText> : <div>
             <TableToolbar isAlarmTable={alarmTable} />
             <div style={{ overflowX: 'auto', overflowY: 'auto' }}>
                 <Table style={{ minWidth: '700px' }} className="table-custom">
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-                        {renderTableHeader()}
+                    <TableRow>
+                        {Object.keys(content).map(header => (
+                            <TableHeaderColumn>{content[header]}</TableHeaderColumn>
+                        ))}
+                    </TableRow>
                     </TableHeader>
 
                     <TableBody displayRowCheckbox={false}>
@@ -63,7 +47,8 @@ const TableCustom = ({ records, isFetching, alarmTable, content }) => {
                             ))}
                     </TableBody>
                 </Table>
-            </div>
+                </div>
+            </div>}
         </Card>
     );
 };

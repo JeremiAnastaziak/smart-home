@@ -18,6 +18,7 @@
     .bottom-nav > div {
         justify-content: flex-start !important;
         height: 160px !important;
+        width: calc(100vh - 64px) !important;
     }
     .bottom-nav a, .bottom-nav button {
         max-width: 160px !important;
@@ -36,7 +37,7 @@
         /* box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; */
     }
 
-    .desk {
+    .desk .authRoutes{
         margin-left: 166px;
     }
     .header {

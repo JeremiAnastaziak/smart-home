@@ -18,7 +18,6 @@ import IconLight from 'material-ui/svg-icons/action/lightbulb-outline';
 import IconFire from 'material-ui/svg-icons/social/whatshot';
 import { red500, red400, red50 } from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
-import DashboardTilesMenu from '../DashboardTilesMenu';
 import renderIcons from '../icons';
 
 const DashboardTileNode = ({ device }) => {

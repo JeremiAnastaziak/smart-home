@@ -41,7 +41,7 @@ class Router extends Component {
                         <Route path="/" component={Landing} />
                     </div>
                 ) : (
-                    <div className="authRoutes" style={{ marginBottom: '66px' }}>
+                    <div className="authRoutes">
                         <Header />
                         <div style={{ marginTop: '64px' }}>
                             <Route
