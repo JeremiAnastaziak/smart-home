@@ -10,6 +10,17 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import FilterDate from '../../FilterDate';
 import { red500 } from 'material-ui/styles/colors';
+import { connect } from 'react-redux';
+import { formatHandleData } from '../../../lib/csv-handle';
+import { formatNodeData } from '../../../lib/csv-node';
+import { exportCSVFile } from '../../../lib/csv-export';
+import { showNotification } from '../../../actions/notification-actions';
+
+const mapDispatchToProps = dispatch => {
+    return {
+        showNotification: (text, error) => dispatch(showNotification(text, error))
+    };
+};
 
 class DashboardTileCSV extends React.Component {
     constructor(props) {
@@ -20,7 +31,25 @@ class DashboardTileCSV extends React.Component {
     toggleDialog = () => this.setState({ dialog: !this.state.dialog });
 
     fetchData = () => {
-        saveDataToCSV(this.props.device, this.props.deviceType, this.state);
+        const { device, deviceType, showNotification } = this.props;
+
+        saveDataToCSV(device, deviceType, this.state).then(data => {
+            if (!data.measurements.length) {
+                return showNotification(
+                    'Brak pomiarów w zadanym przedziale czasu',
+                    true
+                );
+            }
+            const { fileTitle, headers, itemsFormatted } =
+                deviceType === 'HANDLE'
+                    ? formatHandleData(data, device)
+                    : formatNodeData(data, device);
+
+            exportCSVFile(headers, itemsFormatted, fileTitle);
+            showNotification(
+                'Utworzony plik csv został zapisany w pamięci urządzenia'
+            );
+        });
         this.toggleDialog();
     };
 
@@ -28,13 +57,13 @@ class DashboardTileCSV extends React.Component {
         const minDate = new Date();
         const maxDate = new Date();
 
-        const startDateNumber = this.state.startDate ?
-            new Date(this.state.startDate).getTime() :
-            new Date(minDate.setDate(minDate.getDate() - 1)).getTime();
+        const startDateNumber = this.state.startDate
+            ? new Date(this.state.startDate).getTime()
+            : new Date(minDate.setDate(minDate.getDate() - 1)).getTime();
 
-        const endDateNumber = this.state.endDate ?
-            new Date(this.state.endDate).getTime() :
-            new Date().getTime();
+        const endDateNumber = this.state.endDate
+            ? new Date(this.state.endDate).getTime()
+            : new Date().getTime();
 
         const actions = [
             <FlatButton
@@ -101,4 +130,4 @@ class DashboardTileCSV extends React.Component {
     }
 }
 
-export default DashboardTileCSV;
+export default connect(null, mapDispatchToProps)(DashboardTileCSV);

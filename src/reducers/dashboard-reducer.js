@@ -15,6 +15,7 @@ const initialState = {
     latest: { nodes: [], handles: []},
     records: { measurements: [], count: 0},
     isFetching: false,
+    isLatestFetching: false,
     offset: 0,
     limit: 5,
     activePage: 1,
@@ -53,14 +54,14 @@ export default function dashboardReducer(state = initialState, action) {
         case DASHBOARD_LATEST: {
             return {
                 ...state,
-                isFetching: true
+                isLatestFetching: true
             }
         }
         case DASHBOARD_LATEST_SUCCESS: {
             return {
                 ...state,
                 latest: action.latest,
-                isFetching: false,
+                isLatestFetching: false,
                 devices: action.devices,
                 devicesWithAlarm: action.devicesWithAlarm
             }
@@ -69,7 +70,7 @@ export default function dashboardReducer(state = initialState, action) {
             return {
                 ...state,
                 latest: action.latest,
-                isFetching: false
+                isLatestFetching: false
             }
         }
         case DASHBOARD_SORT:

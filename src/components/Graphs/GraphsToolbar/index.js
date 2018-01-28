@@ -2,6 +2,7 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import ReloadIcon from 'material-ui/svg-icons/action/cached';
 import FilterDate from '../../FilterDate';
+import uuidv1 from 'uuid/v1';
 import './index.css';
 
 const GraphsToolbar = ({
@@ -21,6 +22,8 @@ const GraphsToolbar = ({
         new Date(filters.endDate).getTime() :
         new Date().getTime();
 
+    console.log(filters.startDate, filters.endDate);
+
     return (
         <div>
             <div className="graphs-toolbar">
@@ -29,14 +32,12 @@ const GraphsToolbar = ({
                     value={filters.startDate || null}
                     minData={filters.startDate}
                     onDateChange={value => changeGraphFilter({ startDate: value })}
-                    key="min"
-                    min
+                    min={true}
                 />
                 <FilterDate
                     hint="Data do"
                     value={filters.endDate || null}
                     minData={filters.startDate}
-                    key="max"
                     onDateChange={value => changeGraphFilter({ endDate: value })}
                 />
 

@@ -1,8 +1,7 @@
 import { fetchRecords } from '../api/api-measurements';
 import { apiDateFormat } from '../api/helper';
-import { formatHandleData } from './csv-handle';
-import { exportCSVFile } from './csv-export';
 import { formatNodeData } from './csv-node';
+import { showNotification } from '../actions/notification-actions';
 
 export const saveDataToCSV = (device, deviceType, filter) => {
     console.log(device);
@@ -22,31 +21,7 @@ export const saveDataToCSV = (device, deviceType, filter) => {
     if (filter.startDate) params.startDate = apiDateFormat(filter.startDate);
     if (filter.endDate) params.endDate = apiDateFormat(filter.endDate);
 
-    fetchRecords(deviceType, params).then(data => {
-        if (deviceType === 'HANDLE') {
-            if(!data.measurements.length) {
-                return false;
-            }
-
-            const { fileTitle, headers, itemsFormatted } = formatHandleData(
-                data,
-                device
-            );
-            exportCSVFile(headers, itemsFormatted, fileTitle);
-        } else if (deviceType === 'NODE') {
-            if(!data.measurements.length) {
-                return false;
-            }
-
-            const { fileTitle, headers, itemsFormatted } = formatNodeData(
-                data,
-                device
-            );
-            exportCSVFile(headers, itemsFormatted, fileTitle);
-        } else {
-            return false;
-        }
-    });
+    return fetchRecords(deviceType, params);
 };
 // call the exportCSVFile() function to process the JSON and trigger the download
 // https://gist.github.com/dannypule

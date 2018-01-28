@@ -12,36 +12,42 @@ const GraphsTiles = ({ fields, active, deviceType, changeGraphView }) => {
             case 'sound_level':
                 return 'Moc sygnału';
             case 'carbonDioxide':
-                return 'Dwutlenek węgla';
+                return 'Stężenie dwutlenku węgla';
             case 'lightIntensity':
-                return 'Intensywnosc swiatła';
+                return 'Natężenie światła';
             case 'humidity':
-                return 'Wilgotnosc'
+                return 'Wilgotność względna';
             default:
                 return tile;
         }
     };
 
-    const fieldsForDevice = deviceType === 'HANDLE' ? [
-        'temperature', 'sound_level'
-    ] : [
-        'temperature', 'lightIntensity', 'humidity', 'carbonDioxide'
-    ];
+    const fieldsForDevice =
+        deviceType === 'HANDLE'
+            ? ['temperature', 'sound_level']
+            : ['temperature', 'lightIntensity', 'humidity', 'carbonDioxide'];
+
     return (
-        <div className="graphs-tiles">
-            {fields.map(tile => fieldsForDevice.includes(tile) && (
-                <Paper
-                    key={tile}
-                    label={tile}
-                    onClick={() => changeGraphView(tile)}
-                    zDepth={tile === active ? 2 : 1}
-                    className={classNames('graphs-tiles-item', {
-                        'graphs-tiles-item--selected': tile === active
-                    })}
-                >
-                    {renderText(tile)}
-                </Paper>
-            ))}
+        <div>
+            <h3 style={{margin: "10px 0 0 5px", fontWeight: 400}} >Wybrany parametr:</h3>
+            <div className="graphs-tiles">
+                {fields.map(
+                    tile =>
+                        fieldsForDevice.includes(tile) && (
+                            <Paper
+                                key={tile}
+                                label={tile}
+                                onClick={() => changeGraphView(tile)}
+                                zDepth={tile === active ? 2 : 1}
+                                className={classNames('graphs-tiles-item', {
+                                    'graphs-tiles-item--selected': tile === active
+                                })}
+                            >
+                                {renderText(tile)}
+                            </Paper>
+                        )
+                )}
+            </div>
         </div>
     );
 };

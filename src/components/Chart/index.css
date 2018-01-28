@@ -1,3 +1,7 @@
 .chart-container {
     box-shadow: inset 0px 0 0 249px rgba(238, 238, 238, 0.60);
 }
+
+.recharts-responsive-container .recharts-cartesian-axis-tick:first-of-type {
+    visibility: hidden;
+}

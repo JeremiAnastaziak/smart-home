@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import FontIcon from 'material-ui/FontIcon';
 import {
     BottomNavigation,
@@ -22,8 +23,24 @@ class NavigationBottom extends Component {
 
     render() {
         return (
-            <Paper className="bottom-nav" zDepth={1} style={{position: 'fixed', bottom: '0', zIndex: 999}}>
-                <BottomNavigation selectedIndex={this.state.selectedIndex} style={{width: '100vw'}}>
+            <Paper
+                className={classNames({
+                    'bottom-nav': true,
+                    'bottom-nav-bottom': this.props.fixedBottom,
+                    'bottom-nav-side': !this.props.fixedBottom
+                })}
+                zDepth={1}
+                style={
+                    this.props.fixedBottom && {
+                        position: 'fixed',
+                        bottom: '0',
+                        zIndex: 999
+                    }
+                }
+            >
+                <BottomNavigation
+                    selectedIndex={this.state.selectedIndex}
+                >
                     <Link to="/">
                         <BottomNavigationItem
                             style={{ height: '56px' }}

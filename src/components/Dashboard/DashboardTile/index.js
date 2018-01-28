@@ -45,14 +45,14 @@ const DashboardTile = ({
                 <Link
                     to="/graphs"
                     onClick={() =>
-                        loadGraphData({ ...device, deviceType: 'HANDLE' })}
+                        loadGraphData({ ...device, deviceType })}
                 >
                     <FlatButton label="Wykresy" primary icon={<IconGraphs />} />
                 </Link>
                 <Link
                     to="/measurements"
                     onClick={() =>
-                        loadTableData({ ...device, deviceType: 'HANDLE' })}
+                        loadTableData({ ...device, deviceType })}
                 >
                     <FlatButton label="Pomiary" primary icon={<IconRecords />} />
                 </Link>

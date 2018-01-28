@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardTitle } from 'material-ui/Card';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
+import * as moment from 'moment';
 
 import {
     ResponsiveContainer,
@@ -15,6 +16,9 @@ import {
 import './index.css';
 
 const Chart = ({ measurements, title, isFetching, children }) => {
+
+    const xAxisTickFormatter = (date) => moment(date).format('DD-MM-YYYY');
+
     return (
         <Card style={{ position: 'relative'}}>
             ;
@@ -29,21 +33,10 @@ const Chart = ({ measurements, title, isFetching, children }) => {
                     }}
                 />
             )}
+            <p style={{margin: '0 0 0 10px', lineHeight: '15px', minHeight: '15px', color: 'red'}}>
             {!isFetching &&
-                !measurements.length && (
-                    <span
-                        style={{
-                            position: 'absolute',
-                            top: '70%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            textAlign: 'center'
-                        }}
-                    >
-                        Brak pomiarów <br/>
-                        Spróbuj wybrac inny zakres dat
-                    </span>
-                )}
+                !measurements.length && 'Brak pomiarów. Spróbuj wybrać inny przedział czasu.'
+                    }</p>
             <ResponsiveContainer width="99%" aspect={1.8}>
                 {measurements && (
                     <AreaChart
@@ -74,8 +67,9 @@ const Chart = ({ measurements, title, isFetching, children }) => {
                             dataKey="date"
                             color="#9e9e9e"
                             style={{ fontSize: '12px' }}
+                            tickFormatter={xAxisTickFormatter}
                         />
-                        <YAxis domain={['dataMin - 2', 'dataMax + 2']} hide />
+                        <YAxis domain={['dataMin - 2', 'dataMax + 2']} />
                         <CartesianGrid strokeDasharray="3 3" />
                         <Tooltip />
                         <Area

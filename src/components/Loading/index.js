@@ -23,7 +23,7 @@ const Loading = () => {
                         }}
                     >
                         <p style={{ textAlign: 'center', marginTop: 0 }}>
-                            Sprawdzam sesję uzytkownika
+                            Sprawdzam sesję użytkownika
                         </p>
                         <CircularProgress size={30} />
                     </span>

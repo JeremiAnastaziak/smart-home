@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
 import { cyan500 } from 'material-ui/styles/colors';
 import { selectDevice } from '../../actions/device-actions';
+import DropDownMenu from 'material-ui/DropDownMenu';
 
 const mapStateToProps = ({ dashboard, devices }) => {
     return {
@@ -27,7 +28,7 @@ class HeaderSelect extends React.Component {
     }
 
     componentDidMount() {
-        if(this.props.selectedDevice.id) return false;
+        if (this.props.selectedDevice.id) return false;
         this.props.deviceClick(this.props.devices[0]);
     }
 
@@ -39,48 +40,27 @@ class HeaderSelect extends React.Component {
     };
 
     render() {
+        if(!this.props.devices.length) return false;
         return (
             <div className="header-select">
-                <Paper
-                    style={{
-                        textAlign: 'center',
-                        zIndex: '1500',
-                        position: 'relative'
-                    }}
-                >
-                    <MenuItem
-                        onClick={this.handleToggle}
-                        style={{ lineHeight: '34px' }}
-                    >
-                        <Subheader style={{ lineHeight: '14px', padding: '8px' }}>
-                            wybrane urządzenie
-                        </Subheader>
-                        {this.props.selectedDevice.name || 'pokaz wszystkie'}
-                    </MenuItem>
-                </Paper>
-                <Paper
-                    style={{
-                        textAlign: 'center',
-                        zIndex: '1500',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        height: this.state.open ? 'auto' : '0'
-                    }}
+                <span className="header-label">aktywne urządzenie:</span>
+                <DropDownMenu
+                    labelStyle={{ color: '#fff' }}
+                    underlineStyle={{ display: 'none' }}
+                    value={
+                        (this.props.selectedDevice &&
+                            this.props.selectedDevice.id) ||
+                        (this.props.devices && this.props.devices.length && this.props.devices[0].id)
+                    }
                 >
                     {this.props.devices.map(device => (
                         <MenuItem
                             onClick={() => this.handleItemClick(device)}
-                            style={{
-                                color:
-                                    this.props.selectedDevice.name === device.name
-                                        ? cyan500
-                                        : '#000'
-                            }}
-                        >
-                            {device.name}
-                        </MenuItem>
+                            value={device.id}
+                            primaryText={device.name}
+                        />
                     ))}
-                </Paper>
+                </DropDownMenu>
             </div>
         );
     }

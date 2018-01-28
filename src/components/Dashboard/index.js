@@ -16,7 +16,7 @@ const mapStateToProps = ({ dashboard }) => {
     return {
         latest: dashboard.latest,
         devicesWithAlarm: dashboard.devicesWithAlarm,
-        isFetching: dashboard.isFetching
+        isFetching: dashboard.isLatestFetching
     };
 };
 

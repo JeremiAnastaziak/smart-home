@@ -22,9 +22,9 @@ const Measurements = props => {
     const deviceTypeNode = {
         date: 'Data',
         temperature: 'Temperatura',
-        lightIntensity: 'Światło',
-        carbonDioxide: 'Dwutlenek węgla',
-        humidity: 'Wilgotność'
+        lightIntensity: 'Natężenie światła',
+        carbonDioxide: 'Stężenie dwutleneku węgla',
+        humidity: 'Wilgotność względna'
     };
 
     return (

@@ -35,7 +35,7 @@ export function submitRegisterUser(body) {
                         type: USER_REGISTER_ERROR
                     });
                     showNotification(
-                        `Użytkownik z tym adresem e-mail już istnieje.`
+                        `Użytkownik z tym adresem e-mail już istnieje.`, true
                     )(dispatch);
                 }
 
@@ -65,7 +65,7 @@ export function submitLoginUser(body) {
                         type: USER_LOGIN_ERROR
                     });
                     showNotification(
-                        `Brak użytkownika lub niepoprawne hasło.`
+                        `Brak użytkownika lub niepoprawne hasło.`, true
                     )(dispatch);
                 }
 

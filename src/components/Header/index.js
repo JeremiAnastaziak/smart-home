@@ -3,21 +3,37 @@ import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom';
 import HeaderIcon from './HeaderIcon';
 import HeaderLogout from './HeaderLogout';
+import HeaderSelect from '../HeaderSelect';
 import './index.css';
 
 const Header = () => {
     return (
         <AppBar
-            style={{ textAlign: 'center', position: 'fixed', top: '0', zIndex: 100000}}
-            titleStyle={{flex: 'none'}}
+            style={{
+                textAlign: 'center',
+                top: '0',
+                zIndex: 1500
+            }}
+            titleStyle={{ flex: 'none' }}
             title={
-                <Link to="/" style={{ color: '#fff', padding: '10px 0', marginLeft: '34px'}}>
-                    Dashboard
-                </Link>
+                <div style={{ display: 'flex', height: '64px' }}>
+                    <Link
+                        to="/"
+                        className="header-title"
+                        style={{
+                            color: '#fff',
+                            padding: '10px 0',
+                            marginLeft: '34px'
+                        }}
+                    >
+                        Platforma BIoT
+                    </Link>
+                    <HeaderSelect className="header-select" />
+                </div>
             }
             className="header"
-            iconElementLeft={<HeaderLogout/>}
-            iconElementRight={<HeaderIcon/>}
+            iconElementLeft={<HeaderLogout />}
+            iconElementRight={<HeaderIcon />}
         />
     );
 };

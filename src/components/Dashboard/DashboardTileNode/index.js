@@ -31,27 +31,26 @@ const DashboardTileNode = ({ device }) => {
                 </span>
             </span>
             <span className="device-meta-item">
-                <h6 className="device-meta-item-header">Światło</h6>
+                <h6 className="device-meta-item-header">Natężenie światła</h6>
                 <span className="device-meta-item-text">
                     <IconLight color="#41e0e2de" />
-                    {device.lightIntensity.value + ' ' + device.lightIntensity.unit}
+                    {device.lightIntensity.value + ' ' + device.lightIntensity.unit.replace('Lumeny?', 'lm')}
                 </span>
             </span>
             <span className="device-meta-item">
-                <h6 className="device-meta-item-header">Dwutlenek węgla</h6>
+                <h6 className="device-meta-item-header">Stężenie dwutlenku węgla</h6>
                 <span className="device-meta-item-text">
                     <IconCO2 style={{ color: '#ff8d7f' }} />
                     <span>
-                        {device.carbonDioxide.value + ' ' + 'CO'}
-                        <sup>2</sup>
+                        {device.carbonDioxide.value + ' ' + 'CO2'}
                     </span>
                 </span>
             </span>
             <span className="device-meta-item">
-                <h6 className="device-meta-item-header">Wilgotność</h6>
+                <h6 className="device-meta-item-header">Wilgotność względna</h6>
                 <span className="device-meta-item-text">
                     <IconHumidity color="#03a9f4" />
-                    {device.humidity.value + ' ' + device.humidity.unit}
+                    {device.humidity.value + ' ' + device.humidity.unit.replace('jednostka?', '')}
                 </span>
             </span>
         </div>

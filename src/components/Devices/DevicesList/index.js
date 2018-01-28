@@ -30,7 +30,7 @@ class DevicesList extends Component {
         const { devices, isFetching, editDeviceSubmit, removeDeviceSubmit } = this.props;
         return (
             <div>
-                <CardHeader className="devices-title"  style={{paddingBottom: 0}}title="Lista aktywnych urządzeń" />
+                <CardHeader className="devices-title"  style={{paddingBottom: 0}}title="Lista dodanych urządzeń" />
                 <DeleteDialog
                     open={this.state.dialog}
                     name={this.state.deleteName}

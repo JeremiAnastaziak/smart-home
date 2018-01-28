@@ -14,6 +14,7 @@ export default function notificationReducer(state = initialState, action) {
             return {
                 ...state,
                 text: action.text,
+                error: action.error,
                 show: true
             };
         case NOTIFICATION_HIDE:

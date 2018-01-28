@@ -5,10 +5,11 @@ export const hideNotification = () => ({
     type: NOTIFICATION_HIDE
 });
 
-export const showNotification = text => {
+export const showNotification = (text, error) => {
     return dispatch => {
         dispatch({
             type: NOTIFICATION_SHOW,
+            error,
             text
         });
 

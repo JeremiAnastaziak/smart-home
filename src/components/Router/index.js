@@ -15,7 +15,7 @@ import { fetchInitialData } from '../../actions/dashboard-actions';
 const mapStateToProps = ({ user, dashboard }) => {
     return {
         isAuth: user.isAuth,
-        isCheckingAuth: dashboard.isFetching
+        isCheckingAuth: dashboard.isLatestFetching
     };
 };
 
@@ -42,13 +42,14 @@ class Router extends Component {
                     </div>
                 ) : (
                     <div className="authRoutes">
-                        <Header />
-                        <div style={{ marginTop: '64px' }}>
+                        <NavigationBottom className="bottom-nav-side"/>
+                        <div class="page-content">
                             <Route
                                 exact
                                 path="/"
                                 component={() => (
                                     <div>
+                                        <Header />
                                         <Dashboard />
                                     </div>
                                 )}
@@ -57,8 +58,8 @@ class Router extends Component {
                                 exact
                                 path="/graphs"
                                 component={() => (
-                                    <div>
-                                        <HeaderSelect />
+                                    <div className="header-select--show">
+                                        <Header />
                                         <Graphs />
                                     </div>
                                 )}
@@ -67,8 +68,8 @@ class Router extends Component {
                                 exact
                                 path="/measurements"
                                 component={() => (
-                                    <div>
-                                        <HeaderSelect />
+                                    <div className="header-select--show">
+                                        <Header />
                                         <Measurements />
                                     </div>
                                 )}
@@ -78,12 +79,13 @@ class Router extends Component {
                                 path="/devices"
                                 component={() => (
                                     <div>
+                                        <Header />
                                         <Devices />
                                     </div>
                                 )}
                             />
                         </div>
-                        <NavigationBottom />
+                        <NavigationBottom fixedBottom/>
                     </div>
                 )}
             </HashRouter>

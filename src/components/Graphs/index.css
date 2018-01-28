@@ -7,13 +7,13 @@
     cursor: pointer;
 }
 
+.graphs-tiles {
+    margin: 5px;
+}
+
 .graphs-tiles-item--selected {
     background-color: #00bcd4 !important;
     color: #fff !important;
-}
-
-.graphs-page tspan {
-    visibility: hidden;
 }
 
 @media (min-width: 1200px) {

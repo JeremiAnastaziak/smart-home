@@ -1,3 +1,28 @@
+.header-title {
+    padding: 0 10px !important;
+}
+
+.header-label {
+    font-size: 15px;
+    font-weight: 300;
+    color: #eff;
+    margin-left: 30px;
+}
+
+.header-select {
+    display: none;
+}
+
+.header-select--show .header-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-select > div {
+    margin-top: -7px;
+}
+
 @media(min-width: 425px) {
     .header-link {
         display: none;
@@ -7,5 +32,17 @@
 @media(min-width: 900px) {
     .header-logout {
         padding: 12px 59px !important;
+    }
+}
+
+@media(max-width: 750px) {
+    .header-title {
+        display: none !important;
+    }
+}
+
+@media(max-width: 650px) {
+    .header-label {
+        display: none !important;
     }
 }
