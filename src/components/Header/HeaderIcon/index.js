@@ -39,7 +39,7 @@ class HeaderIcon extends Component {
 
     submitDialog = () => {
         this.props.changeSettings({
-            alarmEnabled: this.state.alarm || !this.props.settings.alarmEnabled,
+            alarmEnabled: this.state.alarm || this.props.settings.alarmEnabled,
             minTemperature: this.state.temp || this.props.settings.minTemperature
         });
         this.toggleDialog();
@@ -82,6 +82,7 @@ class HeaderIcon extends Component {
                             primaryText="Minimalna temperatura"
                             rightToggle={
                                 <TextField
+                                    defaultValue={this.props.settings.minTemperature}
                                     onChange={(e, value) =>
                                         this.setState({ temp: value })}
                                     type="number"

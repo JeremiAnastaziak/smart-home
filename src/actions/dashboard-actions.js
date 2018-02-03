@@ -65,7 +65,7 @@ export function loadRecords() {
                     handles: data.handles,
                     records: {
                         count: data.count,
-                    measurements: data.measurements || data.measurements
+                        measurements: data.measurements || data.measurements
                     }
                 });
                 if (!user.isAuth) {
