@@ -57,7 +57,7 @@ export function loadRecords() {
         return fetchRecords(selected && selected.deviceType || 'HANDLE', Object.assign({
             limit,
             offset,
-            activeSort
+            sort: activeSort
         }, handlesOrNodes))
             .then(data => {
                 dispatch({

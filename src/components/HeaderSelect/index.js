@@ -55,6 +55,7 @@ class HeaderSelect extends React.Component {
                 >
                     {this.props.devices.map(device => (
                         <MenuItem
+                            key={device.id}
                             onClick={() => this.handleItemClick(device)}
                             value={device.id}
                             primaryText={device.name}

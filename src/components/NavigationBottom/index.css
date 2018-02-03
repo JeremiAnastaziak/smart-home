@@ -4,6 +4,7 @@
 
 .bottom-nav button{
     height: 100% !important;
+    width: 160px !important;
 }
 
 .bottom-nav-bottom button {

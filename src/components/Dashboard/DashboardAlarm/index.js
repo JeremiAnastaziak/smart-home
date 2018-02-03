@@ -36,7 +36,7 @@ const DashboardAlarm = ({ devices = [] }) => {
         return (
             <div style={{ marginBottom: '10px' }}>
                 <p style={{ margin: 0 }}>
-                    {`Urządzenie ${name} o numerze id ${deviceId} wykryło: ` +
+                    {`${name.toUpperCase()} o numerze id ${deviceId} wykryło: ` +
                         renderAlarms(alarm)}
                 </p>
             </div>
@@ -44,9 +44,8 @@ const DashboardAlarm = ({ devices = [] }) => {
     };
 
     return (
-        <Card>
-            <CardTitle title="Informacja o alarmach" />
-            <CardText>
+        <Card style={{backgroundColor: '#FF1744', color: '#fff', marginTop: '5px'}}>
+            <CardText style={{color: '#fff', paddingBottom: 0}}>
                 {devices.length
                     ? devices.map(device => renderDevice(device))
                     : 'Brak alarmów w ostatnich pomiarach'}

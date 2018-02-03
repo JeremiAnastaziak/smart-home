@@ -35,7 +35,7 @@ const Chart = ({ measurements, title, isFetching, children }) => {
             )}
             <p style={{margin: '0 0 0 10px', lineHeight: '15px', minHeight: '15px', color: 'red'}}>
             {!isFetching &&
-                !measurements.length && 'Brak pomiarów. Spróbuj wybrać inny przedział czasu.'
+                !measurements.length && 'Brak pomiarów. Spróbuj wybrać inny zakres dat.'
                     }</p>
             <ResponsiveContainer width="99%" aspect={1.8}>
                 {measurements && (

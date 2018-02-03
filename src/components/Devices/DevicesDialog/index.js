@@ -27,7 +27,7 @@ const DeleteDialog = ({ name, id, open, removeDeviceSubmit, toggleDeviceDialog }
             open={open}
             onRequestClose={() => toggleDeviceDialog(id, name, false)}
         >
-            Czy na pewno usunąc urządzenie o nazwie "{name}"?
+            Czy na pewno usunąć urządzenie o nazwie "{name}"?
         </Dialog>
     );
 };

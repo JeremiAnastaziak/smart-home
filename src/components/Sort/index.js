@@ -15,8 +15,8 @@ const commonSortOptions = [
 ];
 
 const handleSortOptions = [
-    { value: 'sound_asc', text: 'Dźwięk rosnąco' },
-    { value: 'sound_desc', text: 'Dźwięk malejąco' }
+    { value: 'sound_asc', text: 'Moc sygnału rosnąco' },
+    { value: 'sound_desc', text: 'Moc sygnału malejąco' }
 ];
 
 const nodeSortOptions = [

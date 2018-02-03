@@ -34,7 +34,7 @@ const DashboardTileNode = ({ device }) => {
                 <h6 className="device-meta-item-header">Natężenie światła</h6>
                 <span className="device-meta-item-text">
                     <IconLight color="#41e0e2de" />
-                    {device.lightIntensity.value + ' ' + device.lightIntensity.unit.replace('Lumeny?', 'lm')}
+                    {device.lightIntensity.value + ' ' + device.lightIntensity.unit}
                 </span>
             </span>
             <span className="device-meta-item">
@@ -42,7 +42,7 @@ const DashboardTileNode = ({ device }) => {
                 <span className="device-meta-item-text">
                     <IconCO2 style={{ color: '#ff8d7f' }} />
                     <span>
-                        {device.carbonDioxide.value + ' ' + 'CO2'}
+                        {device.carbonDioxide.value + ' ' + device.carbonDioxide.unit}
                     </span>
                 </span>
             </span>
@@ -50,7 +50,7 @@ const DashboardTileNode = ({ device }) => {
                 <h6 className="device-meta-item-header">Wilgotność względna</h6>
                 <span className="device-meta-item-text">
                     <IconHumidity color="#03a9f4" />
-                    {device.humidity.value + ' ' + device.humidity.unit.replace('jednostka?', '')}
+                    {device.humidity.value + ' ' + device.humidity.unit}
                 </span>
             </span>
         </div>

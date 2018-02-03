@@ -46,3 +46,11 @@ input:-webkit-autofill {
 * {
     font-family: Roboto, sans-serif;
 }
+
+input:required {
+    box-shadow:none;
+}
+
+a {
+    text-decoration: none !important;
+}

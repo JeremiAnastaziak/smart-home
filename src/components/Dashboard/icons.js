@@ -47,7 +47,7 @@ const renderIcons = (device) => {
 	c-0.2-0.7,0.3-1.4,1-1.4L21.7,19z M30.5,19.4c-0.3,1-1.2,1.6-2.3,1.6H28c-1.3,0-1.8-0.5-1.8-2l3.3-1C30.3,18,30.8,18.7,30.5,19.4z"
 	/>
 </svg></IconButton>}
-   {!device.alarm && <span style={{lineHeight: '56px'}}>Brak alarmów</span>}
+   {(!device.alarm || (!device.alarm.frost && !device.alarm.fire && !device.alarm.burglary)) && <span style={{lineHeight: '56px'}}>Brak alarmów</span>}
    </div>
     )
 }
