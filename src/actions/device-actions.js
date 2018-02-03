@@ -47,12 +47,19 @@ export function submitCreateDevice(body) {
         dispatch({ type: DEVICE_CREATE });
 
         return createDevice(body)
-            .then(respone => {
-                dispatch({
-                    type: DEVICE_CREATE_SUCCESS
-                });
-                fetchInitialData()(dispatch, getState);
-                //showNotification(`(${respone.statusText})`)(dispatch);
+            .then(response => {
+                if(response.status !== 422) {
+                    dispatch({
+                        type: DEVICE_CREATE_SUCCESS
+                    });
+                    fetchInitialData()(dispatch, getState);
+                    showNotification(`Dodano urządzenie`)(dispatch);
+                } else {
+                    dispatch({
+                        type: DEVICE_CREATE_ERROR
+                    });
+                    showNotification(`Urządzenie o wpisanym ID zostało już przypisane.`, true)(dispatch);
+                }
             })
             .catch(error => dispatch({ type: DEVICE_CREATE_ERROR, error }));
     };

@@ -54,3 +54,20 @@ input:required {
 a {
     text-decoration: none !important;
 }
+
+.page-content {
+    position: relative;
+}
+
+.spinner-absolute {
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(242, 245, 247, 0.53);
+    box-shadow: 0 0 12110px 121110px rgba(242, 245, 247, 0.53);
+}
+
+.page-content > div {
+    margin-bottom: 65px !important;
+}

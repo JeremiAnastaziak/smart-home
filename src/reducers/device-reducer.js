@@ -38,7 +38,8 @@ export default function deviceReducer(state = initialState, action) {
             };
         case DEVICE_CREATE_ERROR:
             return {
-                ...state
+                ...state,
+                isFetching: false
             };
         case DEVICE_EDIT: {
             return {

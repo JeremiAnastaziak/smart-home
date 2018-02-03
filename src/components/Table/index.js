@@ -45,7 +45,7 @@ const TableCustom = ({ records, isFetching, alarmTable, content }) => {
                             </TableHeader>
 
                             <TableBody displayRowCheckbox={false}>
-                                {isFetching && <CircularProgress />}
+                                {isFetching && <CircularProgress className="spinner-absolute"/>}
                                 {records &&
                                     records.map(record => (
                                         <TableRowCustom

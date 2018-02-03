@@ -36,8 +36,8 @@ class Devices extends PureComponent {
         } = this.props;
         return (
             <div className="devices-page">
+                {isFetching && <CircularProgress className="spinner-absolute"/>}
                 <Card style={{ margin: ' 0 0 10px' }}>
-                    {isFetching && <CircularProgress />}
                     <DevicesForm
                         isFetching={isFetching}
                         createDeviceSubmit={createDeviceSubmit}

@@ -5,3 +5,11 @@
 .table-custom td, .table-custom th{
     padding: 0 16px !important;
 }
+
+#root > div > div.authRoutes > div.page-content > div > div:nth-child(2) > div > div > div:nth-child(2) > div > div:nth-child(2) {
+    overflow: initial !important;
+}
+
+th, td {
+    white-space: pre-wrap !important;
+}
