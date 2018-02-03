@@ -9,6 +9,7 @@ const GraphsToolbar = ({
     reloadGraphData,
     changeGraphFilter,
     isFetching,
+    field,
     filters
 }) => {
     const minDate = new Date();
@@ -24,8 +25,18 @@ const GraphsToolbar = ({
 
     console.log(filters.startDate, filters.endDate);
 
+    const renderUnit = (parametr) => {
+        const units = {
+            'carbonDioxide': '%',
+            'temperature': '°C',
+            'lightIntensity': 'lx',
+            'humidity': '%',
+            'sound_level': 'dB'
+        }
+        return `[${units[parametr]}]`;
+    }
     return (
-        <div>
+        <div style={{position: 'relative'}}>
             <div className="graphs-toolbar">
                 <FilterDate
                     hint="Data od"
@@ -55,6 +66,7 @@ const GraphsToolbar = ({
                     Data zakończenia nie może być starsza od daty rozpoczęcia
                 </p>
             )}
+            <p className="graphs-unit">{renderUnit(field)}</p>
         </div>
     );
 };

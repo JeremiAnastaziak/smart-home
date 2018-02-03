@@ -26,6 +26,7 @@ const Limit = ({ activeLimit, onLimitChange }) => {
                 <MenuItem value={5} primaryText="5" />
                 <MenuItem value={10} primaryText="10" />
                 <MenuItem value={15} primaryText="15" />
+                <MenuItem value={50} primaryText="50" />
             </DropDownMenu>
         </div>
     );

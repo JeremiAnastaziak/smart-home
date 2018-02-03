@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardTitle } from 'material-ui/Card';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
-import * as moment from 'moment';
 
 import {
     ResponsiveContainer,
@@ -17,7 +16,7 @@ import './index.css';
 
 const Chart = ({ measurements, title, isFetching, children }) => {
 
-    const xAxisTickFormatter = (date) => moment(date).format('DD-MM-YYYY');
+    const xAxisTickFormatter = (date) => date.split(' ')[0];
 
     return (
         <Card style={{ position: 'relative'}}>

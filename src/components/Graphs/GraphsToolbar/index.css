@@ -1,5 +1,6 @@
 .graphs-toolbar {
     padding: 0 10px;
+    position: relative;
 }
 .graphs-toolbar {
     display: flex;
@@ -8,6 +9,12 @@
 
 .graphs-toolbar > div {
     margin-right: 15px;
+}
+
+.graphs-unit {
+    position: absolute;
+    bottom: -40px;
+    margin: 0;
 }
 
 @media (max-width: 640px) {

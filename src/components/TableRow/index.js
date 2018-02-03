@@ -4,11 +4,29 @@ import './index.css';
 
 const TableRowCustom = ({ record, isFetching, content }) => {
 
-    const renderAlarmInfo = alarm =>
-        ''
-            .concat(alarm.fire ? 'POŻAROWY ' : '')
+    const renderAlarmInfo = alarm => {
+        const info = '';
+
+        info.concat(alarm.fire ? 'POŻAROWY ' : '')
             .concat(alarm.frost ? 'ZAMROZENIOWY ' : '')
             .concat(alarm.burglary ? 'WŁAMANIOWY' : '');
+
+        if(!info) {
+            return 'BRAK';
+        }
+    }
+
+    const translate = (text) => {
+        switch(text) {
+            case 'OPEN':
+                return 'OTWARTA';
+            case 'CLOSED':
+                return 'ZAMKNIĘTA';
+            default:
+                return text;
+        }
+    }
+
 
     return (
         <TableRow className={isFetching ? 'apply-placeholder' : ''}>
@@ -19,7 +37,7 @@ const TableRowCustom = ({ record, isFetching, content }) => {
                             ? record[dataKey].value + ' ' + record[dataKey].unit
                             : record[dataKey].hasOwnProperty('fire')
                               ? renderAlarmInfo(record[dataKey])
-                              : record[dataKey]}
+                              : translate(record[dataKey])}
                     </span>
                 </TableRowColumn>
             ))}
