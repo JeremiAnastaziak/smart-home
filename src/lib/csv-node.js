@@ -5,13 +5,11 @@ export const formatNodeData = (data, device) => {
         nodeName: "Nazwa node'a",
         deviceId: "Id node'a",
         temperature: 'Temperatura [°C]',
-        lightIntensity: 'Intensywność światła [lm]',
-        carbonDioxide: 'Dwutlenek węgla [CO₂]',
-        humidity: 'Wilgotność',
+        lightIntensity: 'Natężenie światła [lx]',
+        carbonDioxide: 'Stężenie dwutleneku węgla [%]',
+        humidity: 'Wilgotność względna [%]',
         motion: 'Czujnik ruchu'
     };
-
-    console.log(data);
 
     const itemsFormatted = data.measurements.map(item => {
         return {

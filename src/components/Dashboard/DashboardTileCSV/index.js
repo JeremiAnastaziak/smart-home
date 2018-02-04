@@ -32,7 +32,6 @@ class DashboardTileCSV extends React.Component {
 
     fetchData = () => {
         const { device, deviceType, showNotification } = this.props;
-
         saveDataToCSV(device, deviceType, this.state).then(data => {
             if (!data.measurements.length) {
                 return showNotification(

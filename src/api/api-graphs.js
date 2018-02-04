@@ -15,7 +15,7 @@ export const loadGraph = (deviceType, { startDate, endDate, fieldName, deviceId 
 
     const params = {
         startDate: startDate && apiDateFormat(startDate),
-        endDate: endDate && apiDateFormat(endDate),
+        endDate: endDate && apiDateFormat(endDate, true),
         fieldName: ajustFieldName(fieldName).toUpperCase(),
         deviceId
     };

@@ -5,15 +5,11 @@ import './index.css';
 const TableRowCustom = ({ record, isFetching, content }) => {
 
     const renderAlarmInfo = alarm => {
-        const info = '';
-
-        info.concat(alarm.fire ? 'POŻAROWY ' : '')
+        const info = ''.concat(alarm.fire ? 'POŻAROWY ' : '')
             .concat(alarm.frost ? 'ZAMROZENIOWY ' : '')
             .concat(alarm.burglary ? 'WŁAMANIOWY' : '');
 
-        if(!info) {
-            return 'BRAK';
-        }
+        return info || 'BRAK';
     }
 
     const translate = (text) => {

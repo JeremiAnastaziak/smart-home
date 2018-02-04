@@ -23,11 +23,9 @@ export function submitRegisterUser(body) {
                     dispatch({
                         type: USER_REGISTER_SUCCESS
                     });
-                    fetchInitialData()(dispatch, getState);
+                    //fetchInitialData()(dispatch, getState);
                     showNotification(
-                        `Witaj ${extractLogin(
-                            body.email
-                        )}! Twoje konto zostało utworzone.`
+                        `Twoje konto zostało utworzone. Teraz możesz się zalogować.`
                     )(dispatch);
                 }
                 else {

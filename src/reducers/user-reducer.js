@@ -25,8 +25,8 @@ export default function userReducer(state = initialState, action) {
         case USER_REGISTER_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
-                isAuth: true
+                isFetching: false
+                //isAuth: true
             };
         case USER_REGISTER_ERROR:
             return {

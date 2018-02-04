@@ -25,9 +25,9 @@ export const extractAlarmsFromLatestData = (data) => {
     return data.handles.filter(item => Object.values(item.alarm).reduce((a, b) => a || b));
 }
 
-export const apiDateFormat = date => {
+export const apiDateFormat = (date, ifEndDate) => {
     date = moment(date).format();
-    return date.slice(0, date.indexOf('T')).concat(' 00:00');
+    return date.slice(0, date.indexOf('T')).concat(ifEndDate ? ' 23:59' : ' 00:00');
 };
 
 export const reqParams = (params = {}) => {

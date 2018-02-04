@@ -21,7 +21,7 @@ const GraphsToolbar = ({
 
     const endDateNumber = filters.endDate ?
         new Date(filters.endDate).getTime() :
-        new Date().getTime();
+        new Date(maxDate.setDate(maxDate.getDate() + 1)).getTime();
 
     console.log(filters.startDate, filters.endDate);
 

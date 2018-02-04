@@ -45,7 +45,7 @@ const DashboardAlarm = ({ devices = [] }) => {
 
     return (
         <Card style={{backgroundColor: '#FF1744', color: '#fff', marginTop: '5px'}}>
-            <CardText style={{color: '#fff', paddingBottom: 0}}>
+            <CardText style={{color: '#fff', paddingBottom: '8px'}}>
                 {devices.length
                     ? devices.map(device => renderDevice(device))
                     : 'Brak alarmów w ostatnich pomiarach'}

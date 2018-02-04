@@ -8,6 +8,7 @@ import {
 } from '../../actions/graph-actions';
 import GraphsTiles from './GraphsTiles';
 import GraphsToolbar from './GraphsToolbar';
+import {Card, CardText} from 'material-ui/Card';
 import './index.css';
 
 const mapStateToProps = ({ dashboard, graphs, devices }) => {
@@ -17,7 +18,7 @@ const mapStateToProps = ({ dashboard, graphs, devices }) => {
         fields: Object.keys(graphs.fields),
         isFetching: graphs.isFetching,
         filters: graphs.active && graphs.filters,
-        handles: dashboard.handles,
+        devices: dashboard.devices,
         deviceType: devices.selected && devices.selected.deviceType
     };
 };
@@ -39,9 +40,12 @@ const Graphs = ({
     changeGraphView,
     changeGraphFilter,
     filters,
-    handles,
+    devices,
     deviceType
 }) => {
+    if(!devices.length) {
+        return <Card><CardText>Brak pomiarów</CardText></Card>
+    }
     return (
         <div className="graphs-page">
             <GraphsTiles
@@ -58,7 +62,6 @@ const Graphs = ({
                         reloadGraphData={reloadGraphData}
                         isFetching={isFetching}
                         filters={filters}
-                        handles={handles}
                     />
                 </Chart>
             )}
