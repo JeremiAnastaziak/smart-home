@@ -18,11 +18,14 @@ const TableRowCustom = ({ record, isFetching, content }) => {
                 return 'OTWARTA';
             case 'CLOSED':
                 return 'ZAMKNIĘTA';
+            case true:
+                return 'WYKRYTO';
+            case false:
+                return 'BRAK';
             default:
                 return text;
         }
     }
-
 
     return (
         <TableRow className={isFetching ? 'apply-placeholder' : ''}>
@@ -31,9 +34,9 @@ const TableRowCustom = ({ record, isFetching, content }) => {
                     <span>
                         {record[dataKey].hasOwnProperty('value')
                             ? record[dataKey].value + ' ' + record[dataKey].unit
-                            : record[dataKey].hasOwnProperty('fire')
-                              ? renderAlarmInfo(record[dataKey])
-                              : translate(record[dataKey])}
+                            : record[dataKey].hasOwnProperty('burglary')
+                            ? renderAlarmInfo(record[dataKey])
+                            : translate(record[dataKey])}
                     </span>
                 </TableRowColumn>
             ))}

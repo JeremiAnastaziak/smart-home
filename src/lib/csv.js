@@ -4,7 +4,6 @@ import { formatNodeData } from './csv-node';
 import { showNotification } from '../actions/notification-actions';
 
 export const saveDataToCSV = (device, deviceType, filter) => {
-    console.log(device);
 
     const devices =
         deviceType === 'HANDLE'

@@ -66,7 +66,6 @@ export function submitCreateDevice(body) {
 }
 
 export function submitEditDevice(body) {
-    console.log(body);
     return (dispatch, getState) => {
         dispatch({ type: DEVICE_EDIT });
 

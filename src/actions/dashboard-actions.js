@@ -76,7 +76,6 @@ export function loadRecords() {
                 //showNotification(`(${response.statusText})`)(dispatch);
             })
             .catch(error => {
-                console.log(error);
                 dispatch({ type: DASHBOARD_LOAD_RECORDS_ERROR });
                 //showNotification(`(${JSON.stringify(error)})`)(dispatch);
             });

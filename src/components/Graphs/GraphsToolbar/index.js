@@ -23,7 +23,6 @@ const GraphsToolbar = ({
         new Date(filters.endDate).getTime() :
         new Date(maxDate.setDate(maxDate.getDate() + 1)).getTime();
 
-    console.log(filters.startDate, filters.endDate);
 
     const renderUnit = (parametr) => {
         const units = {

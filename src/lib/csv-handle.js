@@ -12,7 +12,6 @@ export const formatHandleData = (data, device) => {
         alarmBurglary: 'Alarm włamaniowy'
     };
 
-    console.log(data);
 
     const itemsFormatted = data.measurements.map(item => {
         return {

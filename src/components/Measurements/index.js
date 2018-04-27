@@ -24,7 +24,8 @@ const Measurements = props => {
         temperature: 'Temperatura',
         lightIntensity: 'Natężenie światła',
         carbonDioxide: 'Stężenie dwutleneku węgla',
-        humidity: 'Wilgotność względna'
+        humidity: 'Wilgotność względna',
+        alarm: 'Alarmy'
     };
 
     return (

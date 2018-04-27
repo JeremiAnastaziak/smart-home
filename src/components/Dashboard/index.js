@@ -43,7 +43,7 @@ const mapDispatchToProps = dispatch => {
 
 const DashboardEmpty = () => (
     <Paper style={{ padding: '18px', width: '100%' }}>
-        <h3>Nie znaleziono zadnych pomiarów. Sprobuj dodac nowe urządzenie.</h3>
+        <h3>Nie znaleziono żadnych pomiarów. Spróbuj dodać nowe urządzenie.</h3>
         <Link to="/devices">
             <RaisedButton label="Dodaj nowe urządzenie" primary />
         </Link>

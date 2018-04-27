@@ -27,7 +27,8 @@ class HeaderIcon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dialog: false
+            dialog: false,
+            alarm: props.settings.alarmEnabled
         };
     }
 
@@ -39,7 +40,7 @@ class HeaderIcon extends Component {
 
     submitDialog = () => {
         this.props.changeSettings({
-            alarmEnabled: this.state.alarm || this.props.settings.alarmEnabled,
+            alarmEnabled: this.state.alarm,
             minTemperature: this.state.temp || this.props.settings.minTemperature
         });
         this.toggleDialog();
@@ -74,7 +75,7 @@ class HeaderIcon extends Component {
                                 <Toggle
                                     onToggle={(e, value) =>
                                         this.setState({ alarm: value })}
-                                    defaultToggled={this.props.settings.alarmEnabled}
+                                    defaultToggled={this.state.alarm || this.props.settings.alarmEnabled}
                                 />
                             }
                         />

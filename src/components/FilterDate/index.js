@@ -20,7 +20,6 @@ minDate.setHours(0, 0, 0, 0);
 maxDate.setHours(0, 0, 0, 0);
 
 const FilterDate = ({ hint, onDateChange, min, value }) => {
-    console.log(value);
     return (
         <DatePicker
             floatingLabelText={hint}

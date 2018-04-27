@@ -58,7 +58,6 @@ export function submitLoginUser(body) {
                     )(dispatch);
                 }
                 else {
-                    console.log(response);
                     dispatch({
                         type: USER_LOGIN_ERROR
                     });

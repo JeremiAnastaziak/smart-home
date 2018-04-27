@@ -10,7 +10,6 @@ export const SETTINGS_GET_ERROR = 'SETTINGS_GET_ERROR';
 
 export const changeSettingsAction = settingsChanged => (dispatch, getState) => {
     dispatch({ type: SETTINGS_CHANGE });
-    console.log(settingsChanged);
 
     const settingsNow = getState().settings;
     const settingsDesired = Object.assign(settingsNow, settingsChanged);

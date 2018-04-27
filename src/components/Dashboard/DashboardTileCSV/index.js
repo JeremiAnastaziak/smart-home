@@ -62,7 +62,7 @@ class DashboardTileCSV extends React.Component {
 
         const endDateNumber = this.state.endDate
             ? new Date(this.state.endDate).getTime()
-            : new Date().getTime();
+            : new Date(minDate.setDate(minDate.getDate() + 1)).getTime();
 
         const actions = [
             <FlatButton
